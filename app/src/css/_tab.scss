@@ -1,0 +1,109 @@
+    
+    
+    $path: "../img/";
+    
+    $ocarina:   $path + "ocarina.png";
+    $shole:      $path + "hole.png";
+    $hole:     $path + "hole-large.png";
+
+    $lthumb: 14px 34px;
+    $rthumb: 29px 29px;
+    $lindex: 4px 22px;
+    $rindex: 23px 19px;
+    $lmiddle: 9px 20px;
+    $rmiddle: 25px 14px;
+    $lring: 14px 17px;
+    $rring: 29px 10px;
+    $lpinky: 17px 12px;
+    $rpinky: 34px 7px;
+    $lextra: 14px 24px;
+    $rextra: 25px 8px;
+
+
+    @mixin holes( $holes: 0 , $sholes: 0 ) {
+
+        $output: "";
+
+        @for $i from 0 to $holes {
+            $output: $output + "url( #{$hole} ) , ";
+        }
+
+        @for $i from 0 to $sholes {
+            $output: $output + "url( #{$shole} ) , ";
+        }
+
+        $output: $output + "url( #{$ocarina} )";
+
+        background-image: #{$output};
+
+    }
+
+
+
+
+    .node {
+
+        .tab {
+
+            width: 46px;
+            height: 42px;
+
+            @include holes(0);
+            background-repeat: no-repeat;
+
+        }
+
+        &.x {
+
+            &4AN .tab {
+
+                @include holes(8,4);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $rextra, 0 0;
+
+            }
+
+            &4AS .tab,
+            &4BF .tab {
+
+                @include holes(8,3);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, 0 0;
+
+            }
+
+            &4BN .tab {
+
+                @include holes(8,3);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $rextra, 0 0;
+
+            }
+
+            &5CN .tab {
+
+                @include holes(8,2);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5CS .tab {
+
+                @include holes(7,3);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra, 0 0;
+
+            }
+
+            &5FN .tab {
+
+                @include holes(5,2);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+        }
+
+    }

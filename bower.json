@@ -1,0 +1,25 @@
+{
+  "name": "ocarina-tabs",
+  "version": "0.0.1",
+  "authors": [
+    "simeydotme <simey.me@gmail.com>"
+  ],
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr": "~2.8.3",
+    "jqueryui": "~1.11.1",
+    "howler.js": "https://github.com/goldfire/howler.js.git#~1.1.25"
+  }
+}
