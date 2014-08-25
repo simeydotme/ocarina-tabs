@@ -52,7 +52,7 @@
         exports.init = (function() {
 
             exports.sounds = exports.registerSounds();
-            
+            exports.loadFonts();
 
         }());
 

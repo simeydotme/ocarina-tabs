@@ -51,9 +51,58 @@
             @include holes(0);
             background-repeat: no-repeat;
 
+            .name {
+
+                font-weight: 600;
+                font-size: 10px;
+                color: white;
+                text-shadow:
+                    0 0 1px #000, 
+                    0 0 1px #000,
+                    0 0 1px #666, 
+                    0 0 1px #666, 
+                    0 0 1px #666, 
+                    0 0 1px #666, 
+                    0 0 1px #666;
+
+                position: absolute;
+                top: -5px;
+                left: 0;
+                width: 100%;
+
+                &:after {
+
+                    color: black;
+                    text-shadow: none;
+                    position: relative;
+                    top: -3px;
+
+                }
+
+            }
+
+        }
+
+        &[class$=S] {
+            color: red;
         }
 
         &.x {
+
+            &4AS, &5CS, &5DS, &5FS, &5GS, &5AS, &6CS, &6DS {
+                .name:after {
+                    content: "\266f";
+                }
+            }
+
+            &4BF, &5DF, &5EF, &5GF, &5AF, &5BF, &6DF, &6EF {
+                .name:after {
+                    content: "\266d";
+                }
+            }
+
+
+
 
             &4AN .tab {
 
@@ -88,11 +137,37 @@
 
             }
 
-            &5CS .tab {
+            &5CS .tab,
+            &5DF .tab {
 
                 @include holes(7,3);
                 background-position:
                    $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra, 0 0;
+
+            }
+
+            &5DN .tab {
+
+                @include holes(7,2);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5DS .tab,
+            &5EF .tab {
+
+                @include holes(7,2);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rpinky, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5EN .tab {
+
+                @include holes(6,2);
+                background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $lpinky, $lthumb, $rthumb, 0 0;
 
             }
 
@@ -103,6 +178,109 @@
                    $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, 0 0;
 
             }
+
+            &5FS .tab,
+            &5GF .tab {
+
+                @include holes(5,2);
+                background-position:
+                   $lindex, $rmiddle, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5GN .tab {
+
+                @include holes(4,2);
+                background-position:
+                   $lindex, $lring, $lmiddle, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5GS .tab,
+            &5AF .tab {
+
+                @include holes(4,2);
+                background-position:
+                   $lindex, $rring, $lmiddle, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5AN .tab {
+
+                @include holes(3,2);
+                background-position:
+                   $lindex, $lmiddle, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5AS .tab,
+            &5BF .tab {
+
+                @include holes(3,2);
+                background-position:
+                   $lindex, $lpinky, $rring, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &5BN .tab {
+
+                @include holes(2,2);
+                background-position:
+                   $lindex, $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &6CN .tab {
+
+                @include holes(1,2);
+                background-position:
+                   $lpinky, $lthumb, $rthumb, 0 0;
+
+            }
+
+            &6CS .tab,
+            &6DF .tab {
+
+                @include holes(2,1);
+                background-position:
+                   $lpinky, $rring, $rthumb, 0 0;
+
+            }
+
+            &6DN .tab {
+
+                @include holes(1,1);
+                background-position:
+                   $lpinky, $rthumb, 0 0;
+
+            }
+
+            &6DS .tab,
+            &6EF .tab {
+
+                @include holes(0,1);
+                background-position:
+                   $rthumb, 0 0;
+
+            }
+
+            &6EN .tab {
+
+                @include holes(1,0);
+                background-position:
+                   $lpinky, 0 0;
+
+            }
+
+            &6FN .tab {
+
+                @include holes(0,0);
+                background-position:
+                   0 0;
+
+            }
+
+
 
         }
 

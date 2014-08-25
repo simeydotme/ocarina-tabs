@@ -1,3 +1,192 @@
+body {
+  font-family: "Lato";
+  color: #333;
+}
+
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+html,
+button,
+input,
+select,
+textarea {
+  color: #222;
+}
+
+html {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+::-moz-selection {
+  background: #0088ff;
+  color: white;
+  text-shadow: none;
+}
+
+::selection {
+  background: #0088ff;
+  color: white;
+  text-shadow: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+img,
+video {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+.ir {
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  *text-indent: -9999px;
+}
+
+.ir:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 150%;
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
 .node {
   padding: 0;
   margin: 0;
@@ -12,6 +201,31 @@
   height: 42px;
   background-image: url( ../img/ocarina.png );
   background-repeat: no-repeat;
+}
+.node .tab .name {
+  font-weight: 600;
+  font-size: 10px;
+  color: white;
+  text-shadow: 0 0 1px #000,  0 0 1px #000, 0 0 1px #666,  0 0 1px #666,  0 0 1px #666,  0 0 1px #666,  0 0 1px #666;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+}
+.node .tab .name:after {
+  color: black;
+  text-shadow: none;
+  position: relative;
+  top: -3px;
+}
+.node[class$=S] {
+  color: red;
+}
+.node.x4AS .name:after, .node.x5CS .name:after, .node.x5DS .name:after, .node.x5FS .name:after, .node.x5GS .name:after, .node.x5AS .name:after, .node.x6CS .name:after, .node.x6DS .name:after {
+  content: "\266f";
+}
+.node.x4BF .name:after, .node.x5DF .name:after, .node.x5EF .name:after, .node.x5GF .name:after, .node.x5AF .name:after, .node.x5BF .name:after, .node.x6DF .name:after, .node.x6EF .name:after {
+  content: "\266d";
 }
 .node.x4AN .tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
@@ -29,13 +243,73 @@
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
   background-position: 4px 22px, 23px 19px, 9px 20px, 25px 14px, 14px 17px, 29px 10px, 17px 12px, 34px 7px, 14px 34px, 29px 29px, 0 0;
 }
-.node.x5CS .tab {
+.node.x5CS .tab, .node.x5DF .tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
   background-position: 4px 22px, 23px 19px, 9px 20px, 25px 14px, 14px 17px, 29px 10px, 17px 12px, 14px 34px, 29px 29px, 25px 8px, 0 0;
+}
+.node.x5DN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 23px 19px, 9px 20px, 25px 14px, 14px 17px, 29px 10px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5DS .tab, .node.x5EF .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 23px 19px, 9px 20px, 25px 14px, 14px 17px, 34px 7px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5EN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 23px 19px, 9px 20px, 25px 14px, 14px 17px, 17px 12px, 14px 34px, 29px 29px, 0 0;
 }
 .node.x5FN .tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
   background-position: 4px 22px, 23px 19px, 9px 20px, 14px 17px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5FS .tab, .node.x5GF .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 25px 14px, 9px 20px, 14px 17px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5GN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 14px 17px, 9px 20px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5GS .tab, .node.x5AF .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 29px 10px, 9px 20px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5AN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 9px 20px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5AS .tab, .node.x5BF .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 17px 12px, 29px 10px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x5BN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 4px 22px, 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x6CN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 17px 12px, 14px 34px, 29px 29px, 0 0;
+}
+.node.x6CS .tab, .node.x6DF .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 17px 12px, 29px 10px, 29px 29px, 0 0;
+}
+.node.x6DN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 17px 12px, 29px 29px, 0 0;
+}
+.node.x6DS .tab, .node.x6EF .tab {
+  background-image: url( ../img/hole.png ) , url( ../img/ocarina.png );
+  background-position: 29px 29px, 0 0;
+}
+.node.x6EN .tab {
+  background-image: url( ../img/hole-large.png ) , url( ../img/ocarina.png );
+  background-position: 17px 12px, 0 0;
+}
+.node.x6FN .tab {
+  background-image: url( ../img/ocarina.png );
+  background-position: 0 0;
 }
 
 .arrangement {
