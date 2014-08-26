@@ -1,6 +1,39 @@
 
     var app = (function(exports) {
 
+        // merge some constants into the app.
+        $.extend( exports , {
+
+            $TRACK: $(".stage .arrangement"),
+            $TEMPLATE: $("#node-template")
+
+        });
+
+        exports.templates = {
+            node: Handlebars.compile( exports.$TEMPLATE.html() )
+        };
+
+
+        exports._fixture = {
+            nodes: [
+                {
+                    note: "5DN",
+                    length: "8"
+                },
+                {
+                    note: "5EN",
+                    length: "8"
+                },
+                {
+                    note: "5FS",
+                    length: "4"
+                },
+                {
+                    note: "5AN",
+                    length: "2"
+                }
+            ]
+        };
 
 
         exports.registerSounds = function() {
@@ -9,35 +42,35 @@
 
             return {
 
-                "4AN": new Howl({ urls: [ path + "/4AN.ogg", path + "/4AN.mp3"] }),
-                "4AS": new Howl({ urls: [ path + "/4AS.ogg", path + "/4AS.mp3"] }),
-                "4BF": new Howl({ urls: [ path + "/4BF.ogg", path + "/4BF.mp3"] }),
-                "4BN": new Howl({ urls: [ path + "/4BN.ogg", path + "/4BN.mp3"] }),
-                "5CN": new Howl({ urls: [ path + "/5CN.ogg", path + "/5CN.mp3"] }),
-                "5CS": new Howl({ urls: [ path + "/5CS.ogg", path + "/5CS.mp3"] }),
-                "5DF": new Howl({ urls: [ path + "/5DF.ogg", path + "/5DF.mp3"] }),
-                "5DN": new Howl({ urls: [ path + "/5DN.ogg", path + "/5DN.mp3"] }),
-                "5DS": new Howl({ urls: [ path + "/5DS.ogg", path + "/5DS.mp3"] }),
-                "5EF": new Howl({ urls: [ path + "/5EF.ogg", path + "/5EF.mp3"] }),
-                "5EN": new Howl({ urls: [ path + "/5EN.ogg", path + "/5EN.mp3"] }),
-                "5FN": new Howl({ urls: [ path + "/5FN.ogg", path + "/5FN.mp3"] }),
-                "5FS": new Howl({ urls: [ path + "/5FS.ogg", path + "/5FS.mp3"] }),
-                "5GF": new Howl({ urls: [ path + "/5GF.ogg", path + "/5GF.mp3"] }),
-                "5GN": new Howl({ urls: [ path + "/5GN.ogg", path + "/5GN.mp3"] }),
-                "5GS": new Howl({ urls: [ path + "/5GS.ogg", path + "/5GS.mp3"] }),
-                "5AF": new Howl({ urls: [ path + "/5AF.ogg", path + "/5AF.mp3"] }),
-                "5AN": new Howl({ urls: [ path + "/5AN.ogg", path + "/5AN.mp3"] }),
-                "5AS": new Howl({ urls: [ path + "/5AS.ogg", path + "/5AS.mp3"] }),
-                "5BF": new Howl({ urls: [ path + "/5BF.ogg", path + "/5BF.mp3"] }),
-                "5BN": new Howl({ urls: [ path + "/5BN.ogg", path + "/5BN.mp3"] }),
-                "6CN": new Howl({ urls: [ path + "/6CN.ogg", path + "/6CN.mp3"] }),
-                "6CS": new Howl({ urls: [ path + "/6CS.ogg", path + "/6CS.mp3"] }),
-                "6DF": new Howl({ urls: [ path + "/6DF.ogg", path + "/6DF.mp3"] }),
-                "6DN": new Howl({ urls: [ path + "/6DN.ogg", path + "/6DN.mp3"] }),
-                "6DS": new Howl({ urls: [ path + "/6DS.ogg", path + "/6DS.mp3"] }),
-                "6EF": new Howl({ urls: [ path + "/6EF.ogg", path + "/6EF.mp3"] }),
-                "6EN": new Howl({ urls: [ path + "/6EN.ogg", path + "/6EN.mp3"] }),
-                "6FN": new Howl({ urls: [ path + "/6FN.ogg", path + "/6FN.mp3"] })
+                "4AN": new buzz.sound( path + "/4AN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "4AS": new buzz.sound( path + "/4AS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "4BF": new buzz.sound( path + "/4BF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "4BN": new buzz.sound( path + "/4BN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5CN": new buzz.sound( path + "/5CN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5CS": new buzz.sound( path + "/5CS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5DF": new buzz.sound( path + "/5DF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5DN": new buzz.sound( path + "/5DN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5DS": new buzz.sound( path + "/5DS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5EF": new buzz.sound( path + "/5EF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5EN": new buzz.sound( path + "/5EN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5FN": new buzz.sound( path + "/5FN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5FS": new buzz.sound( path + "/5FS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5GF": new buzz.sound( path + "/5GF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5GN": new buzz.sound( path + "/5GN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5GS": new buzz.sound( path + "/5GS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5AF": new buzz.sound( path + "/5AF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5AN": new buzz.sound( path + "/5AN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5AS": new buzz.sound( path + "/5AS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5BF": new buzz.sound( path + "/5BF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "5BN": new buzz.sound( path + "/5BN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6CN": new buzz.sound( path + "/6CN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6CS": new buzz.sound( path + "/6CS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6DF": new buzz.sound( path + "/6DF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6DN": new buzz.sound( path + "/6DN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6DS": new buzz.sound( path + "/6DS", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6EF": new buzz.sound( path + "/6EF", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6EN": new buzz.sound( path + "/6EN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false }),
+                "6FN": new buzz.sound( path + "/6FN", { formats: [ "ogg", "mp3" ], preload: true, autoplay: false })
 
             };
 
@@ -46,13 +79,102 @@
 
 
 
+        exports.playNote = function( note ) {
+
+            var extractedNote = false,
+                regex = /♪[4-6]{1}[A-G]{1}[FNS]/;
+
+            if( !note ) {
+
+                console.warn( "attempted to play an invalid note" );
+                return;
+
+            }
+
+            if( $.type( note ) === "string" ) {
+
+                if( $.type( app.sounds[ note ] ) !== "undefined" ) {
+
+                    extractedNote = note;
+
+                } else {
+
+                    console.error( "could find the note \"" + note + "\" for playback" );
+                    return;
+
+                }
+
+            } else if( $.type( note ) === "object" ) {
+
+                extractedNote = 
+                    $( note )
+                        .attr("class")
+                        .match( regex )[0]
+                        .replace("♪","");
+
+            }
+
+            if( extractedNote ) {
+                app.sounds[ extractedNote ].play();
+            }
+
+        };
+
+
+
+
+
+
+        
+
+        exports._createTrack = function( data ) {
+
+            return exports.templates.node( data );
+
+        };
+
+        exports.renderTrack = function( data ) {
+
+            var html = exports._createTrack( data );
+            exports.$TRACK.html( html );
+
+        };
+
+
+
+
+
+
+        var _handlebarsHelpers = (function() {
+
+            Handlebars.registerHelper("noteName", function( note ) {
+
+                return note.split("")[1];
+
+            });
+
+        }());
+
+
+
+
+
+        exports.$TRACK.on("click", ".node", function(e) {
+
+            exports.playNote( this );
+
+        });
+
+
 
 
 
         exports.init = (function() {
 
-            exports.sounds = exports.registerSounds();
-            exports.loadFonts();
+            var e = exports;
+
+            e.loadFonts();
+            e.sounds = e.registerSounds();
 
         }());
 

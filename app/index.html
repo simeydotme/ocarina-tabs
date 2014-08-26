@@ -27,180 +27,192 @@
         <section class="stage">
 
             <ul class="arrangement">
+
+                <script id="node-template" type="text/x-handlebars-template">
+
+                {{#each nodes}}
+                    <li class="node ♪{{note}} ♫{{length}}">
+                        <div class="tab">
+                            <span class="name">{{noteName note}}</span>
+                        </div>
+                    </li>
+                {{/each}}
+                </script>
                 
-                <li class="node x4AN eighth">
+                <!-- 
+                <li class="node ♪4AN ♫32">
                     <div class="tab">
-                        <span class="name">4A</span>
-                    </div>
-                </li>
-                
-                <li class="node x4AS eighth">
-                    <div class="tab">
-                        <span class="name">4A</span>
-                    </div>
-                </li>
-                
-                <li class="node x4BF eighth">
-                    <div class="tab">
-                        <span class="name">4B</span>
-                    </div>
-                </li>
-                
-                <li class="node x4BN eighth">
-                    <div class="tab">
-                        <span class="name">4B</span>
+                        <span class="name">A</span>
                     </div>
                 </li>
                 
-                <li class="node x5CN eighth">
+                <li class="node ♪4AS ♫16">
                     <div class="tab">
-                        <span class="name">5C</span>
+                        <span class="name">A</span>
                     </div>
                 </li>
                 
-                <li class="node x5CS eighth">
+                <li class="node ♪4BF ♫8">
                     <div class="tab">
-                        <span class="name">5C</span>
+                        <span class="name">B</span>
                     </div>
                 </li>
                 
-                <li class="node x5DF eighth">
+                <li class="node ♪4BN ♫4">
                     <div class="tab">
-                        <span class="name">5D</span>
+                        <span class="name">B</span>
                     </div>
                 </li>
                 
-                <li class="node x5DN eighth">
+                <li class="node ♪5CN ♫2">
                     <div class="tab">
-                        <span class="name">5D</span>
+                        <span class="name">C</span>
                     </div>
                 </li>
                 
-                <li class="node x5DS eighth">
+                <li class="node ♪5CS ♫1">
                     <div class="tab">
-                        <span class="name">5D</span>
+                        <span class="name">C</span>
                     </div>
                 </li>
                 
-                <li class="node x5EF eighth">
+                <li class="node ♪5DF ♫32">
                     <div class="tab">
-                        <span class="name">5E</span>
+                        <span class="name">D</span>
                     </div>
                 </li>
                 
-                <li class="node x5EN eighth">
+                <li class="node ♪5DN ♫32">
                     <div class="tab">
-                        <span class="name">5E</span>
+                        <span class="name">D</span>
                     </div>
                 </li>
                 
-                <li class="node x5FN eighth">
+                <li class="node ♪5DS ♫32">
                     <div class="tab">
-                        <span class="name">5F</span>
+                        <span class="name">D</span>
                     </div>
                 </li>
                 
-                <li class="node x5FS eighth">
+                <li class="node ♪5EF ♫32">
                     <div class="tab">
-                        <span class="name">5F</span>
+                        <span class="name">E</span>
+                    </div>
+                </li>
+                
+                <li class="node ♪5EN ♫32">
+                    <div class="tab">
+                        <span class="name">E</span>
+                    </div>
+                </li>
+                
+                <li class="node ♪5FN ♫32">
+                    <div class="tab">
+                        <span class="name">F</span>
+                    </div>
+                </li>
+                
+                <li class="node ♪5FS ♫32">
+                    <div class="tab">
+                        <span class="name">F</span>
                     </div>
                 </li>
 
-                <li class="node x5GF eigth">
+                <li class="node ♪5GF ♫32">
                     <div class="tab">
-                        <span class="name">5G</span>
+                        <span class="name">G</span>
                     </div>
                 </li>
 
-                <li class="node x5GN eigth">
+                <li class="node ♪5GN ♫32">
                     <div class="tab">
-                        <span class="name">5G</span>
+                        <span class="name">G</span>
                     </div>
                 </li>
 
-                <li class="node x5GS eigth">
+                <li class="node ♪5GS ♫32">
                     <div class="tab">
-                        <span class="name">5G</span>
+                        <span class="name">G</span>
                     </div>
                 </li>
 
-                <li class="node x5AF eigth">
+                <li class="node ♪5AF ♫32">
                     <div class="tab">
-                        <span class="name">5A</span>
+                        <span class="name">A</span>
                     </div>
                 </li>
 
-                <li class="node x5AN eigth">
+                <li class="node ♪5AN ♫32">
                     <div class="tab">
-                        <span class="name">5A</span>
+                        <span class="name">A</span>
                     </div>
                 </li>
 
-                <li class="node x5AS eigth">
+                <li class="node ♪5AS ♫32">
                     <div class="tab">
-                        <span class="name">5A</span>
+                        <span class="name">A</span>
                     </div>
                 </li>
 
-                <li class="node x5BF eigth">
+                <li class="node ♪5BF ♫32">
                     <div class="tab">
-                        <span class="name">5B</span>
+                        <span class="name">B</span>
                     </div>
                 </li>
 
-                <li class="node x5BN eigth">
+                <li class="node ♪5BN ♫32">
                     <div class="tab">
-                        <span class="name">5B</span>
+                        <span class="name">B</span>
                     </div>
                 </li>
 
-                <li class="node x6CN eigth">
+                <li class="node ♪6CN ♫32">
                     <div class="tab">
-                        <span class="name">6C</span>
+                        <span class="name">C</span>
                     </div>
                 </li>
 
-                <li class="node x6CS eigth">
+                <li class="node ♪6CS ♫32">
                     <div class="tab">
-                        <span class="name">6C</span>
+                        <span class="name">C</span>
                     </div>
                 </li>
 
-                <li class="node x6DF eigth">
+                <li class="node ♪6DF ♫32">
                     <div class="tab">
-                        <span class="name">6D</span>
+                        <span class="name">D</span>
                     </div>
                 </li>
 
-                <li class="node x6DN eigth">
+                <li class="node ♪6DN ♫32">
                     <div class="tab">
-                        <span class="name">6D</span>
+                        <span class="name">D</span>
                     </div>
                 </li>
 
-                <li class="node x6DS eigth">
+                <li class="node ♪6DS ♫32">
                     <div class="tab">
-                        <span class="name">6D</span>
+                        <span class="name">D</span>
                     </div>
                 </li>
 
-                <li class="node x6EF eigth">
+                <li class="node ♪6EF ♫32">
                     <div class="tab">
-                        <span class="name">6E</span>
+                        <span class="name">E</span>
                     </div>
                 </li>
 
-                <li class="node x6EN eigth">
+                <li class="node ♪6EN ♫32">
                     <div class="tab">
-                        <span class="name">6E</span>
+                        <span class="name">E</span>
                     </div>
                 </li>
 
-                <li class="node x6FN eigth">
+                <li class="node ♪6FN ♫32">
                     <div class="tab">
-                        <span class="name">6F</span>
+                        <span class="name">F</span>
                     </div>
-                </li>
+                </li> -->
 
 
             </ul>
@@ -211,7 +223,8 @@
         <!-- bower:js -->
         <script src="../bower_components/jquery/dist/jquery.js"></script>
         <script src="../bower_components/jqueryui/jquery-ui.js"></script>
-        <script src="../bower_components/howler.js/howler.js"></script>
+        <script src="../bower_components/buzz/dist/buzz.js"></script>
+        <script src="../bower_components/handlebars/handlebars.js"></script>
         <!-- endbower -->
 
         <script src="src/js/webfonts.js"></script>
