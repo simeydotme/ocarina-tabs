@@ -1,0 +1,50 @@
+    
+    $nodeSpace: 4px;
+
+    $startRight: 7px;
+    $startMargin: -6px;
+    $startWidth: 0px;
+
+    .note {
+
+        padding: 0;
+        margin: 0 $startMargin 0 0;
+        width: 46px;
+        height: 60px;
+
+        display: inline-block;
+        position: relative;
+
+        &:after {
+
+            content: "";
+            width: $startWidth;
+            height: 2px;
+            background-color: rgba(0,0,0,0.15);
+
+            position: absolute;
+            right: $startRight;
+            top: 20px;
+
+        }
+
+        &--♫ {
+
+            &32 { }
+            &16 { margin-right: $startMargin + ( 2 * $nodeSpace ); }  
+            &8 { margin-right: $startMargin + ( 4 * $nodeSpace ); }
+            &4 { margin-right: $startMargin + ( 8 * $nodeSpace ); }
+            &2 { margin-right: $startMargin + ( 16 * $nodeSpace ); }
+            &1 { margin-right: $startMargin + ( 32 * $nodeSpace ); }
+
+            &32:after { }
+            &16:after { right: $startRight - ( 2 * $nodeSpace ); width: $startWidth + ( 2 * $nodeSpace ); }  
+            &8:after { right: $startRight - ( 4 * $nodeSpace ); width: $startWidth + ( 4 * $nodeSpace ); }  
+            &4:after { right: $startRight - ( 8 * $nodeSpace ); width: $startWidth + ( 8 * $nodeSpace ); }  
+            &2:after { right: $startRight - ( 16 * $nodeSpace ); width: $startWidth + ( 16 * $nodeSpace ); }  
+            &1:after { right: $startRight - ( 32 * $nodeSpace ); width: $startWidth + ( 32 * $nodeSpace ); }  
+
+
+        }
+
+    }

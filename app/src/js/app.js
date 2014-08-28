@@ -5,17 +5,17 @@
         $.extend( exports , {
 
             $TRACK: $(".stage .arrangement"),
-            $TEMPLATE: $("#node-template")
+            $TEMPLATE: $("#note-template")
 
         });
 
         exports.templates = {
-            node: Handlebars.compile( exports.$TEMPLATE.html() )
+            note: Handlebars.compile( exports.$TEMPLATE.html() )
         };
 
 
         exports._fixture = {
-            nodes: [
+            notes: [
                 {
                     note: "5DN",
                     length: "8"
@@ -129,7 +129,7 @@
 
         exports._createTrack = function( data ) {
 
-            return exports.templates.node( data );
+            return exports.templates.note( data );
 
         };
 
@@ -159,7 +159,7 @@
 
 
 
-        exports.$TRACK.on("click", ".node", function(e) {
+        exports.$TRACK.on("click", ".note", function(e) {
 
             exports.playNote( this );
 

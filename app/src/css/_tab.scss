@@ -41,9 +41,9 @@
 
 
 
-    .node {
+    .note {
 
-        .tab {
+        &__tab {
 
             width: 46px;
             height: 42px;
@@ -51,41 +51,40 @@
             @include holes(0);
             background-repeat: no-repeat;
 
-            .name {
+        }
 
-                font-weight: 600;
-                font-size: 11px;
-                color: #909090;
+        &__name {
 
-                position: absolute;
-                top: -7px;
-                left: 11px;
-                width: 100%;
+            font-weight: 600;
+            font-size: 11px;
+            color: #909090;
 
-                &:after {
+            position: absolute;
+            top: -7px;
+            left: 11px;
+            width: 100%;
 
-                    color: black;
-                    text-shadow: none;
-                    position: relative;
-                    top: -3px;
+            &:after {
 
-                }
+                color: black;
+                text-shadow: none;
+                position: relative;
+                top: -3px;
 
             }
 
         }
 
-
-        &.♪ {
+        &--♪ {
 
             &4AS, &5CS, &5DS, &5FS, &5GS, &5AS, &6CS, &6DS {
-                .name:after {
+                .note__name:after {
                     content: "\266f";
                 }
             }
 
             &4BF, &5DF, &5EF, &5GF, &5AF, &5BF, &6DF, &6EF {
-                .name:after {
+                .note__name:after {
                     content: "\266d";
                 }
             }
@@ -93,7 +92,7 @@
 
 
 
-            &4AN .tab {
+            &4AN .note__tab {
 
                 @include holes(8,4);
                 background-position:
@@ -101,8 +100,8 @@
 
             }
 
-            &4AS .tab,
-            &4BF .tab {
+            &4AS .note__tab,
+            &4BF .note__tab {
 
                 @include holes(8,3);
                 background-position:
@@ -110,7 +109,7 @@
 
             }
 
-            &4BN .tab {
+            &4BN .note__tab {
 
                 @include holes(8,3);
                 background-position:
@@ -118,7 +117,7 @@
 
             }
 
-            &5CN .tab {
+            &5CN .note__tab {
 
                 @include holes(8,2);
                 background-position:
@@ -126,8 +125,8 @@
 
             }
 
-            &5CS .tab,
-            &5DF .tab {
+            &5CS .note__tab,
+            &5DF .note__tab {
 
                 @include holes(7,3);
                 background-position:
@@ -135,7 +134,7 @@
 
             }
 
-            &5DN .tab {
+            &5DN .note__tab {
 
                 @include holes(7,2);
                 background-position:
@@ -143,8 +142,8 @@
 
             }
 
-            &5DS .tab,
-            &5EF .tab {
+            &5DS .note__tab,
+            &5EF .note__tab {
 
                 @include holes(7,2);
                 background-position:
@@ -152,7 +151,7 @@
 
             }
 
-            &5EN .tab {
+            &5EN .note__tab {
 
                 @include holes(6,2);
                 background-position:
@@ -160,7 +159,7 @@
 
             }
 
-            &5FN .tab {
+            &5FN .note__tab {
 
                 @include holes(5,2);
                 background-position:
@@ -168,8 +167,8 @@
 
             }
 
-            &5FS .tab,
-            &5GF .tab {
+            &5FS .note__tab,
+            &5GF .note__tab {
 
                 @include holes(5,2);
                 background-position:
@@ -177,7 +176,7 @@
 
             }
 
-            &5GN .tab {
+            &5GN .note__tab {
 
                 @include holes(4,2);
                 background-position:
@@ -185,8 +184,8 @@
 
             }
 
-            &5GS .tab,
-            &5AF .tab {
+            &5GS .note__tab,
+            &5AF .note__tab {
 
                 @include holes(4,2);
                 background-position:
@@ -194,7 +193,7 @@
 
             }
 
-            &5AN .tab {
+            &5AN .note__tab {
 
                 @include holes(3,2);
                 background-position:
@@ -202,8 +201,8 @@
 
             }
 
-            &5AS .tab,
-            &5BF .tab {
+            &5AS .note__tab,
+            &5BF .note__tab {
 
                 @include holes(3,2);
                 background-position:
@@ -211,7 +210,7 @@
 
             }
 
-            &5BN .tab {
+            &5BN .note__tab {
 
                 @include holes(2,2);
                 background-position:
@@ -219,7 +218,7 @@
 
             }
 
-            &6CN .tab {
+            &6CN .note__tab {
 
                 @include holes(1,2);
                 background-position:
@@ -227,8 +226,8 @@
 
             }
 
-            &6CS .tab,
-            &6DF .tab {
+            &6CS .note__tab,
+            &6DF .note__tab {
 
                 @include holes(2,1);
                 background-position:
@@ -236,7 +235,7 @@
 
             }
 
-            &6DN .tab {
+            &6DN .note__tab {
 
                 @include holes(1,1);
                 background-position:
@@ -244,8 +243,8 @@
 
             }
 
-            &6DS .tab,
-            &6EF .tab {
+            &6DS .note__tab,
+            &6EF .note__tab {
 
                 @include holes(0,1);
                 background-position:
@@ -253,7 +252,7 @@
 
             }
 
-            &6EN .tab {
+            &6EN .note__tab {
 
                 @include holes(1,0);
                 background-position:
@@ -261,7 +260,7 @@
 
             }
 
-            &6FN .tab {
+            &6FN .note__tab {
 
                 @include holes(0,0);
                 background-position:

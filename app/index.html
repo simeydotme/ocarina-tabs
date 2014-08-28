@@ -28,12 +28,11 @@
 
             <ul class="arrangement">
 
-                <script id="node-template" type="text/x-handlebars-template">
-
-                {{#each nodes}}
-                    <li class="node ♪{{note}} ♫{{length}}">
-                        <div class="tab">
-                            <span class="name">{{noteName note}}</span>
+                <script id="note-template" type="text/x-handlebars-template">
+                {{#each notes}}
+                    <li class="note note--♪{{note}} note--♫{{length}}">
+                        <div class="note__tab">
+                            <span class="note__name">{{noteName note}}</span>
                         </div>
                     </li>
                 {{/each}}
