@@ -1,15 +1,9 @@
-    
+@charset "UTF-8";
 
-    @import "body";
-    @import "main";
+@import "body";
+@import "main";
 
-    @import "note";
-    @import "tab";
-
-    .arrangement {
-
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
-    }
+@import "stage";
+@import "arrangement";
+@import "note";
+@import "tab";

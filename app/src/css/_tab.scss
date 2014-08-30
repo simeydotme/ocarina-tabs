@@ -1,40 +1,57 @@
+@charset "UTF-8";    
     
-    
+    $namecolor: #909090;
+
     $path: "../img/";
     
-    $ocarina:   $path + "ocarina.png";
-    $shole:      $path + "hole.png";
-    $hole:     $path + "hole-large.png";
+    $ocarina:   $path + "ocarina-sprite.png";
+    $shole:     $path + "hole.png";
+    $hole:      $path + "hole-large.png";
+    
+    $height: 48px;
+    $width: 46px;
 
-    $lthumb: 14px 34px;
-    $rthumb: 29px 29px;
-    $lindex: 4px 22px;
-    $rindex: 23px 19px;
-    $lmiddle: 9px 20px;
-    $rmiddle: 25px 14px;
-    $lring: 14px 17px;
-    $rring: 29px 10px;
-    $lpinky: 17px 12px;
-    $rpinky: 34px 7px;
-    $lextra: 14px 24px;
-    $rextra: 25px 8px;
+    $hoffset: 0px;
+    $voffset: 7px;
+
+    $bg:        $hoffset $voffset;
+    $bghover:   $hoffset ($voffset - $height);
+    $bgactive:  $hoffset ($voffset - ($height * 2));
+
+    $lthumb:    (14px + $hoffset) (34px + $voffset);
+    $rthumb:    (29px + $hoffset) (29px + $voffset);
+    $lindex:    ( 4px + $hoffset) (22px + $voffset);
+    $rindex:    (23px + $hoffset) (19px + $voffset);
+    $lmiddle:   ( 9px + $hoffset) (20px + $voffset);
+    $rmiddle:   (25px + $hoffset) (14px + $voffset);
+    $lring:     (14px + $hoffset) (17px + $voffset);
+    $rring:     (29px + $hoffset) (10px + $voffset);
+    $lpinky:    (17px + $hoffset) (12px + $voffset);
+    $rpinky:    (34px + $hoffset) ( 7px + $voffset);
+    $lextra:    (14px + $hoffset) (24px + $voffset);
+    $rextra:    (25px + $hoffset) ( 8px + $voffset);
 
 
     @mixin holes( $holes: 0 , $sholes: 0 ) {
 
-        $output: "";
+        $image: "";
+        $repeat: "";
 
         @for $i from 0 to $holes {
-            $output: $output + "url( #{$hole} ) , ";
+            $image: $image + "url( #{$hole} ) , ";
+            $repeat: $repeat + "no-repeat , ";
         }
 
         @for $i from 0 to $sholes {
-            $output: $output + "url( #{$shole} ) , ";
+            $image: $image + "url( #{$shole} ) , ";
+            $repeat: $repeat + "no-repeat , ";
         }
 
-        $output: $output + "url( #{$ocarina} )";
+        $image: $image + "url( #{$ocarina} )";
+        $repeat: $repeat + "repeat-y";
 
-        background-image: #{$output};
+        background-image: #{$image};
+        background-repeat: #{$repeat};
 
     }
 
@@ -45,31 +62,42 @@
 
         &__tab {
 
-            width: 46px;
-            height: 42px;
+            width: $width;
+            height: $height;
 
             @include holes(0);
-            background-repeat: no-repeat;
 
         }
 
         &__name {
 
-            font-weight: 600;
-            font-size: 11px;
-            color: #909090;
+            font-weight: 800;
+            font-size: 12px;
+            color: $namecolor;
 
             position: absolute;
-            top: -7px;
+            top: 0px;
             left: 11px;
             width: 100%;
 
             &:after {
-
+                
+                font-size: 10px;
+                font-weight: 200;
                 color: black;
                 text-shadow: none;
                 position: relative;
                 top: -3px;
+
+            }
+
+        }
+
+        &:hover {
+
+            .note__name {
+
+                color: darken( $namecolor, 30% );
 
             }
 
@@ -96,7 +124,12 @@
 
                 @include holes(8,4);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $rextra, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $rextra, $bg;
+                
+                &:hover {
+                    background-position:
+                       $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $rextra, $bghover;
+                }
 
             }
 
@@ -105,7 +138,12 @@
 
                 @include holes(8,3);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $bghover;
+                }
 
             }
 
@@ -113,7 +151,12 @@
 
                 @include holes(8,3);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $rextra, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $rextra, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $rextra, $bghover;
+                }
 
             }
 
@@ -121,7 +164,12 @@
 
                 @include holes(8,2);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $bghover;
+                }
 
             }
 
@@ -130,7 +178,12 @@
 
                 @include holes(7,3);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra, $bghover;
+                }
 
             }
 
@@ -138,7 +191,12 @@
 
                 @include holes(7,2);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $bghover;
+                }
 
             }
 
@@ -147,7 +205,12 @@
 
                 @include holes(7,2);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rpinky, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rpinky, $lpinky, $lthumb, $rthumb, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rpinky, $lpinky, $lthumb, $rthumb, $bghover;
+                }
 
             }
 
@@ -155,7 +218,12 @@
 
                 @include holes(6,2);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $lpinky, $lthumb, $rthumb, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $lpinky, $lthumb, $rthumb, $bghover;
+                }
 
             }
 
@@ -163,7 +231,12 @@
 
                 @include holes(5,2);
                 background-position:
-                   $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bghover;
+                }
 
             }
 
@@ -172,7 +245,12 @@
 
                 @include holes(5,2);
                 background-position:
-                   $lindex, $rmiddle, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $rmiddle, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bg;
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rmiddle, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bghover;
+                }
 
             }
 
@@ -180,7 +258,12 @@
 
                 @include holes(4,2);
                 background-position:
-                   $lindex, $lring, $lmiddle, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $lring, $lmiddle, $lpinky, $lthumb, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lindex, $lring, $lmiddle, $lpinky, $lthumb, $rthumb, $bghover; 
+                }
 
             }
 
@@ -189,7 +272,12 @@
 
                 @include holes(4,2);
                 background-position:
-                   $lindex, $rring, $lmiddle, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $rring, $lmiddle, $lpinky, $lthumb, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lindex, $rring, $lmiddle, $lpinky, $lthumb, $rthumb, $bghover; 
+                }
 
             }
 
@@ -197,7 +285,12 @@
 
                 @include holes(3,2);
                 background-position:
-                   $lindex, $lmiddle, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $lmiddle, $lpinky, $lthumb, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lindex, $lmiddle, $lpinky, $lthumb, $rthumb, $bghover; 
+                }
 
             }
 
@@ -206,7 +299,12 @@
 
                 @include holes(3,2);
                 background-position:
-                   $lindex, $lpinky, $rring, $lthumb, $rthumb, 0 0;
+                   $lindex, $lpinky, $rring, $lthumb, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lindex, $lpinky, $rring, $lthumb, $rthumb, $bghover; 
+                }
 
             }
 
@@ -214,7 +312,12 @@
 
                 @include holes(2,2);
                 background-position:
-                   $lindex, $lpinky, $lthumb, $rthumb, 0 0;
+                   $lindex, $lpinky, $lthumb, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lindex, $lpinky, $lthumb, $rthumb, $bghover; 
+                }
 
             }
 
@@ -222,7 +325,12 @@
 
                 @include holes(1,2);
                 background-position:
-                   $lpinky, $lthumb, $rthumb, 0 0;
+                   $lpinky, $lthumb, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lpinky, $lthumb, $rthumb, $bghover; 
+                }
 
             }
 
@@ -231,7 +339,12 @@
 
                 @include holes(2,1);
                 background-position:
-                   $lpinky, $rring, $rthumb, 0 0;
+                   $lpinky, $rring, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lpinky, $rring, $rthumb, $bghover; 
+                }
 
             }
 
@@ -239,7 +352,12 @@
 
                 @include holes(1,1);
                 background-position:
-                   $lpinky, $rthumb, 0 0;
+                   $lpinky, $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lpinky, $rthumb, $bghover; 
+                }
 
             }
 
@@ -248,7 +366,12 @@
 
                 @include holes(0,1);
                 background-position:
-                   $rthumb, 0 0;
+                   $rthumb, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $rthumb, $bghover; 
+                }
 
             }
 
@@ -256,7 +379,12 @@
 
                 @include holes(1,0);
                 background-position:
-                   $lpinky, 0 0;
+                   $lpinky, $bg; 
+                
+                &:hover {
+                    background-position:
+                   $lpinky, $bghover; 
+                }
 
             }
 
@@ -264,7 +392,12 @@
 
                 @include holes(0,0);
                 background-position:
-                   0 0;
+                   $bg; 
+                
+                &:hover {
+                    background-position:
+                   $bghover; 
+                }
 
             }
 
