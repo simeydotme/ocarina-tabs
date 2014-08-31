@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+
+$noteColor: rgb(214, 23, 166);
+$inputArea: rgb(240, 240, 240);
+$inputAreaHeader: rgb(37, 162, 221);
+
+
+
+
 @import "body";
 @import "main";
 
@@ -7,3 +15,6 @@
 @import "arrangement";
 @import "note";
 @import "tab";
+
+@import "input-area";
+@import "keyboard";
