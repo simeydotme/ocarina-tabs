@@ -4,7 +4,12 @@
 
     .input-keyboard {
         
-        padding: 20px;
+        width: 328px;
+        height: 105px;
+
+        position: absolute;
+        top: 55px;
+        right: 20px;
 
     }
     
@@ -18,10 +23,14 @@
     }
 
     .key {
-    
+        
+        cursor: pointer;
         position: absolute;
         border: 1px solid;
         border-top: none;
+        background: white;
+
+        transition: background 0.1s ease;
 
         &__letter {
 
@@ -43,6 +52,12 @@
 
             z-index: 2;
 
+            &.key--active {
+
+                background: rgb(22, 142, 112);
+
+            }
+
         }
 
         &--natural {
@@ -50,6 +65,18 @@
             width: $keyWidth;
             height: 100px;
             border-radius: 0 0 4px 4px;
+
+        }
+
+        &--active {
+
+            background: rgb(166, 234, 218);
+
+        }
+
+        &--clicked {
+
+            background: rgb(90, 226, 217);
 
         }
 

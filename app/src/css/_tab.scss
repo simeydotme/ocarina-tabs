@@ -65,7 +65,8 @@
             width: $width;
             height: $height;
 
-            @include holes(0);
+            @include holes();
+            background-position: $bg; 
 
         }
 
@@ -94,6 +95,8 @@
         }
 
         &:hover {
+
+            background-position: $bghover; 
 
             .note__name {
 
@@ -390,7 +393,7 @@
 
             &6FN .note__tab {
 
-                @include holes(0,0);
+                @include holes();
                 background-position:
                    $bg; 
                 

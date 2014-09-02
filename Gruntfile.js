@@ -19,8 +19,25 @@
 
                 dist: {
 
-                    src: ["lib/<%= pkg.name %>.js"],
-                    dest: "dist/<%= pkg.name %>.js"
+                    src: ["src/js/app.js", "src/js/init.js", "src/js/modules/*.js"],
+                    dest: "dist/js/<%= pkg.name %>.js"
+
+                }
+
+            },
+
+            copy: {
+
+                main: {
+
+                    files: [{
+
+                        expand: true, 
+                        flatten: true,
+                        src: ["app/src/img/*.{gif,jpg,png}"], 
+                        dest: "app/dist/img/"
+
+                    }]
 
                 }
 
@@ -51,9 +68,9 @@
 
                 },
 
-                lib_test: {
+                app: {
 
-                    src: ["lib/**/*.js", "test/**/*.js"]
+                    src: ["app/**/*.js"]
 
                 }
 
@@ -68,17 +85,10 @@
 
                 },
 
-                lib_test: {
+                dev: {
 
-                    files: "<%= jshint.lib_test.src %>",
-                    tasks: ["jshint:lib_test", "qunit"]
-
-                },
-
-                sass: {
-
-                    files: "app/**/*.scss",
-                    tasks: ["sass"]
+                    files: ["app/**/*.scss", "app/**/*.js", "app/**/*.html"],
+                    tasks: ["wiredep", "sass", "autoprefixer", "jshint", "copy"]
 
                 }
 
@@ -104,11 +114,28 @@
 
                     },
 
-                    files: {
+                    files: [{
 
-                        "app/src/css/app.css": "app/src/css/app.scss"
+                        src: "app/src/css/app.scss",
+                        dest: "app/dist/css/app.css"
 
-                    }
+                    }]
+
+                }
+
+            },
+
+            autoprefixer: {
+
+                options: {
+
+                    browsers: ["last 13 versions", "ie 9"]
+
+                },
+
+                prefixy: {
+
+                    src: "app/dist/css/app.css"
 
                 }
 
@@ -118,12 +145,16 @@
         });
 
         // These plugins provide necessary tasks.
+        grunt.loadNpmTasks("grunt-contrib-copy");
         grunt.loadNpmTasks("grunt-contrib-concat");
         grunt.loadNpmTasks("grunt-contrib-uglify");
         grunt.loadNpmTasks("grunt-contrib-jshint");
+        grunt.loadNpmTasks("grunt-contrib-imagemin");
         grunt.loadNpmTasks("grunt-contrib-watch");
         grunt.loadNpmTasks("grunt-contrib-sass");
+
         grunt.loadNpmTasks("grunt-wiredep");
+        grunt.loadNpmTasks("grunt-autoprefixer");
 
         // Default task.
         grunt.registerTask("default", ["wiredep", "jshint", "concat", "uglify"]);

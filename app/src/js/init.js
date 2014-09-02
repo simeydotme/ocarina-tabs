@@ -9,6 +9,12 @@
 
         });
 
+        pubsub.on("playNote", function( e , note ) {
+
+            app.playNote( note );
+
+        });
+
 
         exports.init = (function() {
 
