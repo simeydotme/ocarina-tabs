@@ -10,27 +10,27 @@ window.fixture = {
     notes: [
         {
             note: "5DN",
-            duration: "16"
-        },
-        {
-            note: "5EN",
-            duration: "16"
-        },
-        {
-            note: "5FS",
             duration: "8"
         },
         {
-            note: "5AN",
-            duration: "4"
-        },
-        {
             note: "5EN",
-            duration: "32"
+            duration: "8"
         },
         {
             note: "5FS",
-            duration: "32"
+            duration: "4"
+        },
+        {
+            note: "5AN",
+            duration: "2"
+        },
+        {
+            note: "5EN",
+            duration: "16"
+        },
+        {
+            note: "5FS",
+            duration: "16"
         },
         {
             note: "5EN",
@@ -38,7 +38,7 @@ window.fixture = {
         },
         {
             note: "5DN",
-            duration: "4"
+            duration: "2"
         },
     ]
 };
