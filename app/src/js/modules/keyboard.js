@@ -3,28 +3,11 @@
     var app = (function(exports) {
 
         exports.keyboard = {};
-        exports.$.keyboard = $(".input-keyboard");
-        exports.$.keyboardOcarina = $(".input-area .note");
-        exports.$.keyboardKeys = exports.$.keyboard.find(".key");
-        
-        exports.keyboard.events = function() {
 
-            exports.$.keyboardKeys.on("mouseover.hoverKey", function(e) {
-                pubsub.trigger("keyboard.hoverKey", { el: this, event: e });
-            });
+        exports.keyboard.highlightKey = function( e ) {
 
-            exports.$.keyboardKeys.on("mouseout.hoverKey", function(e) {
-                pubsub.trigger("keyboard.unhoverKey", { el: this, event: e });
-            });
-
-
-        };
-
-        exports.keyboard.highlightKey = function( data ) {
-
-            var e = data.event,
-                $this = $( data.el ),
-                key = $this.data("key");
+                var $this = $( this ),
+                    key = $this.data("key");
 
             $this.addClass( "key--active" );
             exports.$.keyboardOcarina.addClass( "note--♪" + key );
@@ -40,22 +23,53 @@
 
         };
 
-        exports.keyboard.pubsub = function() {
+        exports.keyboard.mouseover = function( e ) {
 
-            pubsub.on("keyboard.hoverKey", function( e, data ) {
-                exports.keyboard.dimKeys( data );
-                exports.keyboard.highlightKey( data );
-            });
+            exports.keyboard.dimKeys();
+            exports.keyboard.highlightKey.call( this, e );
 
-            pubsub.on("keyboard.unhoverKey", function( e, data ) {
-                exports.keyboard.dimKeys( data );
-            });
+        };
+
+        exports.keyboard.mouseout = function( e ) {
+                
+            exports.keyboard.dimKeys();
+
+        };
+
+        exports.keyboard.mousedown = function( e ) {
+
+            exports.playNote( $(this).data("key") );
+            exports.$.keyboardKeys.on("mouseover.mousedown", exports.keyboard.mousedownover );
+
+        };
+
+        exports.keyboard.mousedownover = function( e ) {
+
+            exports.playNote( $(this).data("key") );
+
+        };
+
+        exports.keyboard.mouseup = function( e ) {
+
+            exports.$.keyboardKeys.off("mouseover.mousedown");
+            exports.addNote( $(this).data("key") , exports.track.selected , 4 );
+
+        };
+        
+        exports.keyboard.events = function() {
+
+            var evup = Modernizr.touch ? "touchend" : "mouseup";
+            var evdown = Modernizr.touch ? "touchstart" : "mousedown";
+
+            exports.$.keyboardKeys.on("mouseover.key", exports.keyboard.mouseover );
+            exports.$.keyboardKeys.on("mouseout.key", exports.keyboard.mouseout );
+            exports.$.keyboardKeys.on( evup + ".key", exports.keyboard.mouseup );
+            exports.$.keyboardKeys.on( evdown + ".key", exports.keyboard.mousedown );
 
         };
 
         exports.keyboard.init = (function() {
 
-            exports.keyboard.pubsub();
             exports.keyboard.events();
             //exports.keyboard.movable();
 

@@ -2,9 +2,8 @@
 
     var app = (function(exports) {
 
-
-        exports.$.title = $(".stage__title");
-        exports.$.score = $(".stage__score");
+        exports.track = {};
+        exports.track.selected = 0;
 
 
         
@@ -30,6 +29,8 @@
             var notes = exports._createNotes( data );
             exports.$.title.html( title );
             exports.$.score.html( notes );
+
+            exports.track.selected = exports.$.score.find(".note").length;
 
         };
 

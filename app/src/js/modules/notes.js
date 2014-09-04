@@ -3,12 +3,14 @@
     var app = (function(exports) {
 
         exports.noteNames = {
+
             1: "breve",
             2: "semibreve",
             4: "crotchet",
             8: "quaver",
             16: "semiquaver",
             32: "demisemiquaver"
+            
         };
 
         exports.registerSounds = function() {
@@ -103,7 +105,7 @@
         exports.addNote = function() {
 
             var note = arguments[0],
-                $notes = $(".stage__score .note"),
+                $notes = exports.$.score.find(".note"),
                 where = $notes.length-1,
                 duration = 4,
                 newNote,
@@ -118,41 +120,43 @@
 
                 where = arguments[1];
 
-            } else if( arguments.length === 3 && $.type( arguments[2] ) === "number" ) {
+            } else if( arguments.length === 3 && $.type( arguments[1] ) === "number" ) {
 
-                where = arguments[2];
+                where = arguments[1];
 
-                if( $.type( arguments[1] ) === "number" ) {
-                    duration = arguments[1];
+                if( $.type( arguments[2] ) === "number" ) {
+                    duration = arguments[2];
                 } else {
-                    console.warn( "duration argument ("+ arguments[1] +") should be a number");
+                    console.warn( "duration argument ("+ arguments[2] +") should be a number");
                 }
 
             }
 
-            newNote = { note: note, duration: duration };
-            console.info( "Adding a \""+ exports.noteNames[duration] +"\" note ("+ note +") at index ["+ where +"]");
+            if( !$notes.length ) {
+                where = 0;
+            } 
 
+            newNote = { note: note, duration: duration };
 
             exports.model.notes.splice( where, 0, newNote );
-            
             $newNote = $(exports._createNotes( { notes: [ newNote ]} ));
+
+            console.info( "Adding a \""+ exports.noteNames[duration] +"\" note ("+ note +") at index ["+ where +"]");
             
             // bit of funky logic because when the index is 0/1 we need
             // to place it either before or after 0 index.
             switch(where) {
 
                 case 0:
-                    $notes.eq(0).before( $newNote );
-                    break;
-
-                case 1:
-                    $notes.eq(0).after( $newNote );
+                    exports.$.score.prepend( $newNote );
                     break;
 
                 default:
-                    $notes.eq(where).after( $newNote );
+                    $notes.eq(where - 1).after( $newNote );
+
             }
+
+            exports.track.selected = where + 1;
             
             exports.showNote( $newNote );
             return newNote;
@@ -254,7 +258,14 @@
 
 
 
+        exports.$.score.on("mouseup.note", ".note", function(e) {
 
+            var $notes = exports.$.score.find(".note");
+            exports.track.selected = $notes.index( $(this) ) + 1;
+
+            exports.playNote( this );
+
+        });
 
 
 

@@ -11,6 +11,12 @@
         top: 55px;
         right: 20px;
 
+        user-select: none;
+
+        * {
+            user-select: none;
+        }
+
     }
     
     .keyboard__keys {
