@@ -37,6 +37,9 @@
                 <script id="note-template" type="text/x-handlebars-template">
                 {{#each notes}}
                 <li class="note note--♪{{note}} note--♫{{duration}}">
+                    <div class="note__bar">
+                        <span class="note__note"></span>
+                    </div>
                     <div class="note__tab">
                         <span class="note__name">{{noteName note}}</span>
                     </div>

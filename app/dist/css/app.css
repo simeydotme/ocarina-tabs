@@ -193,6 +193,12 @@ textarea {
   width: 1200px;
   margin: 2em auto;
 }
+.stage * {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 
 .arrangement {
   list-style: none;
@@ -203,8 +209,9 @@ textarea {
 .note {
   padding: 0;
   margin: 0 -6px 0 0;
-  width: 46px;
-  height: 60px;
+  width: auto;
+  height: auto;
+  margin-bottom: 30px;
   display: inline-block;
   position: relative;
 }
@@ -214,46 +221,77 @@ textarea {
   height: 2px;
   background-color: rgba(0, 0, 0, 0.05);
   position: absolute;
-  right: 7px;
-  top: 27px;
+  right: 4px;
+  bottom: 20px;
+}
+.note--♫32 {
+  width: 44px;
 }
 .note--♫16 {
+  width: 48px;
+}
+.note--♫16 .note__tab {
   margin-right: 2px;
 }
-.note--♫8 {
-  margin-right: 10px;
-}
-.note--♫4 {
-  margin-right: 26px;
-}
-.note--♫2 {
-  margin-right: 58px;
-}
-.note--♫1 {
-  margin-right: 122px;
+.note--♫16 .note__note {
+  background-position: -15px 0;
 }
 .note--♫16:after {
-  right: -1px;
-  width: 8px;
+  width: 6px;
+}
+.note--♫8 {
+  width: 56px;
+}
+.note--♫8 .note__tab {
+  margin-right: 10px;
+}
+.note--♫8 .note__note {
+  background-position: -30px 0;
 }
 .note--♫8:after {
-  right: -9px;
-  width: 16px;
+  width: 14px;
+}
+.note--♫4 {
+  width: 72px;
+}
+.note--♫4 .note__tab {
+  margin-right: 26px;
+}
+.note--♫4 .note__note {
+  background-position: -45px 0;
 }
 .note--♫4:after {
-  right: -25px;
-  width: 32px;
+  width: 30px;
+}
+.note--♫2 {
+  width: 104px;
+}
+.note--♫2 .note__tab {
+  margin-right: 58px;
+}
+.note--♫2 .note__note {
+  background-position: -60px 0;
+  width: 10px;
 }
 .note--♫2:after {
-  right: -57px;
-  width: 64px;
+  width: 62px;
+}
+.note--♫1 {
+  width: 168px;
+}
+.note--♫1 .note__tab {
+  margin-right: 122px;
+}
+.note--♫1 .note__note {
+  background-position: -73px 0;
+  width: 10px;
 }
 .note--♫1:after {
-  right: -121px;
-  width: 128px;
+  width: 126px;
 }
 
 .note__tab {
+  position: relative;
   width: 46px;
   height: 48px;
   background-image: url( ../img/ocarina-sprite.png );
@@ -458,6 +496,68 @@ textarea {
   background-position: 0px -41px;
 }
 
+.note__bar {
+  position: relative;
+  width: auto;
+  height: 22px;
+  margin-bottom: 18px;
+  background: url(../img/staff.png);
+  background-repeat: repeat-x;
+}
+.note__note {
+  position: absolute;
+  width: 14px;
+  height: 22px;
+  left: 16px;
+  background-image: url(../img/note-sprite-grey.png);
+  background-repeat: no-repeat;
+}
+.note:hover .note__note {
+  background-image: url(../img/note-sprite-dark.png);
+}
+.note--selected .note__note, .note:hover.note--selected .note__note {
+  background-image: url(../img/note-sprite.png);
+}
+.note--♪4AN .note__note, .note--♪4AS .note__note {
+  top: 14px;
+}
+.note--♪4BF .note__note, .note--♪4BN .note__note {
+  top: 11px;
+}
+.note--♪5CS .note__note, .note--♪5CN .note__note {
+  top: 8px;
+}
+.note--♪5DF .note__note, .note--♪5DS .note__note, .note--♪5DN .note__note {
+  top: 5px;
+}
+.note--♪5EF .note__note, .note--♪5EN .note__note {
+  top: 3px;
+}
+.note--♪5FN .note__note, .note--♪5FS .note__note {
+  top: 0px;
+}
+.note--♪5GF .note__note, .note--♪5GS .note__note, .note--♪5GN .note__note {
+  top: -3px;
+}
+.note--♪5AF .note__note, .note--♪5AS .note__note, .note--♪5AN .note__note {
+  top: -5px;
+}
+.note--♪5BF .note__note, .note--♪5BN .note__note {
+  top: -8px;
+}
+.note--♪6CS .note__note, .note--♪6CN .note__note {
+  top: -10px;
+}
+.note--♪6DF .note__note, .note--♪6DS .note__note, .note--♪6DN .note__note {
+  top: -13px;
+}
+.note--♪6EF .note__note, .note--♪6EN .note__note {
+  top: -15px;
+}
+.note--♪6FN .note__note {
+  top: -18px;
+}
+
 .input-area {
   width: 440px;
   height: 180px;
@@ -479,6 +579,9 @@ textarea {
   position: absolute;
   left: 20px;
   top: 80px;
+}
+.input-area .note__tab {
+  display: block;
 }
 
 .input-header {

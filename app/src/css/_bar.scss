@@ -1,0 +1,131 @@
+@charset "UTF-8";    
+    
+    $width: auto;
+    $height: 22px;
+
+    $noteHeight: 22px; 
+    $barHeight: 3px;
+    $bottom: 15px;
+
+    .note {
+
+        &__bar {
+            
+            position: relative;
+            width: $width;
+            height: $height;
+            margin-bottom: 18px;
+
+            background: url( ../img/staff.png );
+            background-repeat: repeat-x;
+
+        }
+
+        &__note {
+            
+            position: absolute;
+            width: 14px;
+            height: 22px;
+            left: 16px;
+
+            background-image: url( ../img/note-sprite-grey.png );
+            background-repeat: no-repeat;
+
+        }
+
+        &:hover {
+
+            .note__note {
+            
+                background-image: url( ../img/note-sprite-dark.png );
+
+            }
+
+        }
+
+        &--selected,
+        &:hover.note--selected {
+
+            .note__note {
+            
+                background-image: url( ../img/note-sprite.png );
+
+            }
+
+        }
+
+        &--♪ {
+
+            &4AN .note__note,
+            &4AS .note__note {
+                top: $bottom - ( 0 * $barHeight ) - 1px;
+            }
+
+            &4BF .note__note,
+            &4BN .note__note {
+                top: $bottom - ( 1 * $barHeight ) - 1px;
+            }
+
+            &5CS .note__note,
+            &5CN .note__note {
+                top: $bottom - ( 2 * $barHeight ) - 1px;
+            }
+
+            &5DF .note__note,
+            &5DS .note__note,
+            &5DN .note__note {
+                top: $bottom - ( 3 * $barHeight ) - 1px;
+            }
+
+            
+            &5EF .note__note,
+            &5EN .note__note {
+                top: $bottom - ( 4 * $barHeight );
+            }
+
+            &5FN .note__note,
+            &5FS .note__note {
+                top: $bottom - ( 5 * $barHeight );
+            }
+
+            &5GF .note__note,
+            &5GS .note__note,
+            &5GN .note__note {
+                top: $bottom - ( 6 * $barHeight );
+            }
+
+            &5AF .note__note,
+            &5AS .note__note,
+            &5AN .note__note {
+                top: $bottom - ( 7 * $barHeight ) + 1px;
+            }
+
+            &5BF .note__note,
+            &5BN .note__note {
+                top: $bottom - ( 8 * $barHeight ) + 1px;
+            }
+
+            &6CS .note__note,
+            &6CN .note__note {
+                top: $bottom - ( 9 * $barHeight ) + 2px;
+            }
+
+            &6DF .note__note,
+            &6DS .note__note,
+            &6DN .note__note {
+                top: $bottom - ( 10 * $barHeight ) + 2px;
+            }
+
+            &6EF .note__note,
+            &6EN .note__note {
+                top: $bottom - ( 11 * $barHeight ) + 3px;
+            }
+
+            &6FN .note__note {
+                top: $bottom - ( 12 * $barHeight ) + 3px;
+            }
+
+        }
+
+
+    }

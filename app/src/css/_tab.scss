@@ -61,7 +61,8 @@
     .note {
 
         &__tab {
-
+            
+            position: relative;
             width: $width;
             height: $height;
 
@@ -403,8 +404,6 @@
                 }
 
             }
-
-
 
         }
 

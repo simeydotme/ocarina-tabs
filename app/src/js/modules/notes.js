@@ -218,10 +218,13 @@
 
             if( !$notes.length ) {
                 where = 0;
-            } 
+            }
+
+            if( where > $notes.length ) {
+                where = $notes.length;
+            }
 
             newNote = { note: note, duration: duration };
-
             exports.model.notes.splice( where, 0, newNote );
             $newNote = $(exports._createNotes( { notes: [ newNote ]} ));
 
@@ -241,6 +244,7 @@
             }
 
             exports.track.selected = where + 1;
+            pubsub.trigger("selectNote");
             
             exports.showNote( $newNote );
             return newNote;
@@ -269,6 +273,7 @@
             console.info( "Removing note ("+ $removeNote.attr("class") +") at index ["+ index +"]");
           
             exports.hideNote( $removeNote );
+
             return exports.model.notes.splice( index, 1 );
 
         };
@@ -286,7 +291,7 @@
             $el
                 .css({ 
                     width: 0, 
-                    top: "-10px", 
+                    left: "-10px", 
                     opacity: 0,
                     marginRight: 0
                 })
@@ -296,11 +301,11 @@
                     marginRight: margin
                 }, {
                     queue: false,
-                    duration: 200
+                    duration: 380
                 })
 
                 .velocity({ 
-                    top: 0, 
+                    left: 0, 
                     opacity: 1 
                 }, {
                     queue: false,
@@ -317,9 +322,12 @@
 
         exports.hideNote = function( $el ) {
 
+            var index,
+                $notes = exports.$.score.find(".note");
+
             $el
                 .velocity({ 
-                    top: "-10px", 
+                    left: "-10px", 
                     opacity: 0 
                 }, {
                     queue: false,
@@ -334,7 +342,20 @@
                     duration: 200,
                     delay: 180,
                     complete: function( elements ) {
-                        $(elements).remove();
+
+                        var $elements = $(elements);
+                        index = $notes.index( $elements );
+
+                        $elements.remove();
+
+                        if( index === 0 ) {
+                            exports.track.selected = 0;
+                        } else {
+                            exports.track.selected = index + 1;
+                        }
+
+                        pubsub.trigger("selectNote");
+
                     }
                 });
 
@@ -348,6 +369,7 @@
             exports.track.selected = $notes.index( $(this) ) + 1;
 
             exports.playNote( this );
+            pubsub.trigger("selectNote");
 
         });
 
