@@ -226,9 +226,9 @@
 
             if( !$notes.length ) {
                 where = 0;
-            }
+            } 
 
-            if( where > $notes.length ) {
+            else if( where > $notes.length ) {
                 where = $notes.length;
             }
 
@@ -236,12 +236,20 @@
             exports.model.notes.splice( where + 1, 0, newNote );
             
             $newNote = $(exports._createNotes( { notes: [ newNote ]} ));
-            $notes.eq( where ).after( $newNote );
+
+            if( !$notes.length ) {
+                exports.$.score.append( $newNote );
+                exports.track.selected = 0;
+            } 
+
+            else {
+                $notes.eq( where ).after( $newNote );
+                exports.track.selected = where + 1;
+            }
+
+            pubsub.trigger("selectNote");
 
             console.info( "Adding a \""+ exports.noteNames[duration] +"\" note ("+ note +") at index ["+ (where + 1) +"]");
-
-            exports.track.selected = where + 1;
-            pubsub.trigger("selectNote");
             
             exports.showNote( $newNote );
             return newNote;
