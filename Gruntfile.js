@@ -28,7 +28,7 @@
 
             copy: {
 
-                main: {
+                images: {
 
                     files: [{
 
@@ -85,10 +85,17 @@
 
                 },
 
-                dev: {
+                js: {
 
-                    files: ["app/**/*.scss", "app/**/*.js", "app/**/*.html"],
-                    tasks: ["wiredep", "sass", "autoprefixer", "jshint", "copy"]
+                    files: ["app/**/*.js", "app/**/*.html"],
+                    tasks: ["wiredep", "jshint", "copy:images"]
+
+                },
+
+                sass: {
+
+                    files: ["app/**/*.scss"],
+                    tasks: ["sass", "autoprefixer"]
 
                 }
 

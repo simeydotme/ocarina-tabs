@@ -190,7 +190,7 @@
 
             var note = arguments[0],
                 $notes = exports.$.score.find(".note"),
-                where = $notes.length-1,
+                where = $notes.length - 1,
                 duration = 4,
                 newNote,
                 $newNote;
@@ -202,11 +202,19 @@
 
             if( arguments.length === 2 && $.type( arguments[1] ) === "number" ) {
 
-                where = arguments[1];
+                if( arguments[1] >= 0 ) {
+                    where = arguments[1];
+                } else {
+                    where = 0;
+                }
 
             } else if( arguments.length === 3 && $.type( arguments[1] ) === "number" ) {
 
-                where = arguments[1];
+                if( arguments[1] >= 0 ) {
+                    where = arguments[1];
+                } else {
+                    where = 0;
+                }
 
                 if( $.type( arguments[2] ) === "number" ) {
                     duration = arguments[2];
@@ -225,23 +233,12 @@
             }
 
             newNote = { note: note, duration: duration };
-            exports.model.notes.splice( where, 0, newNote );
-            $newNote = $(exports._createNotes( { notes: [ newNote ]} ));
-
-            console.info( "Adding a \""+ exports.noteNames[duration] +"\" note ("+ note +") at index ["+ where +"]");
+            exports.model.notes.splice( where + 1, 0, newNote );
             
-            // bit of funky logic because when the index is 0/1 we need
-            // to place it either before or after 0 index.
-            switch(where) {
+            $newNote = $(exports._createNotes( { notes: [ newNote ]} ));
+            $notes.eq( where ).after( $newNote );
 
-                case 0:
-                    exports.$.score.prepend( $newNote );
-                    break;
-
-                default:
-                    $notes.eq(where - 1).after( $newNote );
-
-            }
+            console.info( "Adding a \""+ exports.noteNames[duration] +"\" note ("+ note +") at index ["+ (where + 1) +"]");
 
             exports.track.selected = where + 1;
             pubsub.trigger("selectNote");
@@ -366,10 +363,16 @@
         exports.$.score.on("mouseup.note", ".note", function(e) {
 
             var $notes = exports.$.score.find(".note");
-            exports.track.selected = $notes.index( $(this) ) + 1;
+            exports.track.selected = $notes.index( $(this) );
 
             exports.playNote( this );
             pubsub.trigger("selectNote");
+
+        });
+
+        exports.$.score.on("keyup.note", ".note", function(e) {
+
+
 
         });
 

@@ -1,15 +1,21 @@
 @charset "UTF-8";
 
+$appWidth: 1200px;
 
 $noteColor: rgb(214, 23, 166);
 $inputArea: rgb(240, 240, 240);
 $inputAreaHeader: rgb(37, 162, 221);
+
+$sans: "Lato", "Helvetica", "Arial", sans-serif;
+$serif: "IM Fell DW Pica", "Garamond", "Times New Roman", serif;
+$hand: "IM Fell DW Pica", cursive;
 
 
 
 
 @import "body";
 @import "main";
+@import "header";
 
 @import "stage";
 @import "arrangement";

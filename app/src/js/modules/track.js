@@ -7,13 +7,7 @@
 
         exports.track.selectNote = function() {
 
-            var index;
-
-            if( exports.track.selected === 0 ) {
-                index = 0;
-            } else {
-                index = exports.track.selected - 1;
-            }
+            var index = exports.track.selected;
 
             exports.$.score
                 .find(".note--selected")
@@ -28,35 +22,52 @@
 
         exports.track.playSong = function( bpm, onebeat ) {
 
+            pubsub.trigger("playSong");
+            pubsub.off("playSong");
+
             var timer,
                 $el, 
                 note, 
                 length = 1000,
-                regex = /♫[0-9]{1,2}/;
+                regex = /♫[0-9]{1,2}/,
+                $notes = $(".stage__score .note");
+
+            // start from beginning if we're at the end
+            if( app.track.selected === $notes.length - 1 ) {
+                app.track.selected = 0;
+            }
 
             bpm = bpm || 72;
             onebeat = onebeat || 4;
 
             var loop = function() {
 
+                $("body").on("click", ".note, .key", function() {
+                    clearTimeout( timer );
+                });
+
+                pubsub.on("playSong", function() {
+                    clearTimeout( timer );
+                });
+
                 timer = setTimeout( function() {
 
-                    $el = $(".stage__score .note").eq( app.track.selected - 1 );
+                    $el = $(".stage__score .note").eq( app.track.selected );
 
                     if( $el.length ) {
 
                         note = parseInt( $el.attr("class").match( regex )[0].replace("♫",""), 10 );
                         length = (((60 / bpm) * onebeat) / note ) * 1000;
-                        console.log( length );
 
                         app.playNote( $el );
+                        pubsub.trigger("selectNote");
 
                         app.track.selected += 1;
                         loop();
 
                     } else {
 
-                        app.track.selected -= 1;
+                        app.track.selected = $notes.length - 1;
 
                     }
 
@@ -91,7 +102,8 @@
             exports.$.title.html( title );
             exports.$.score.html( notes );
 
-            exports.track.selected = exports.$.score.find(".note").length;
+            exports.track.selected = exports.$.score.find(".note").length - 1;
+            pubsub.trigger("selectNote");
 
         };
 

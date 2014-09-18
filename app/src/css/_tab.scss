@@ -38,20 +38,48 @@
         $repeat: "";
 
         @for $i from 0 to $holes {
+
             $image: $image + "url( #{$hole} ) , ";
             $repeat: $repeat + "no-repeat , ";
+
         }
 
         @for $i from 0 to $sholes {
+
             $image: $image + "url( #{$shole} ) , ";
             $repeat: $repeat + "no-repeat , ";
+
         }
 
         $image: $image + "url( #{$ocarina} )";
         $repeat: $repeat + "repeat-y";
+        
+        .note__tab {
 
-        background-image: #{$image};
-        background-repeat: #{$repeat};
+            background-image: #{$image};
+            background-repeat: #{$repeat};
+                
+        }
+
+    }
+
+    @mixin positions( $fingers: "" ) {
+        
+        @if $fingers == "" {
+
+            .note__tab { background-position: $bg }
+            &:hover .note__tab { background-position: $bghover; }
+            &.note--selected .note__tab { background-position: $bgactive; }
+
+        }
+
+        @else {
+
+            .note__tab { background-position: $fingers, $bg; }
+            &:hover .note__tab { background-position: $fingers, $bghover; }
+            &.note--selected .note__tab { background-position: $fingers, $bgactive; }
+
+        }
 
     }
 
@@ -108,6 +136,8 @@
         }
 
         &--♪ {
+            
+            // Sharps and Flats
 
             &4AS, &5CS, &5DS, &5FS, &5GS, &5AS, &6CS, &6DS {
                 .note__name:after {
@@ -124,284 +154,189 @@
 
 
 
-            &4AN .note__tab {
+            &4AN {
+
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $rextra;
 
                 @include holes(8,4);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $rextra, $bg;
-                
-                &:hover {
-                    background-position:
-                       $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $rextra, $bghover;
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &4AS .note__tab,
-            &4BF .note__tab {
+            &4AS,
+            &4BF {
 
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra;
+                
                 @include holes(8,3);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $bg;
+                @include positions($fingers);
                 
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $lextra, $bghover;
-                }
-
+            
             }
 
-            &4BN .note__tab {
+            &4BN {
 
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $rextra;
+                
                 @include holes(8,3);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $rextra, $bg;
-                
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $rextra, $bghover;
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5CN .note__tab {
+            &5CN {
+
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb;
 
                 @include holes(8,2);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $bg;
-                
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $rpinky, $lthumb, $rthumb, $bghover;
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5CS .note__tab,
-            &5DF .note__tab {
+            &5CS,
+            &5DF {
 
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra;
+                
                 @include holes(7,3);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra, $bg;
-                
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $rextra, $bghover;
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5DN .note__tab {
+            &5DN {
 
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb;
+                
                 @include holes(7,2);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $bg;
-                
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rring, $lpinky, $lthumb, $rthumb, $bghover;
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5DS .note__tab,
-            &5EF .note__tab {
+            &5DS,
+            &5EF {
 
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rpinky, $lpinky, $lthumb, $rthumb;
+                
                 @include holes(7,2);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rpinky, $lpinky, $lthumb, $rthumb, $bg;
-                
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $rpinky, $lpinky, $lthumb, $rthumb, $bghover;
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5EN .note__tab {
+            &5EN {
 
+                $fingers: $lindex, $rindex, $lmiddle, $rmiddle, $lring, $lpinky, $lthumb, $rthumb;
+                
                 @include holes(6,2);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $lpinky, $lthumb, $rthumb, $bg;
+                @include positions($fingers);
                 
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $rmiddle, $lring, $lpinky, $lthumb, $rthumb, $bghover;
-                }
-
             }
 
-            &5FN .note__tab {
+            &5FN {
 
+                $fingers: $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb;
+                
                 @include holes(5,2);
-                background-position:
-                   $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bg;
+                @include positions($fingers);
                 
-                &:hover {
-                    background-position:
-                   $lindex, $rindex, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bghover;
-                }
-
             }
 
-            &5FS .note__tab,
-            &5GF .note__tab {
+            &5FS,
+            &5GF {
 
+                $fingers: $lindex, $rmiddle, $lmiddle, $lring, $lpinky, $lthumb, $rthumb;
+                
                 @include holes(5,2);
-                background-position:
-                   $lindex, $rmiddle, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bg;
-                
-                &:hover {
-                    background-position:
-                   $lindex, $rmiddle, $lmiddle, $lring, $lpinky, $lthumb, $rthumb, $bghover;
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5GN .note__tab {
+            &5GN {
 
+                $fingers: $lindex, $lring, $lmiddle, $lpinky, $lthumb, $rthumb; 
                 @include holes(4,2);
-                background-position:
-                   $lindex, $lring, $lmiddle, $lpinky, $lthumb, $rthumb, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lindex, $lring, $lmiddle, $lpinky, $lthumb, $rthumb, $bghover; 
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5GS .note__tab,
-            &5AF .note__tab {
+            &5GS,
+            &5AF {
 
+                $fingers: $lindex, $rring, $lmiddle, $lpinky, $lthumb, $rthumb; 
                 @include holes(4,2);
-                background-position:
-                   $lindex, $rring, $lmiddle, $lpinky, $lthumb, $rthumb, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lindex, $rring, $lmiddle, $lpinky, $lthumb, $rthumb, $bghover; 
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5AN .note__tab {
+            &5AN {
 
+                $fingers: $lindex, $lmiddle, $lpinky, $lthumb, $rthumb; 
                 @include holes(3,2);
-                background-position:
-                   $lindex, $lmiddle, $lpinky, $lthumb, $rthumb, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lindex, $lmiddle, $lpinky, $lthumb, $rthumb, $bghover; 
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5AS .note__tab,
-            &5BF .note__tab {
+            &5AS,
+            &5BF {
 
+                $fingers: $lindex, $lpinky, $rring, $lthumb, $rthumb; 
                 @include holes(3,2);
-                background-position:
-                   $lindex, $lpinky, $rring, $lthumb, $rthumb, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lindex, $lpinky, $rring, $lthumb, $rthumb, $bghover; 
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &5BN .note__tab {
+            &5BN {
 
+                $fingers: $lindex, $lpinky, $lthumb, $rthumb; 
                 @include holes(2,2);
-                background-position:
-                   $lindex, $lpinky, $lthumb, $rthumb, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lindex, $lpinky, $lthumb, $rthumb, $bghover; 
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &6CN .note__tab {
+            &6CN {
 
+                $fingers: $lpinky, $lthumb, $rthumb; 
                 @include holes(1,2);
-                background-position:
-                   $lpinky, $lthumb, $rthumb, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lpinky, $lthumb, $rthumb, $bghover; 
-                }
-
+                @include positions($fingers);
+            
             }
 
-            &6CS .note__tab,
-            &6DF .note__tab {
+            &6CS,
+            &6DF {
 
+                $fingers: $lpinky, $rring, $rthumb; 
                 @include holes(2,1);
-                background-position:
-                   $lpinky, $rring, $rthumb, $bg; 
+                @include positions($fingers);
                 
-                &:hover {
-                    background-position:
-                   $lpinky, $rring, $rthumb, $bghover; 
-                }
-
             }
 
-            &6DN .note__tab {
+            &6DN {
 
+                $fingers: $lpinky, $rthumb; 
                 @include holes(1,1);
-                background-position:
-                   $lpinky, $rthumb, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lpinky, $rthumb, $bghover; 
-                }
+                @include positions($fingers);
 
             }
 
-            &6DS .note__tab,
-            &6EF .note__tab {
+            &6DS,
+            &6EF {
 
+                $fingers: $rthumb; 
                 @include holes(0,1);
-                background-position:
-                   $rthumb, $bg; 
+                    @include positions($fingers);
                 
-                &:hover {
-                    background-position:
-                   $rthumb, $bghover; 
-                }
-
             }
 
-            &6EN .note__tab {
+            &6EN {
 
+                $fingers: $lpinky; 
                 @include holes(1,0);
-                background-position:
-                   $lpinky, $bg; 
-                
-                &:hover {
-                    background-position:
-                   $lpinky, $bghover; 
-                }
+                @include positions($fingers);
 
             }
 
-            &6FN .note__tab {
+            &6FN {
 
                 @include holes();
-                background-position:
-                   $bg; 
-                
-                &:hover {
-                    background-position:
-                   $bghover; 
-                }
+                @include positions();
 
             }
 

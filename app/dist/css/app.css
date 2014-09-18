@@ -189,6 +189,49 @@ textarea {
     page-break-after: avoid;
   }
 }
+.stage__title {
+  width: auto;
+  text-align: center;
+  position: relative;
+  font-family: "IM Fell DW Pica", "Garamond", "Times New Roman", serif;
+  font-weight: 300;
+  font-size: 1.4em;
+  line-height: 1.1em;
+}
+
+.title__main, .title__sub {
+  margin: -0.2em 0;
+  padding: 0.3em 0.5em 0.2em;
+  outline: none;
+  border: 1px dotted transparent;
+  display: inline-block;
+  -webkit-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.title__main:hover, .title__sub:hover {
+  border: 1px dotted rgba(0, 0, 0, 0.3);
+}
+.title__main:focus, .title__sub:focus {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(200, 200, 200, 0.1);
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
+}
+.title__main {
+  font-weight: 700;
+}
+.title__sub {
+  font-weight: 300;
+}
+.title__author {
+  position: absolute;
+  top: -0.5em;
+  right: 0.5em;
+  font-size: 0.8em;
+  margin: 0;
+}
+
 .stage {
   width: 1200px;
   margin: 2em auto;
@@ -294,9 +337,11 @@ textarea {
   position: relative;
   width: 46px;
   height: 48px;
+  background-position: 0px 7px;
+}
+.note__tab .note__tab {
   background-image: url( ../img/ocarina-sprite.png );
   background-repeat: repeat-y;
-  background-position: 0px 7px;
 }
 .note__name {
   font-weight: 800;
@@ -330,170 +375,275 @@ textarea {
 .note--♪4AN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪4AN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 25px 15px, 0px 7px;
 }
-.note--♪4AN .note__tab:hover {
+.note--♪4AN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 25px 15px, 0px -41px;
+}
+.note--♪4AN.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 25px 15px, 0px -89px;
 }
 .note--♪4AS .note__tab, .note--♪4BF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪4AS .note__tab, .note--♪4BF .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 0px 7px;
 }
-.note--♪4AS .note__tab:hover, .note--♪4BF .note__tab:hover {
+.note--♪4AS:hover .note__tab, .note--♪4BF:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 0px -41px;
+}
+.note--♪4AS.note--selected .note__tab, .note--♪4BF.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 0px -89px;
 }
 .note--♪4BN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪4BN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 25px 15px, 0px 7px;
 }
-.note--♪4BN .note__tab:hover {
+.note--♪4BN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 25px 15px, 0px -41px;
+}
+.note--♪4BN.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 25px 15px, 0px -89px;
 }
 .note--♪5CN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5CN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5CN .note__tab:hover {
+.note--♪5CN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5CN.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5CS .note__tab, .note--♪5DF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5CS .note__tab, .note--♪5DF .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 25px 15px, 0px 7px;
 }
-.note--♪5CS .note__tab:hover, .note--♪5DF .note__tab:hover {
+.note--♪5CS:hover .note__tab, .note--♪5DF:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 25px 15px, 0px -41px;
+}
+.note--♪5CS.note--selected .note__tab, .note--♪5DF.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 25px 15px, 0px -89px;
 }
 .note--♪5DN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5DN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5DN .note__tab:hover {
+.note--♪5DN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5DN.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5DS .note__tab, .note--♪5EF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5DS .note__tab, .note--♪5EF .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 34px 14px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5DS .note__tab:hover, .note--♪5EF .note__tab:hover {
+.note--♪5DS:hover .note__tab, .note--♪5EF:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 34px 14px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5DS.note--selected .note__tab, .note--♪5EF.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 34px 14px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5EN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5EN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5EN .note__tab:hover {
+.note--♪5EN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5EN.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5FN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5FN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5FN .note__tab:hover {
+.note--♪5FN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5FN.note--selected .note__tab {
+  background-position: 4px 29px, 23px 26px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5FS .note__tab, .note--♪5GF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5FS .note__tab, .note--♪5GF .note__tab {
   background-position: 4px 29px, 25px 21px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5FS .note__tab:hover, .note--♪5GF .note__tab:hover {
+.note--♪5FS:hover .note__tab, .note--♪5GF:hover .note__tab {
   background-position: 4px 29px, 25px 21px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5FS.note--selected .note__tab, .note--♪5GF.note--selected .note__tab {
+  background-position: 4px 29px, 25px 21px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5GN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5GN .note__tab {
   background-position: 4px 29px, 14px 24px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5GN .note__tab:hover {
+.note--♪5GN:hover .note__tab {
   background-position: 4px 29px, 14px 24px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5GN.note--selected .note__tab {
+  background-position: 4px 29px, 14px 24px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5GS .note__tab, .note--♪5AF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5GS .note__tab, .note--♪5AF .note__tab {
   background-position: 4px 29px, 29px 17px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5GS .note__tab:hover, .note--♪5AF .note__tab:hover {
+.note--♪5GS:hover .note__tab, .note--♪5AF:hover .note__tab {
   background-position: 4px 29px, 29px 17px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5GS.note--selected .note__tab, .note--♪5AF.note--selected .note__tab {
+  background-position: 4px 29px, 29px 17px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5AN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5AN .note__tab {
   background-position: 4px 29px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5AN .note__tab:hover {
+.note--♪5AN:hover .note__tab {
   background-position: 4px 29px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5AN.note--selected .note__tab {
+  background-position: 4px 29px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5AS .note__tab, .note--♪5BF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5AS .note__tab, .note--♪5BF .note__tab {
   background-position: 4px 29px, 17px 19px, 29px 17px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5AS .note__tab:hover, .note--♪5BF .note__tab:hover {
+.note--♪5AS:hover .note__tab, .note--♪5BF:hover .note__tab {
   background-position: 4px 29px, 17px 19px, 29px 17px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5AS.note--selected .note__tab, .note--♪5BF.note--selected .note__tab {
+  background-position: 4px 29px, 17px 19px, 29px 17px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪5BN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪5BN .note__tab {
   background-position: 4px 29px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪5BN .note__tab:hover {
+.note--♪5BN:hover .note__tab {
   background-position: 4px 29px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪5BN.note--selected .note__tab {
+  background-position: 4px 29px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪6CN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪6CN .note__tab {
   background-position: 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
-.note--♪6CN .note__tab:hover {
+.note--♪6CN:hover .note__tab {
   background-position: 17px 19px, 14px 41px, 29px 36px, 0px -41px;
+}
+.note--♪6CN.note--selected .note__tab {
+  background-position: 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
 .note--♪6CS .note__tab, .note--♪6DF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , repeat-y;
+}
+.note--♪6CS .note__tab, .note--♪6DF .note__tab {
   background-position: 17px 19px, 29px 17px, 29px 36px, 0px 7px;
 }
-.note--♪6CS .note__tab:hover, .note--♪6DF .note__tab:hover {
+.note--♪6CS:hover .note__tab, .note--♪6DF:hover .note__tab {
   background-position: 17px 19px, 29px 17px, 29px 36px, 0px -41px;
+}
+.note--♪6CS.note--selected .note__tab, .note--♪6DF.note--selected .note__tab {
+  background-position: 17px 19px, 29px 17px, 29px 36px, 0px -89px;
 }
 .note--♪6DN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , repeat-y;
+}
+.note--♪6DN .note__tab {
   background-position: 17px 19px, 29px 36px, 0px 7px;
 }
-.note--♪6DN .note__tab:hover {
+.note--♪6DN:hover .note__tab {
   background-position: 17px 19px, 29px 36px, 0px -41px;
+}
+.note--♪6DN.note--selected .note__tab {
+  background-position: 17px 19px, 29px 36px, 0px -89px;
 }
 .note--♪6DS .note__tab, .note--♪6EF .note__tab {
   background-image: url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , repeat-y;
+}
+.note--♪6DS .note__tab, .note--♪6EF .note__tab {
   background-position: 29px 36px, 0px 7px;
 }
-.note--♪6DS .note__tab:hover, .note--♪6EF .note__tab:hover {
+.note--♪6DS:hover .note__tab, .note--♪6EF:hover .note__tab {
   background-position: 29px 36px, 0px -41px;
+}
+.note--♪6DS.note--selected .note__tab, .note--♪6EF.note--selected .note__tab {
+  background-position: 29px 36px, 0px -89px;
 }
 .note--♪6EN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , repeat-y;
+}
+.note--♪6EN .note__tab {
   background-position: 17px 19px, 0px 7px;
 }
-.note--♪6EN .note__tab:hover {
+.note--♪6EN:hover .note__tab {
   background-position: 17px 19px, 0px -41px;
+}
+.note--♪6EN.note--selected .note__tab {
+  background-position: 17px 19px, 0px -89px;
 }
 .note--♪6FN .note__tab {
   background-image: url( ../img/ocarina-sprite.png );
   background-repeat: repeat-y;
+}
+.note--♪6FN .note__tab {
   background-position: 0px 7px;
 }
-.note--♪6FN .note__tab:hover {
+.note--♪6FN:hover .note__tab {
   background-position: 0px -41px;
+}
+.note--♪6FN.note--selected .note__tab {
+  background-position: 0px -89px;
 }
 
 .note__bar {

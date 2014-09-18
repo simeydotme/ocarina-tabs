@@ -2,13 +2,7 @@
 
     var app = (function(exports) {
 
-
-        exports.init = (function() {
-
-            exports.loadFonts();
-
-            exports.model = window.fixture || { notes: [] };
-            exports._renderSong( exports.model );
+        var introTune = function() {
 
             setTimeout( function() {
 
@@ -22,7 +16,18 @@
                 setTimeout(function(){ app.playNote("5FS"); },speed*6);
                 setTimeout(function(){ app.playNote("6CN"); },speed*7);
 
-        }, 1000 );
+            }, 1000 );
+
+        };
+
+        exports.init = (function() {
+
+            exports.loadFonts();
+
+            exports.model = window.fixture || { notes: [] };
+            exports._renderSong( exports.model );
+            
+            //introTune();
 
         }());
 

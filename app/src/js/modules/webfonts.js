@@ -5,7 +5,7 @@
 
             WebFontConfig = {
                 google: {
-                    families: ["Lato"]
+                    families: ["Lato", "IM Fell DW Pica"]
                 }
             };
 
