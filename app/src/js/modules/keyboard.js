@@ -38,21 +38,21 @@
 
         exports.keyboard.mousedown = function( e ) {
 
-            exports.playNote( $(this).data("key") );
+            exports.note.playNote( $(this).data("key") );
             exports.$.keyboardKeys.on("mouseover.mousedown", exports.keyboard.mousedownover );
 
         };
 
         exports.keyboard.mousedownover = function( e ) {
 
-            exports.playNote( $(this).data("key") );
+            exports.note.playNote( $(this).data("key") );
 
         };
 
         exports.keyboard.mouseup = function( e ) {
 
             exports.$.keyboardKeys.off("mouseover.mousedown");
-            exports.addNote( $(this).data("key") , exports.track.selected , 4 );
+            exports.note.addNote( $(this).data("key") , exports.track.selected , 4 );
 
         };
         
@@ -71,7 +71,6 @@
         exports.keyboard.init = (function() {
 
             exports.keyboard.events();
-            //exports.keyboard.movable();
 
         }());
 

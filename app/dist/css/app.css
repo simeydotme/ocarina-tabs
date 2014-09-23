@@ -301,7 +301,7 @@ textarea {
   margin-right: 26px;
 }
 .note--♫4 .note__note {
-  background-position: -45px 0;
+  background-position: -46px 0;
 }
 .note--♫4:after {
   width: 30px;
@@ -331,6 +331,23 @@ textarea {
 }
 .note--♫1:after {
   width: 126px;
+}
+.note--dot .note__note:after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  right: 4px;
+  width: 2px;
+  height: 2px;
+  background: black;
+  -webkit-border-radius: 100%;
+          border-radius: 100%;
+}
+.note--dot.note--♫1 .note__note:after, .note--dot.note--♫2 .note__note:after {
+  right: 0;
+}
+.note--dot.note--♪4AN .note__note:after, .note--dot.note--♪4AS .note__note:after, .note--dot.note--♪4BF .note__note:after, .note--dot.note--♪4BN .note__note:after, .note--dot.note--♪5CN .note__note:after, .note--dot.note--♪5CS .note__note:after, .note--dot.note--♪5DN .note__note:after, .note--dot.note--♪5DS .note__note:after, .note--dot.note--♪5FN .note__note:after, .note--dot.note--♪5FS .note__note:after, .note--dot.note--♪5AN .note__note:after, .note--dot.note--♪5AS .note__note:after, .note--dot.note--♪6CN .note__note:after, .note--dot.note--♪6CS .note__note:after, .note--dot.note--♪6EN .note__note:after {
+  bottom: 3px;
 }
 
 .note__tab {

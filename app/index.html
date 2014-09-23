@@ -37,7 +37,7 @@
             <ul class="stage__score">
                 <script id="note-template" type="text/x-handlebars-template">
                 {{#each notes}}
-                <li class="note note--♪{{note}} note--♫{{duration}}">
+                <li class="note note--♪{{note}} note--♫{{duration}} {{#if dot}}note--dot{{/if}}">
                     <div class="note__bar">
                         <span class="note__note"></span>
                     </div>
@@ -64,27 +64,27 @@
             <section class="input-keyboard">
 
                 <ul class="keyboard__keys">
-                    <li data-key="4AN" class="key key--4AN key--natural"><span class="key__letter">A</span></li>
-                    <li data-key="4AS" class="key key--4AS key--sharp"><span class="key__letter">A</span></li>
-                    <li data-key="4BN" class="key key--4BN key--natural"><span class="key__letter">B</span></li>
-                    <li data-key="5CN" class="key key--5CN key--natural"><span class="key__letter">C</span></li>
-                    <li data-key="5CS" class="key key--5CS key--sharp"><span class="key__letter">C</span></li>
-                    <li data-key="5DN" class="key key--5DN key--natural"><span class="key__letter">D</span></li>
-                    <li data-key="5DS" class="key key--5DS key--sharp"><span class="key__letter">D</span></li>
-                    <li data-key="5EN" class="key key--5EN key--natural"><span class="key__letter">E</span></li>
-                    <li data-key="5FN" class="key key--5FN key--natural"><span class="key__letter">F</span></li>
-                    <li data-key="5FS" class="key key--5FS key--sharp"><span class="key__letter">F</span></li>
-                    <li data-key="5GN" class="key key--5GN key--natural"><span class="key__letter">G</span></li>
-                    <li data-key="5GS" class="key key--5GS key--sharp"><span class="key__letter">G</span></li>
-                    <li data-key="5AN" class="key key--5AN key--natural"><span class="key__letter">A</span></li>
-                    <li data-key="5AS" class="key key--5AS key--sharp"><span class="key__letter">A</span></li>
-                    <li data-key="5BN" class="key key--5BN key--natural"><span class="key__letter">B</span></li>
-                    <li data-key="6CN" class="key key--6CN key--natural"><span class="key__letter">C</span></li>
-                    <li data-key="6CS" class="key key--6CS key--sharp"><span class="key__letter">C</span></li>
-                    <li data-key="6DN" class="key key--6DN key--natural"><span class="key__letter">D</span></li>
-                    <li data-key="6DS" class="key key--6DS key--sharp"><span class="key__letter">D</span></li>
-                    <li data-key="6EN" class="key key--6EN key--natural"><span class="key__letter">E</span></li>
-                    <li data-key="6FN" class="key key--6FN key--natural"><span class="key__letter">F</span></li>
+                    <li data-key="4AN" class="key key--4AN key--natural">   <span class="key__letter">A</span></li>
+                    <li data-key="4AS" class="key key--4AS key--sharp">     <span class="key__letter">A</span></li>
+                    <li data-key="4BN" class="key key--4BN key--natural">   <span class="key__letter">B</span></li>
+                    <li data-key="5CN" class="key key--5CN key--natural">   <span class="key__letter">C</span></li>
+                    <li data-key="5CS" class="key key--5CS key--sharp">     <span class="key__letter">C</span></li>
+                    <li data-key="5DN" class="key key--5DN key--natural">   <span class="key__letter">D</span></li>
+                    <li data-key="5DS" class="key key--5DS key--sharp">     <span class="key__letter">D</span></li>
+                    <li data-key="5EN" class="key key--5EN key--natural">   <span class="key__letter">E</span></li>
+                    <li data-key="5FN" class="key key--5FN key--natural">   <span class="key__letter">F</span></li>
+                    <li data-key="5FS" class="key key--5FS key--sharp">     <span class="key__letter">F</span></li>
+                    <li data-key="5GN" class="key key--5GN key--natural">   <span class="key__letter">G</span></li>
+                    <li data-key="5GS" class="key key--5GS key--sharp">     <span class="key__letter">G</span></li>
+                    <li data-key="5AN" class="key key--5AN key--natural">   <span class="key__letter">A</span></li>
+                    <li data-key="5AS" class="key key--5AS key--sharp">     <span class="key__letter">A</span></li>
+                    <li data-key="5BN" class="key key--5BN key--natural">   <span class="key__letter">B</span></li>
+                    <li data-key="6CN" class="key key--6CN key--natural">   <span class="key__letter">C</span></li>
+                    <li data-key="6CS" class="key key--6CS key--sharp">     <span class="key__letter">C</span></li>
+                    <li data-key="6DN" class="key key--6DN key--natural">   <span class="key__letter">D</span></li>
+                    <li data-key="6DS" class="key key--6DS key--sharp">     <span class="key__letter">D</span></li>
+                    <li data-key="6EN" class="key key--6EN key--natural">   <span class="key__letter">E</span></li>
+                    <li data-key="6FN" class="key key--6FN key--natural">   <span class="key__letter">F</span></li>
                 </ul>
 
             </section>
@@ -108,6 +108,7 @@
         <script src="src/js/modules/webfonts.js"></script>
         <script src="src/js/modules/templates.js"></script>
         <script src="src/js/modules/notes.js"></script>
+        <script src="src/js/modules/note.js"></script>
         <script src="src/js/modules/track.js"></script>
 
         <script src="src/js/modules/input-area.js"></script>

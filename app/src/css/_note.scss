@@ -39,7 +39,6 @@
 
                 .note__tab { }
                 .note__note { }
-
                 &:after { }
 
             }
@@ -69,7 +68,7 @@
                 width: $width + ( $startMargin + ( 8 * $nodeSpace ));
 
                 .note__tab { margin-right: $startMargin + ( 8 * $nodeSpace ); }
-                .note__note  { background-position: -45px 0; }
+                .note__note  { background-position: -46px 0; }
                 &:after { width: $startWidth + ( 8 * $nodeSpace ) - 2px; }
 
             }
@@ -91,6 +90,56 @@
                 .note__tab { margin-right: $startMargin + ( 32 * $nodeSpace ); }
                 .note__note  { background-position: -73px 0; width: 10px; }
                 &:after { width: $startWidth + ( 32 * $nodeSpace ) - 2px; }
+
+            }
+
+        }
+
+        &--dot {
+
+            .note__note {
+
+                &:after {
+
+                    content: "";
+                    
+                    position: absolute;
+                    bottom: 1px;
+                    right: 4px;
+                    width: 2px;
+                    height: 2px;
+
+                    background: black;
+                    border-radius: 100%;
+
+                }
+
+            }
+
+            &.note--♫1 .note__note:after,
+            &.note--♫2 .note__note:after {
+
+                right: 0;
+
+            }
+
+            &.note--♪4AN .note__note:after,
+            &.note--♪4AS .note__note:after,
+            &.note--♪4BF .note__note:after,
+            &.note--♪4BN .note__note:after,
+            &.note--♪5CN .note__note:after,
+            &.note--♪5CS .note__note:after,
+            &.note--♪5DN .note__note:after,
+            &.note--♪5DS .note__note:after,
+            &.note--♪5FN .note__note:after,
+            &.note--♪5FS .note__note:after,
+            &.note--♪5AN .note__note:after,
+            &.note--♪5AS .note__note:after,
+            &.note--♪6CN .note__note:after,
+            &.note--♪6CS .note__note:after,
+            &.note--♪6EN .note__note:after {
+
+                bottom: 3px;
 
             }
 

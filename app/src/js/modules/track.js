@@ -5,6 +5,9 @@
         exports.track = {};
         exports.track.selected = 0;
 
+
+
+
         exports.track.selectNote = function() {
 
             var index = exports.track.selected;
@@ -20,10 +23,14 @@
 
         };
 
+
+
+
+
         exports.track.playSong = function( bpm, onebeat ) {
 
-            pubsub.trigger("playSong");
-            pubsub.off("playSong");
+            pubsub.trigger("track.playSong");
+            pubsub.off("track.playSong");
 
             var timer,
                 $el, 
@@ -46,7 +53,7 @@
                     clearTimeout( timer );
                 });
 
-                pubsub.on("playSong", function() {
+                pubsub.on("track.playSong track.stopSong", function() {
                     clearTimeout( timer );
                 });
 
@@ -59,8 +66,14 @@
                         note = parseInt( $el.attr("class").match( regex )[0].replace("♫",""), 10 );
                         length = (((60 / bpm) * onebeat) / note ) * 1000;
 
-                        app.playNote( $el );
-                        pubsub.trigger("selectNote");
+                        if( $el.hasClass("note--dot") ) {
+                            length = length + ( length * 0.5 );
+                        }
+
+                        console.log( length );
+
+                        app.note.playNote( $el );
+                        pubsub.trigger("track.selectNote");
 
                         app.track.selected += 1;
                         loop();
@@ -78,6 +91,16 @@
             loop();
 
         };
+
+
+        exports.track.stopSong  = function() {
+
+            pubsub.trigger("track.stopSong");
+
+        };
+
+
+
         
 
         exports._createTitle = function( data ) {
@@ -111,7 +134,7 @@
 
 
         exports.track.events = function() {
-            pubsub.on("selectNote", exports.track.selectNote );
+            pubsub.on("track.selectNote", exports.track.selectNote );
         };
 
         exports.track.init = (function() {
