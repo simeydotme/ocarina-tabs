@@ -327,6 +327,8 @@
 
         };
 
+        
+
 
         exports.note.events = function() {
 
