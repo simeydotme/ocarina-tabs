@@ -55,9 +55,10 @@
 
         /**
          * Function to add a note to the Model and the Page
-         * @param {String} note
-         * @param {Number} where - optional
-         * @param {Number} duration - optional
+         * @param {string} note - A 3-character string of a note, eg: "4AN"
+         * @param {number} where - [optional] - Index of where to insert note (zero-index)
+         * @param {number} duration - [optional] - Length note should be played for
+         * @return {object} new note - An object containing the new note's details
          */
         exports.note.addNote = function() {
 
@@ -105,24 +106,31 @@
                 where = $notes.length;
             }
 
+            // create object and HTML for the new note.
             newNote = { note: note, duration: duration };
-            exports.model.notes.splice( where + 1, 0, newNote );
-            
             $newNote = $(exports._createNotes( { notes: [ newNote ]} ));
 
+            // if the track is empty, append note to track and set selected to 0.
             if( !$notes.length ) {
+
                 exports.$.score.append( $newNote );
                 exports.track.selected = 0;
+
             } 
 
+            // if track is not empty, place the new note after
+            // the chosen note. Select the next note in track.
             else {
+
                 $notes.eq( where ).after( $newNote );
                 exports.track.selected = where + 1;
+
             }
 
-            pubsub.trigger("track.selectNote");
-
             console.info( "Adding a \""+ exports.noteNames[duration] +"\" note ("+ note +") at index ["+ (where + 1) +"]");
+
+            pubsub.trigger("track.selectNote");
+            pubsub.trigger("track.createModel");
             
             exports.note.showNote( $newNote );
             return newNote;
@@ -132,7 +140,11 @@
 
 
 
-
+        /**
+         * Remove a note from the song by index
+         * @param  {number} index - the note in the song to remove (zero-index)
+         * @return {array}
+         */
         exports.note.removeNote = function( index ) {
 
             var $notes = exports.$.score.find(".note"),
@@ -151,9 +163,10 @@
             $removeNote = $notes.eq( index );
             console.info( "Removing note ("+ $removeNote.attr("class") +") at index ["+ index +"]");
           
-            exports.note.hideNote( $removeNote );
+            pubsub.trigger("track.createModel");
 
-            return exports.model.notes.splice( index, 1 );
+            exports.note.hideNote( $removeNote );
+            return exports.model.notes;
 
         };
 
@@ -173,26 +186,20 @@
             var $notes = exports.$.score.find(".note"),
                 $note = $notes.eq(index),
                 speedClass = exports.note.getSpeedClass( $note ),
-                previousSpeed = exports.note.getSpeed( $note ),
-                newNote = app.model.notes[index];
+                previousSpeed = exports.note.getSpeed( $note );
 
             $note
                 .removeClass( speedClass )
+                .removeClass("note--dot")
                 .addClass( "note--♫" + speed );
 
-            newNote.duration = speed;
+            if( dot ) {
 
-            if( !dot ) {
-
-                newNote.dot = false;
-                $note.removeClass("note--dot");
-
-            } else {
-
-                newNote.dot = true;
                 $note.addClass("note--dot");
 
             }
+
+            pubsub.trigger("track.createModel");
 
         };
 
@@ -209,10 +216,33 @@
 
         exports.note.getSpeed = function( $el ) {
 
-            var regex = /♫[0-9]{1,2}/,
-                speed = parseInt( $el.attr("class").match( regex )[0].replace("♫",""), 10 );
+            var speedClass = app.note.getSpeedClass( $el ).replace("note--♫",""),
+                speed = parseInt( speedClass, 10 );
 
             return speed;
+
+        };
+
+        exports.note.getNoteClass = function( $el ) {
+
+            var regex = /note--♪[4-6]{1}[A-G]{1}[FNS]/,
+                noteClass = $el.attr("class").match( regex )[0];
+
+            return noteClass;
+
+        };
+
+        exports.note.getNote = function( $el ) {
+
+            var note = app.note.getNoteClass( $el ).replace("note--♪","");
+
+            return note;
+
+        };
+
+        exports.note.isDot = function( $el ) {
+
+            return $el.hasClass("note--dot");
 
         };
 
@@ -313,9 +343,7 @@
 
 
 
-            exports.$.score.on("keyup.note", ".note", function(e) {
-
-            });
+            exports.$.score.on("keyup.note", ".note", function(e) {});
 
 
         };

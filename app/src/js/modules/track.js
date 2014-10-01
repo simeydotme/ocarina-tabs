@@ -93,9 +93,39 @@
         };
 
 
-        exports.track.stopSong  = function() {
+        exports.track.stopSong = function() {
 
             pubsub.trigger("track.stopSong");
+
+        };
+
+
+        /**
+         * Function for creating the model out of the
+         * current track state.
+         * 
+         * @return {array} Array of notes in Model
+         */
+        exports.track.createModel = function() {
+
+            var $note, duration, note, dot, notes;
+
+            notes = $(".stage__score .note").map(function(k,v) {
+
+                $note = $(v);
+
+                dot = app.note.isDot( $note );
+                note  = app.note.getNote( $note );
+                duration = app.note.getSpeed( $note );
+
+                return { "note": note, "duration": duration, "dot": dot };
+
+            }).get();
+
+            console.info("Building model...");
+            app.model.notes = notes;
+
+            return notes;
 
         };
 
@@ -134,11 +164,16 @@
 
 
         exports.track.events = function() {
+
             pubsub.on("track.selectNote", exports.track.selectNote );
+            pubsub.on("track.createModel", exports.track.createModel );
+
         };
 
         exports.track.init = (function() {
+
             exports.track.events();
+
         }());
 
         return exports;
