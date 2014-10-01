@@ -327,7 +327,7 @@
 
         };
 
-        
+
 
 
         exports.note.events = function() {
@@ -343,12 +343,14 @@
 
             });
 
+            exports.$.score.on("keyup.note", ".note", function(e) {
 
-
-            exports.$.score.on("keyup.note", ".note", function(e) {});
+                
+            });
 
 
         };
+
 
         exports.note.init = (function() {
             exports.note.events();
