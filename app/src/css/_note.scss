@@ -18,6 +18,8 @@
         display: inline-block;
         position: relative;
 
+        transition: width 0.2s ease;
+
         &:after {
 
             content: "";
@@ -28,6 +30,8 @@
             position: absolute;
             right: $startRight;
             bottom: 20px;
+
+            transition: width 0.2s ease;
 
         }
 

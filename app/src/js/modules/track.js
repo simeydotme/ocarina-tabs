@@ -116,7 +116,7 @@
 
                 dot = app.note.isDot( $note );
                 note  = app.note.getNote( $note );
-                duration = app.note.getSpeed( $note );
+                duration = app.note.getLength( $note );
 
                 return { "note": note, "duration": duration, "dot": dot };
 
@@ -156,7 +156,7 @@
             exports.$.score.html( notes );
 
             exports.track.selected = exports.$.score.find(".note").length - 1;
-            pubsub.trigger("selectNote");
+            pubsub.trigger("track.selectNote");
 
         };
 

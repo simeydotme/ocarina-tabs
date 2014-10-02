@@ -2,6 +2,8 @@
 
     var app = (function(exports) {
 
+        exports.noteLengths = [ 1, 2, 4, 8, 16, 32 ];
+
         exports.noteNames = {
 
             1: "breve",
@@ -133,7 +135,7 @@
 
         };
 
-        exports.notes = exports.registerSounds("");
+        exports.notes = exports.registerSounds("piano");
         return exports;
 
     } (app || {}));

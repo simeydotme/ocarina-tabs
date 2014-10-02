@@ -257,6 +257,9 @@ textarea {
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
+  -webkit-transition: width 0.2s ease;
+       -o-transition: width 0.2s ease;
+          transition: width 0.2s ease;
 }
 .note:after {
   content: "";
@@ -266,6 +269,9 @@ textarea {
   position: absolute;
   right: 4px;
   bottom: 20px;
+  -webkit-transition: width 0.2s ease;
+       -o-transition: width 0.2s ease;
+          transition: width 0.2s ease;
 }
 .note--♫32 {
   width: 44px;

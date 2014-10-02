@@ -174,24 +174,24 @@
 
 
 
-        exports.note.changeSpeed = function( index, speed, dot ) {
+        exports.note.setLength = function( index, length, dot ) {
 
-            if( typeof index !== "number" || !speed ) {
+            if( typeof index !== "number" || !length ) {
 
-                console.warn( "Couldn't change speed, no speed/note-index was supplied");
+                console.warn( "Couldn't change length, no length/note-index was supplied");
                 return false;
 
             }
 
             var $notes = exports.$.score.find(".note"),
                 $note = $notes.eq(index),
-                speedClass = exports.note.getSpeedClass( $note ),
-                previousSpeed = exports.note.getSpeed( $note );
+                lengthClass = exports.note.getLengthClass( $note ),
+                previousLength = exports.note.getLength( $note );
 
             $note
-                .removeClass( speedClass )
+                .removeClass( lengthClass )
                 .removeClass("note--dot")
-                .addClass( "note--♫" + speed );
+                .addClass( "note--♫" + length );
 
             if( dot ) {
 
@@ -204,22 +204,73 @@
         };
 
 
+        exports.note.changeLength = function( $el, direction ) {
 
-        exports.note.getSpeedClass = function( $el ) {
+            var currentLength = exports.note.getLength( $el ),
+                noteIndex = exports.note.getIndex( $el ),
+                isDot = exports.note.isDot( $el ),
+                newDot = !isDot,
+                newLength = currentLength;
 
-            var regex = /note--♫[0-9]{1,2}/,
-                speedClass = $el.attr("class").match( regex )[0];
+            direction = direction || "faster";
 
-            return speedClass;
+            for( var i in app.noteLengths ) {
+
+                if( app.noteLengths[ i ] === currentLength ) {
+
+                    if( direction === "faster" && !isDot ) {
+
+                        if( typeof app.noteLengths[ parseInt(i) + 1 ] !==  "undefined" ) {
+
+                            newLength = app.noteLengths[ parseInt(i) + 1 ];
+
+                        } else {
+
+                            newDot = isDot;
+
+                        }
+
+                    }
+
+                    else if ( direction === "slower" && isDot ) {
+
+                        if( typeof app.noteLengths[ parseInt(i) - 1 ] !==  "undefined" ) {
+
+                            newLength = app.noteLengths[ parseInt(i) - 1 ];
+
+                        } else {
+
+                            newDot = isDot;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            exports.note.setLength( noteIndex, newLength, newDot );
 
         };
 
-        exports.note.getSpeed = function( $el ) {
 
-            var speedClass = app.note.getSpeedClass( $el ).replace("note--♫",""),
-                speed = parseInt( speedClass, 10 );
 
-            return speed;
+        exports.note.getLengthClass = function( $el ) {
+
+            var regex = /note--♫[0-9]{1,2}/,
+                lengthClass = $el.attr("class").match( regex )[0];
+
+            return lengthClass;
+
+        };
+
+        exports.note.getLength = function( $el ) {
+
+            var lengthClass = app.note.getLengthClass( $el ).replace("note--♫",""),
+                length = parseInt( lengthClass, 10 );
+
+            return length;
 
         };
 
@@ -246,7 +297,22 @@
 
         };
 
+        exports.note.getIndex = function( $el ) {
+            
+            var $notes = exports.$.score.find(".note");
 
+            return $notes.index( $el );
+
+        };
+
+        exports.note.getSelectedNote = function() {
+            
+            var $notes = exports.$.score.find(".note"),
+                $selected = $notes.eq( exports.track.selected );
+
+            return $selected;
+
+        };
 
 
         exports.note.showNote = function( $el ) {
@@ -259,7 +325,8 @@
                     width: 0, 
                     left: "-10px", 
                     opacity: 0,
-                    marginRight: 0
+                    marginRight: 0,
+                    transition: "none"
                 })
 
                 .velocity({ 
@@ -267,7 +334,7 @@
                     marginRight: margin
                 }, {
                     queue: false,
-                    duration: 380
+                    duration: 230
                 })
 
                 .velocity({ 
@@ -275,8 +342,19 @@
                     opacity: 1 
                 }, {
                     queue: false,
-                    duration: 200,
-                    delay: 180
+                    duration: 100,
+                    delay: 130,
+                    complete: function(els) {
+
+                        $(els).css({
+                            width: "",
+                            left: "",
+                            opacity: "",
+                            marginRight: "",
+                            transition: ""
+                        });
+                        
+                    }
                 });
 
         };
@@ -330,30 +408,90 @@
 
 
 
+        exports.note.handleKeyup = function(e) {
+
+            var key = e.which,
+                keymap = exports._keymap,
+                $target = $(e.target),
+                $selected = exports.note.getSelectedNote();
+
+            if( $target.is(":input") || $target.prop("contenteditable") === "true" ) {
+                return;
+            }
+
+            switch( key ) {
+
+                case keymap.up:
+
+                    exports.note.changeLength( $selected , "slower" );
+                    break;
+
+                case keymap.down:
+
+                    exports.note.changeLength( $selected , "faster" );
+                    break;
+
+            }
+
+            for( var i in keymap ) {
+                if( key === keymap[i] ) {
+                    e.preventDefault();
+                    console.info( "pressed key " + keymap[i] );
+                }
+            }
+
+        };
+
+        exports.note.handleMouseup = function(e) {
+
+                var $notes = exports.$.score.find(".note");
+
+                exports.track.selected = $notes.index( $(this) );
+                exports.note.playNote( this );
+
+                pubsub.trigger("track.selectNote");
+
+        };
+
+        exports.note.handleKeydown = function(e) {
+
+            var key = e.which,
+                keymap = exports._keymap,
+                $target = $(e.target);
+
+            if( key === keymap.backspace ) {
+
+                if(( !$target.is(":input") && $target.prop("contenteditable") !== "true" ) || 
+                    e.target.disabled || 
+                    e.target.readOnly ) {
+
+                        e.preventDefault();
+
+                    }
+
+            }
+
+        };
+
+
+
+
         exports.note.events = function() {
 
 
-            exports.$.score.on("mouseup.note", ".note", function(e) {
+            exports.$.score.on("mouseup.note", ".note", exports.note.handleMouseup );
 
-                var $notes = exports.$.score.find(".note");
-                exports.track.selected = $notes.index( $(this) );
-
-                exports.note.playNote( this );
-                pubsub.trigger("track.selectNote");
-
-            });
-
-            exports.$.score.on("keyup.note", ".note", function(e) {
-
-                
-            });
+            $(document).on("keyup.note", exports.note.handleKeyup );
+            $(document).on("keydown.note", exports.note.handleKeydown );
 
 
         };
 
 
         exports.note.init = (function() {
+
             exports.note.events();
+
         }());
 
         return exports;
