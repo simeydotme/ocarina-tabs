@@ -135,7 +135,7 @@
 
         };
 
-        exports.notes = exports.registerSounds("piano");
+        exports.notes = exports.registerSounds("");
         return exports;
 
     } (app || {}));

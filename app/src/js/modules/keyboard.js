@@ -52,14 +52,14 @@
         exports.keyboard.mouseup = function( e ) {
 
             exports.$.keyboardKeys.off("mouseover.mousedown");
-            exports.note.addNote( $(this).data("key") , exports.track.selected , 4 );
+            exports.note.addNote( $(this).data("key") , exports.track.selected );
 
         };
         
         exports.keyboard.events = function() {
 
-            var evup = Modernizr.touch ? "touchend" : "mouseup";
-            var evdown = Modernizr.touch ? "touchstart" : "mousedown";
+            var evup = Modernizr.touch ? "touchend" : "mouseup",
+                evdown = Modernizr.touch ? "touchstart" : "mousedown";
 
             exports.$.keyboardKeys.on("mouseover.key", exports.keyboard.mouseover );
             exports.$.keyboardKeys.on("mouseout.key", exports.keyboard.mouseout );

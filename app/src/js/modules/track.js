@@ -4,6 +4,8 @@
 
         exports.track = {};
         exports.track.selected = 0;
+        exports.track.duration = 4;
+        exports.track.dot = false;
 
 
 
@@ -20,6 +22,30 @@
                 .find(".note")
                 .eq( index )
                 .addClass("note--selected");
+
+        };
+
+        exports.track.selectNextNote = function() {
+
+            var lastIndex = exports.$.score.find(".note").length - 1,
+                current = exports.track.selected;
+
+            exports.track.selected = ( current + 1 > lastIndex ) ? lastIndex : current + 1;
+            pubsub.trigger("track.selectNote");
+
+            console.info("Selecting new note: [" + exports.track.selected + "]");
+
+        };
+
+        exports.track.selectPreviousNote = function() {
+
+            var firstIndex = 0,
+                current = exports.track.selected;
+
+            exports.track.selected = ( current - 1 < firstIndex ) ? firstIndex : current - 1;
+            pubsub.trigger("track.selectNote");
+
+            console.info("Selecting new note: [" + exports.track.selected + "]");
 
         };
 
@@ -166,6 +192,9 @@
         exports.track.events = function() {
 
             pubsub.on("track.selectNote", exports.track.selectNote );
+            pubsub.on("track.selectNextNote", exports.track.selectNextNote );
+            pubsub.on("track.selectPreviousNote", exports.track.selectPreviousNote );
+
             pubsub.on("track.createModel", exports.track.createModel );
 
         };

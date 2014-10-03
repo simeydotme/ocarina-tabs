@@ -257,9 +257,9 @@ textarea {
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
-  -webkit-transition: width 0.2s ease;
-       -o-transition: width 0.2s ease;
-          transition: width 0.2s ease;
+  -webkit-transition: width 0.2s ease-out;
+       -o-transition: width 0.2s ease-out;
+          transition: width 0.2s ease-out;
 }
 .note:after {
   content: "";

@@ -22,9 +22,9 @@
 
         exports.init = (function() {
 
-            exports.loadFonts();
-
             exports.model = window.fixture || { notes: [] };
+
+            exports.loadFonts();
             exports._renderSong( exports.model );
             
             //introTune();

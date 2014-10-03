@@ -58,6 +58,7 @@
          * @param {string} note - A 3-character string of a note, eg: "4AN"
          * @param {number} where - [optional] - Index of where to insert note (zero-index)
          * @param {number} duration - [optional] - Length note should be played for
+         * @param {boolean} dot - [optional] - If the note is a "dot note"
          * @return {object} new note - An object containing the new note's details
          */
         exports.note.addNote = function() {
@@ -65,7 +66,8 @@
             var note = arguments[0],
                 $notes = exports.$.score.find(".note"),
                 where = $notes.length - 1,
-                duration = 4,
+                duration = exports.track.duration,
+                dot = exports.track.dot,
                 newNote,
                 $newNote;
 
@@ -74,29 +76,41 @@
                 return;
             }
 
-            if( arguments.length === 2 && $.type( arguments[1] ) === "number" ) {
+            if( arguments.length > 1 && $.type( arguments[1] ) === "number" ) {
 
                 if( arguments[1] >= 0 ) {
                     where = arguments[1];
                 } else {
                     where = 0;
-                }
-
-            } else if( arguments.length === 3 && $.type( arguments[1] ) === "number" ) {
-
-                if( arguments[1] >= 0 ) {
-                    where = arguments[1];
-                } else {
-                    where = 0;
-                }
-
-                if( $.type( arguments[2] ) === "number" ) {
-                    duration = arguments[2];
-                } else {
-                    console.warn( "duration argument ("+ arguments[2] +") should be a number");
                 }
 
             }
+
+            if( $.type( arguments[2] ) === "number" ) {
+
+                duration = arguments[2];
+
+            } 
+
+            else if ( $.type( arguments[2] ) !== "undefined" ) {
+
+                console.warn( "duration argument ("+ arguments[2] +") should be a number");
+                
+            }
+
+            if( $.type( arguments[3] ) === "boolean" ) {
+
+                dot = arguments[3];
+
+            } 
+
+            else if ( $.type( arguments[3] ) !== "undefined" ) {
+
+                console.warn( "dot argument ("+ arguments[3] +") should be a boolean");
+                
+            }
+
+
 
             if( !$notes.length ) {
                 where = 0;
@@ -107,7 +121,7 @@
             }
 
             // create object and HTML for the new note.
-            newNote = { note: note, duration: duration };
+            newNote = { note: note, duration: duration, dot: dot };
             $newNote = $(exports._createNotes( { notes: [ newNote ]} ));
 
             // if the track is empty, append note to track and set selected to 0.
@@ -157,13 +171,11 @@
                     return;
                 }
             } else {
-                index = app.track.selected;
+                index = exports.track.selected;
             }
 
             $removeNote = $notes.eq( index );
             console.info( "Removing note ("+ $removeNote.attr("class") +") at index ["+ index +"]");
-          
-            pubsub.trigger("track.createModel");
 
             exports.note.hideNote( $removeNote );
             return exports.model.notes;
@@ -176,7 +188,9 @@
 
         exports.note.setLength = function( index, length, dot ) {
 
-            if( typeof index !== "number" || !length ) {
+            if( $.type( index ) !== "number" || 
+                $.type( length ) !== "number" ||
+                $.type( dot ) !== "boolean" ) {
 
                 console.warn( "Couldn't change length, no length/note-index was supplied");
                 return false;
@@ -198,6 +212,9 @@
                 $note.addClass("note--dot");
 
             }
+
+            exports.track.duration = length;
+            exports.track.dot = dot;
 
             pubsub.trigger("track.createModel");
 
@@ -317,28 +334,25 @@
 
         exports.note.showNote = function( $el ) {
 
-            var margin = $el.css("margin-right");
-            var width = $el.css("width");
+            var margin = $el.css("margin-right"),
+                width = $el.css("width"),
+                $tab = $el.find(".note__tab");
 
             $el
-                .css({ 
-                    width: 0, 
-                    left: "-10px", 
-                    opacity: 0,
-                    marginRight: 0,
-                    transition: "none"
+                .css({
+                    transition: "none",
+                    opacity: 0
                 })
 
                 .velocity({ 
-                    width: width,
-                    marginRight: margin
+                    width: [width, 0],
+                    marginRight: [margin, 0]
                 }, {
                     queue: false,
                     duration: 230
                 })
 
                 .velocity({ 
-                    left: 0, 
                     opacity: 1 
                 }, {
                     queue: false,
@@ -346,16 +360,25 @@
                     delay: 130,
                     complete: function(els) {
 
-                        $(els).css({
-                            width: "",
-                            left: "",
-                            opacity: "",
-                            marginRight: "",
-                            transition: ""
-                        });
-                        
+                        $(els).attr("style","");
+
                     }
                 });
+
+            $tab
+                .velocity({
+                    translateY: "18px"
+                },0)
+
+                .velocity({ 
+                    translateY: 0
+                }, { 
+                    duration: 500, 
+                    delay: 180,
+                    easing: [1200,30]
+                });
+
+            
 
         };
 
@@ -367,24 +390,33 @@
         exports.note.hideNote = function( $el ) {
 
             var index,
-                $notes = exports.$.score.find(".note");
+                $notes = exports.$.score.find(".note"),
+                $tab = $el.find(".note__tab");
+
+            $el.velocity({ 
+                opacity: 0
+            }, {
+                queue: false,
+                duration: 200,
+                easing: "easeInOutSine"
+            });
+
+            $tab.velocity({ 
+                translateY: 30 
+            }, { 
+                duration: 200,
+                easing: "easeOut" 
+            });
 
             $el
-                .velocity({ 
-                    left: "-10px", 
-                    opacity: 0 
-                }, {
-                    queue: false,
-                    duration: 200
-                })
+                .css("transition", "none")
 
                 .velocity({ 
-                    width: 0,
-                    marginRight: 0
+                    width: 0
                 }, {
                     queue: false,
                     duration: 200,
-                    delay: 180,
+                    delay: 150,
                     complete: function( elements ) {
 
                         var $elements = $(elements);
@@ -397,7 +429,8 @@
                         } else {
                             exports.track.selected = index - 1;
                         }
-
+          
+                        pubsub.trigger("track.createModel");
                         pubsub.trigger("track.selectNote");
 
                     }
@@ -405,6 +438,55 @@
 
         };
 
+
+
+
+        exports.note.handleKeydown = function(e) {
+
+            var key = e.which,
+                keymap = exports._keymap,
+                $target = $(e.target),
+                $selected = exports.note.getSelectedNote();
+
+            // instantly prevent our handlers when inside an input.
+            if( $target.is(":input") || $target.prop("contenteditable") === "true" ) {
+                return;
+            }
+
+            // need to stop the browser interpreting our keys
+            for( var i in keymap ) {
+                if( key === keymap[i] ) {
+                    e.preventDefault();
+                    console.info( "pressed key " + keymap[i] );
+                }
+            }
+
+
+            switch( key ) {
+
+                case keymap.up:
+
+                    exports.note.changeLength( $selected , "slower" );
+                    break;
+
+                case keymap.down:
+
+                    exports.note.changeLength( $selected , "faster" );
+                    break;
+
+                case keymap.left:
+
+                    pubsub.trigger("track.selectPreviousNote");
+                    break;
+
+                case keymap.right:
+
+                    pubsub.trigger("track.selectNextNote");
+                    break;
+
+            }
+
+        };
 
 
 
@@ -419,28 +501,19 @@
                 return;
             }
 
-            switch( key ) {
 
-                case keymap.up:
+            if( key === keymap.backspace ) {
 
-                    exports.note.changeLength( $selected , "slower" );
-                    break;
+                console.warn("Removing note with index: [" + exports.track.selected + "]")
+                exports.note.removeNote( exports.track.selected );
+                e.preventDefault();
 
-                case keymap.down:
-
-                    exports.note.changeLength( $selected , "faster" );
-                    break;
-
-            }
-
-            for( var i in keymap ) {
-                if( key === keymap[i] ) {
-                    e.preventDefault();
-                    console.info( "pressed key " + keymap[i] );
-                }
             }
 
         };
+
+
+
 
         exports.note.handleMouseup = function(e) {
 
@@ -450,26 +523,6 @@
                 exports.note.playNote( this );
 
                 pubsub.trigger("track.selectNote");
-
-        };
-
-        exports.note.handleKeydown = function(e) {
-
-            var key = e.which,
-                keymap = exports._keymap,
-                $target = $(e.target);
-
-            if( key === keymap.backspace ) {
-
-                if(( !$target.is(":input") && $target.prop("contenteditable") !== "true" ) || 
-                    e.target.disabled || 
-                    e.target.readOnly ) {
-
-                        e.preventDefault();
-
-                    }
-
-            }
 
         };
 
