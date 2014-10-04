@@ -132,7 +132,7 @@
          * 
          * @return {array} Array of notes in Model
          */
-        exports.track.createModel = function() {
+        exports.track.createNotesModel = function() {
 
             var $note, duration, note, dot, notes;
 
@@ -148,10 +148,26 @@
 
             }).get();
 
-            console.info("Building model...");
+            console.info("Building notes model...");
             app.model.notes = notes;
 
             return notes;
+
+        };
+
+
+
+        exports.track.createTitleModel = function() {
+
+            var title = exports.$.title.children(".title__main").text(),
+                subtitle = exports.$.title.children(".title__sub").text();
+
+            console.info("Building titles model...");
+
+            app.model.title = title;
+            app.model.subtitle = subtitle;
+
+            return { title: title, subtitle: subtitle };
 
         };
 
@@ -277,7 +293,8 @@
             pubsub.on("track.showTitle", exports.track.showTitle );
             pubsub.on("track.showNotes", exports.track.showNotes );
 
-            pubsub.on("track.createModel", exports.track.createModel );
+            pubsub.on("track.createNotesModel", exports.track.createNotesModel );
+            pubsub.on("track.createTitleModel", exports.track.createTitleModel );
 
         };
 

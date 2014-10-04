@@ -144,7 +144,7 @@
             console.info( "Adding a \""+ exports.noteNames[duration] +"\" note ("+ note +") at index ["+ (where + 1) +"]");
 
             pubsub.trigger("track.selectNote");
-            pubsub.trigger("track.createModel");
+            pubsub.trigger("track.createNotesModel");
             
             exports.note.showNote( $newNote );
             return newNote;
@@ -256,7 +256,7 @@
             exports.track.duration = length;
             exports.track.dot = dot;
 
-            pubsub.trigger("track.createModel");
+            pubsub.trigger("track.createNotesModel");
 
         };
 
@@ -467,7 +467,7 @@
                     complete: function( elements ) {
 
                         $(elements).remove();
-                        pubsub.trigger("track.createModel");
+                        pubsub.trigger("track.createNotesModel");
                         pubsub.trigger("track.selectNote");
 
                     }
