@@ -24,8 +24,9 @@
 
             exports.model = window.fixture || { notes: [] };
 
-            exports.loadFonts();
-            exports._renderSong( exports.model );
+            exports.loadFonts(function() {
+                exports._renderSong( exports.model );
+            });
             
             //introTune();
 

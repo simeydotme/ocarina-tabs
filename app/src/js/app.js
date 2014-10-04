@@ -7,14 +7,16 @@
         exports.templates = {};
         exports.$ = {};
 
+        exports.$.doc = $(document);
         exports.$.window = $(window);
         exports.$.body = $("body");
+
         exports.$.title = $(".stage__title");
         exports.$.score = $(".stage__score");
         
-        exports.$.keyboard = $(".input-keyboard");
-        exports.$.keyboardOcarina = $(".input-area .note");
-        exports.$.keyboardKeys = exports.$.keyboard.find(".key");
+        exports.$.piano = $(".input-piano");
+        exports.$.pianoOcarina = $(".input-area .note");
+        exports.$.pianoKeys = exports.$.piano.find(".key");
 
         exports.$.titleTemplate = $("#title-template");
         exports.$.noteTemplate = $("#note-template");

@@ -159,25 +159,61 @@
          * @param  {number} index - the note in the song to remove (zero-index)
          * @return {array}
          */
-        exports.note.removeNote = function( index ) {
+        exports.note.removeNote = function( index, direction ) {
 
             var $notes = exports.$.score.find(".note"),
-                last = $notes.length-1,
+                last = $notes.length - 1,
                 $removeNote;
 
+            if( !direction || direction !== "forward" ) {
+                direction = "back";
+            }
+
             if( $.type(index) !== "undefined" ) {
+
                 if( $.type(index) !== "number" ) {
+
                     console.warn( "Couldnt remove note, incorrectly supplied index" );
                     return;
+
                 }
+
             } else {
+
                 index = exports.track.selected;
+
+            }
+
+            if( direction === "forward" ) {
+
+                if( index >= last ) {
+
+                    index = last;
+
+                }
+
+            }
+
+            if( index === 0 ) {
+
+                exports.track.selected = 0;
+
+            } else {
+
+                if( direction !== "forward" ) {
+                    exports.track.selected = index - 1;
+                } else {
+                    exports.track.selected = index;
+                }
+
             }
 
             $removeNote = $notes.eq( index );
+            exports.note.hideNote( $removeNote );
+
+            pubsub.trigger("track.selectNote");
             console.info( "Removing note ("+ $removeNote.attr("class") +") at index ["+ index +"]");
 
-            exports.note.hideNote( $removeNote );
             return exports.model.notes;
 
         };
@@ -332,6 +368,13 @@
         };
 
 
+
+
+
+
+
+
+
         exports.note.showNote = function( $el ) {
 
             var margin = $el.css("margin-right"),
@@ -419,17 +462,7 @@
                     delay: 150,
                     complete: function( elements ) {
 
-                        var $elements = $(elements);
-                        index = $notes.index( $elements );
-
-                        $elements.remove();
-
-                        if( index === 0 ) {
-                            exports.track.selected = 0;
-                        } else {
-                            exports.track.selected = index - 1;
-                        }
-          
+                        $(elements).remove();
                         pubsub.trigger("track.createModel");
                         pubsub.trigger("track.selectNote");
 
@@ -437,6 +470,12 @@
                 });
 
         };
+
+
+
+
+
+
 
 
 
@@ -502,11 +541,19 @@
             }
 
 
-            if( key === keymap.backspace ) {
+            switch( key ) {
 
-                console.warn("Removing note with index: [" + exports.track.selected + "]")
-                exports.note.removeNote( exports.track.selected );
-                e.preventDefault();
+                case keymap.backspace:
+
+                    exports.note.removeNote( exports.track.selected );
+                    e.preventDefault();
+                    break;
+
+                case keymap.delete:
+
+                    exports.note.removeNote( exports.track.selected , "forward" );
+                    e.preventDefault();
+                    break;
 
             }
 
@@ -529,13 +576,11 @@
 
 
 
+
+
+
+
         exports.note.events = function() {
-
-
-            exports.$.score.on("mouseup.note", ".note", exports.note.handleMouseup );
-
-            $(document).on("keyup.note", exports.note.handleKeyup );
-            $(document).on("keydown.note", exports.note.handleKeydown );
 
 
         };

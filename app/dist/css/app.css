@@ -743,7 +743,7 @@ textarea {
   -webkit-transition: opacity 0.4s ease;
        -o-transition: opacity 0.4s ease;
           transition: opacity 0.4s ease;
-  position: absolute;
+  position: fixed;
 }
 .input-area--hidden {
   opacity: 0;
@@ -764,7 +764,7 @@ textarea {
   cursor: move;
 }
 
-.input-keyboard {
+.input-piano {
   width: 328px;
   height: 105px;
   position: absolute;
@@ -775,14 +775,14 @@ textarea {
       -ms-user-select: none;
           user-select: none;
 }
-.input-keyboard * {
+.input-piano * {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
 
-.keyboard__keys {
+.piano__keys {
   list-style: none;
   margin: 0;
   padding: 0;

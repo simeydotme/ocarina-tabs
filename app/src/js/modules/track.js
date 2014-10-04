@@ -184,6 +184,10 @@
             exports.track.selected = exports.$.score.find(".note").length - 1;
             pubsub.trigger("track.selectNote");
 
+            exports.$.score.velocity({
+                opacity: [ 1 , 0 ]
+            });
+
         };
 
 

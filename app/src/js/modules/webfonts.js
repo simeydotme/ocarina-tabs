@@ -1,12 +1,18 @@
 
     var app = (function(exports) {
 
-        exports.loadFonts = function() {
+        exports.loadFonts = function( callback ) {
 
             WebFontConfig = {
+
                 google: {
                     families: ["Lato", "IM Fell DW Pica"]
+                },
+
+                active: function() {
+                    callback.call();
                 }
+                
             };
 
             (function() {

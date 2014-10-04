@@ -35,7 +35,11 @@
 
         };
 
-        exports.inputArea.getCoords = function() {
+        /**
+         * Get the Dimensions that the input area/piano should be at
+         * @return {object} object with the left/top coords and width/height
+         */
+        exports.inputArea.getDimensions = function() {
 
             var coords, 
                 json, 
@@ -64,20 +68,62 @@
                 coords.y = browser.h - box.h - 30;
             }
 
-            exports.$.inputArea.css({ 
+            return {
+
                 left: coords.x, 
-                top: coords.y 
-            });
+                top: coords.y,
+                width: box.w,
+                height: box.h
+
+            };
 
         };
 
         exports.inputArea.show = function() {
-            exports.$.inputArea.removeClass("input-area--hidden");
+
+            var $area = exports.$.inputArea,
+                dimensions = exports.inputArea.getDimensions();
+
+            $area
+
+                .velocity({
+
+                    opacity: 0,
+                    top: dimensions.top + 100,
+                    left: dimensions.left
+
+                }, 0)
+
+                .velocity({
+
+                    opacity: 1
+
+                }, {
+
+                    duration: 700,
+                    delay: 100,
+                    easing: "swing",
+                    queue: false
+
+                })
+
+                .velocity({
+
+                    top: dimensions.top
+
+                }, {
+
+                    duration: 800,
+                    delay: 200,
+                    easing: [ 1200, 40 ],
+                    queue: false
+
+                });
+
         };
 
         exports.inputArea.pubsub = function() {
 
-            pubsub.on("inputArea.created", exports.inputArea.getCoords );
             pubsub.on("inputArea.created", exports.inputArea.show );
             pubsub.on("inputArea.finishedDragging", exports.inputArea.setCoords );
 
