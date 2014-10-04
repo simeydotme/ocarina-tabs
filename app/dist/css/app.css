@@ -243,9 +243,9 @@ textarea {
           user-select: none;
 }
 
-.arrangement {
+.stage__score {
   list-style: none;
-  margin: 0;
+  margin: 3em 0;
   padding: 0;
 }
 
@@ -747,6 +747,9 @@ textarea {
 }
 .input-area--hidden {
   opacity: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-color: transparent;
 }
 .input-area .note {
   position: absolute;

@@ -85,14 +85,14 @@
                 dimensions = exports.inputArea.getDimensions();
 
             $area
+                
+                .removeClass("input-area--hidden")
 
                 .velocity({
 
-                    opacity: 0,
-                    top: dimensions.top + 100,
-                    left: dimensions.left
+                    opacity: 0
 
-                }, 0)
+                }, 0 )
 
                 .velocity({
 
@@ -100,23 +100,37 @@
 
                 }, {
 
-                    duration: 700,
-                    delay: 100,
-                    easing: "swing",
-                    queue: false
+                    duration: 400,
+                    delay: 500 
 
                 })
 
                 .velocity({
 
-                    top: dimensions.top
+                    top: [ dimensions.top, dimensions.top + 30 ],
+                    left: [ dimensions.left, dimensions.left ],
+                    translateZ: 0
 
                 }, {
 
                     duration: 800,
-                    delay: 200,
-                    easing: [ 1200, 40 ],
-                    queue: false
+                    easing: [ 500, 20 ],
+                    queue: false,
+                    delay: 500,
+
+                    complete: function() {
+
+                        $area
+
+                            .removeAttr("style")
+                            .css({
+
+                                top: dimensions.top,
+                                left: dimensions.left
+
+                            });
+
+                    }
 
                 });
 

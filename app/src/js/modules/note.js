@@ -200,10 +200,14 @@
 
             } else {
 
-                if( direction !== "forward" ) {
+                if( direction !== "forward" || ( direction === "forward" && index >= last )  ) {
+
                     exports.track.selected = index - 1;
+
                 } else {
+
                     exports.track.selected = index;
+
                 }
 
             }

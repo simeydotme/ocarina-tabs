@@ -182,11 +182,86 @@
             exports.$.score.html( notes );
 
             exports.track.selected = exports.$.score.find(".note").length - 1;
+
+            pubsub.trigger("track.showTitle");
+            pubsub.trigger("track.showNotes");
             pubsub.trigger("track.selectNote");
 
-            exports.$.score.velocity({
-                opacity: [ 1 , 0 ]
+        };
+
+
+
+        exports.track.showTitle = function() {
+
+            var $main = exports.$.title.children(".title__main"),
+                $sub = exports.$.title.children(".title__sub"),
+                $author = exports.$.title.children(".title__author");
+
+            $main.add( $sub )
+
+                .velocity({
+
+                    transition: "none",
+                    opacity: 0,
+                    translateY: -15,
+                    translateZ: 0
+
+                }, 0 );
+
+            $main.velocity({
+
+                opacity: 1,
+                translateY: 0
+
+            }, {
+
+                duration: 200,
+                easing: "easeOut"
+
             });
+
+            $sub.velocity({
+
+                opacity: 1,
+                translateY: 0
+
+            }, {
+
+                duration: 200,
+                easing: "easeOut",
+                delay: 100 
+
+            });
+
+            $author.velocity({
+
+                opacity: [ 1, 0 ],
+                translateX: [ 0 , 200 ]
+
+            }, 200, "easeOut" );
+
+        };
+
+
+        exports.track.showNotes = function() {
+
+            exports.$.score
+
+                .css({
+
+                    opacity: 0
+
+                })
+
+                .velocity({
+
+                    opacity: 1
+
+                }, {
+
+                    delay: 300
+
+                });
 
         };
 
@@ -198,6 +273,9 @@
             pubsub.on("track.selectNote", exports.track.selectNote );
             pubsub.on("track.selectNextNote", exports.track.selectNextNote );
             pubsub.on("track.selectPreviousNote", exports.track.selectPreviousNote );
+
+            pubsub.on("track.showTitle", exports.track.showTitle );
+            pubsub.on("track.showNotes", exports.track.showNotes );
 
             pubsub.on("track.createModel", exports.track.createModel );
 
