@@ -27,18 +27,15 @@
 
                 } else {
 
+                    // if the note string doesn't exist in the notes array
                     console.error( "could find the Note \"" + note + "\" for playback..." );
                     return;
 
                 }
 
-            } else if( $.type( note ) === "object" ) {
+            } else if( note instanceof jQuery ) {
 
-                extractedNote = 
-                    $( note )
-                        .attr("class")
-                        .match( regex )[0]
-                        .replace("♪","");
+                extractedNote = exports.note.getNote( note );
 
             }
 
@@ -333,7 +330,7 @@
 
         exports.note.getNoteClass = function( $el ) {
 
-            var regex = /note--♪[4-6]{1}[A-G]{1}[FNS]/,
+            var regex = /note--♪(([4-6]{1}[A-G]{1}[FNS])|(PAUSE)|(BAR)|(RETURN))/,
                 noteClass = $el.attr("class").match( regex )[0];
 
             return noteClass;
@@ -559,6 +556,16 @@
                     e.preventDefault();
                     break;
 
+                case keymap.left:
+
+                    exports.note.playNote( $selected );
+                    break;
+
+                case keymap.right:
+
+                    exports.note.playNote( $selected );
+                    break;
+
             }
 
         };
@@ -568,10 +575,11 @@
 
         exports.note.handleMouseup = function(e) {
 
-                var $notes = exports.$.score.find(".note");
+                var $notes = exports.$.score.find(".note"),
+                    $this = $(this);
 
-                exports.track.selected = $notes.index( $(this) );
-                exports.note.playNote( this );
+                exports.track.selected = $notes.index( $this );
+                exports.note.playNote( $this );
 
                 pubsub.trigger("track.selectNote");
 

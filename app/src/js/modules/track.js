@@ -262,22 +262,12 @@
         exports.track.showNotes = function() {
 
             exports.$.score
-
-                .css({
-
-                    opacity: 0
-
-                })
-
-                .velocity({
-
-                    opacity: 1
-
-                }, {
-
-                    delay: 300
-
-                });
+                .find(".note")
+                .velocity("transition.slideRightIn",
+                    {
+                        stagger: 30,
+                        display: "inline-block"
+                    });
 
         };
 
