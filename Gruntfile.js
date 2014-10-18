@@ -5,8 +5,17 @@
 
             pkg: grunt.file.readJSON("package.json"),
 
-            banner: "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
-            "* Copyright (c) <%= grunt.template.today(\"yyyy\") %> <%= pkg.author.name %>;",
+            banner: "/*\n" +
+            " * <%= pkg.name %> | ♪♫ | <%= pkg.version %> | ♫♪ | <%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
+            " * <%= pkg.homepage %>\n" +
+            " * Licenced (<%= pkg.license %>) <%= grunt.template.today(\"yyyy\") %> | ♪ | <%= pkg.author %>;\n" +
+            " */\n",
+
+            clean: {
+
+                dist: ["app/dist"]
+
+            },
 
             concat: {
 
@@ -19,8 +28,8 @@
 
                 dist: {
 
-                    src: ["src/js/app.js", "src/js/init.js", "src/js/modules/*.js"],
-                    dest: "dist/js/<%= pkg.name %>.js"
+                    src: ["app/src/js/app.js", "app/src/js/init.js", "app/src/js/modules/*.js"],
+                    dest: "app/dist/js/<%= pkg.name %>.js"
 
                 }
 
@@ -54,7 +63,7 @@
                 dist: {
 
                     src: "<%= concat.dist.dest %>",
-                    dest: "dist/<%= pkg.name %>.min.js"
+                    dest: "app/dist/js/<%= pkg.name %>.min.js"
 
                 }
 
@@ -88,7 +97,7 @@
                 js: {
 
                     files: ["app/**/*.js", "app/**/*.html"],
-                    tasks: ["wiredep", "jshint", "copy:images"]
+                    tasks: ["wiredep", "jshint", "copy"]
 
                 },
 
@@ -117,7 +126,8 @@
 
                     options: {
 
-                        style: "expanded"
+                        style: "expanded",
+                        banner: "<%= banner %>"
 
                     },
 
@@ -154,6 +164,7 @@
         // These plugins provide necessary tasks.
         grunt.loadNpmTasks("grunt-contrib-copy");
         grunt.loadNpmTasks("grunt-contrib-concat");
+        grunt.loadNpmTasks("grunt-contrib-clean");
         grunt.loadNpmTasks("grunt-contrib-uglify");
         grunt.loadNpmTasks("grunt-contrib-jshint");
         grunt.loadNpmTasks("grunt-contrib-imagemin");
@@ -164,6 +175,6 @@
         grunt.loadNpmTasks("grunt-autoprefixer");
 
         // Default task.
-        grunt.registerTask("default", ["wiredep", "jshint", "concat", "uglify"]);
+        grunt.registerTask( "default", [ "clean", "wiredep", "copy", "sass", "autoprefixer", "jshint", "concat", "uglify" ]);
 
     };
