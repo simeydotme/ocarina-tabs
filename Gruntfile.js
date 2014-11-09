@@ -79,7 +79,7 @@
 
                 app: {
 
-                    src: ["app/**/*.js"]
+                    src: ["app/src/*.js"]
 
                 }
 
@@ -127,6 +127,7 @@
                     options: {
 
                         style: "expanded",
+                        lineNumbers: true,
                         banner: "<%= banner %>"
 
                     },

@@ -1,5 +1,5 @@
 /*
- * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-10-19
+ * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-11-09
  * https://github.com/simeydotme/ocarina-tabs
  * Licenced (MIT) 2014 | ♪ | Simon Goellner;
  */

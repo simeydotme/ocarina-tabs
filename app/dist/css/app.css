@@ -1,16 +1,18 @@
 /*
- * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-10-19
+ * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-11-09
  * https://github.com/simeydotme/ocarina-tabs
  * Licenced (MIT) 2014 | ♪ | Simon Goellner;
  */
 
 @charset "UTF-8";
+/* line 3, ../../src/css/_body.scss */
 body {
   font-family: "Lato";
   color: #333;
 }
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+/* line 5, ../../src/css/_main.scss */
 html,
 button,
 input,
@@ -19,23 +21,32 @@ textarea {
   color: #222;
 }
 
+/* line 13, ../../src/css/_main.scss */
 html {
   font-size: 1em;
   line-height: 1.4;
 }
 
+/* line 18, ../../src/css/_main.scss */
 ::-moz-selection {
   background: #0088ff;
   color: white;
   text-shadow: none;
 }
 
+/* line 24, ../../src/css/_main.scss */
+::-moz-selection {
+  background: #0088ff;
+  color: white;
+  text-shadow: none;
+}
 ::selection {
   background: #0088ff;
   color: white;
   text-shadow: none;
 }
 
+/* line 30, ../../src/css/_main.scss */
 hr {
   display: block;
   height: 1px;
@@ -45,6 +56,7 @@ hr {
   padding: 0;
 }
 
+/* line 39, ../../src/css/_main.scss */
 audio,
 canvas,
 img,
@@ -52,16 +64,19 @@ video {
   vertical-align: middle;
 }
 
+/* line 46, ../../src/css/_main.scss */
 fieldset {
   border: 0;
   margin: 0;
   padding: 0;
 }
 
+/* line 52, ../../src/css/_main.scss */
 textarea {
   resize: vertical;
 }
 
+/* line 56, ../../src/css/_main.scss */
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -72,6 +87,7 @@ textarea {
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+/* line 67, ../../src/css/_main.scss */
 .ir {
   background-color: transparent;
   border: 0;
@@ -79,6 +95,7 @@ textarea {
   *text-indent: -9999px;
 }
 
+/* line 74, ../../src/css/_main.scss */
 .ir:before {
   content: "";
   display: block;
@@ -86,11 +103,13 @@ textarea {
   height: 150%;
 }
 
+/* line 81, ../../src/css/_main.scss */
 .hidden {
   display: none !important;
   visibility: hidden;
 }
 
+/* line 86, ../../src/css/_main.scss */
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -102,6 +121,7 @@ textarea {
   width: 1px;
 }
 
+/* line 97, ../../src/css/_main.scss */
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
   clip: auto;
@@ -112,20 +132,24 @@ textarea {
   width: auto;
 }
 
+/* line 107, ../../src/css/_main.scss */
 .invisible {
   visibility: hidden;
 }
 
+/* line 111, ../../src/css/_main.scss */
 .clearfix:before,
 .clearfix:after {
   content: " ";
   display: table;
 }
 
+/* line 117, ../../src/css/_main.scss */
 .clearfix:after {
   clear: both;
 }
 
+/* line 121, ../../src/css/_main.scss */
 .clearfix {
   *zoom: 1;
 }
@@ -134,6 +158,7 @@ textarea {
    Print styles
    ========================================================================== */
 @media print {
+  /* line 130, ../../src/css/_main.scss */
   * {
     background: transparent !important;
     color: #000 !important;
@@ -142,40 +167,48 @@ textarea {
     text-shadow: none !important;
   }
 
+  /* line 137, ../../src/css/_main.scss */
   a,
   a:visited {
     text-decoration: underline;
   }
 
+  /* line 142, ../../src/css/_main.scss */
   a[href]:after {
     content: " (" attr(href) ")";
   }
 
+  /* line 146, ../../src/css/_main.scss */
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
 
+  /* line 150, ../../src/css/_main.scss */
   .ir a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
     content: "";
   }
 
+  /* line 156, ../../src/css/_main.scss */
   pre,
   blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
 
+  /* line 162, ../../src/css/_main.scss */
   thead {
     display: table-header-group;
   }
 
+  /* line 166, ../../src/css/_main.scss */
   tr,
   img {
     page-break-inside: avoid;
   }
 
+  /* line 171, ../../src/css/_main.scss */
   img {
     max-width: 100% !important;
   }
@@ -183,6 +216,7 @@ textarea {
   @page {
     margin: 0.5cm;
   }
+  /* line 179, ../../src/css/_main.scss */
   p,
   h2,
   h3 {
@@ -190,11 +224,13 @@ textarea {
     widows: 3;
   }
 
+  /* line 186, ../../src/css/_main.scss */
   h2,
   h3 {
     page-break-after: avoid;
   }
 }
+/* line 3, ../../src/css/_header.scss */
 .stage__title {
   width: auto;
   text-align: center;
@@ -205,6 +241,7 @@ textarea {
   line-height: 1.1em;
 }
 
+/* line 19, ../../src/css/_header.scss */
 .title__main, .title__sub {
   margin: -0.2em 0;
   padding: 0.3em 0.5em 0.2em;
@@ -215,21 +252,26 @@ textarea {
        -o-transition: all 0.2s ease;
           transition: all 0.2s ease;
 }
+/* line 31, ../../src/css/_header.scss */
 .title__main:hover, .title__sub:hover {
   border: 1px dotted rgba(0, 0, 0, 0.3);
 }
+/* line 37, ../../src/css/_header.scss */
 .title__main:focus, .title__sub:focus {
   border: 1px solid rgba(0, 0, 0, 0.5);
   background: rgba(200, 200, 200, 0.1);
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
           box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
+/* line 47, ../../src/css/_header.scss */
 .title__main {
   font-weight: 700;
 }
+/* line 53, ../../src/css/_header.scss */
 .title__sub {
   font-weight: 300;
 }
+/* line 59, ../../src/css/_header.scss */
 .title__author {
   position: absolute;
   top: -0.5em;
@@ -238,10 +280,12 @@ textarea {
   margin: 0;
 }
 
+/* line 3, ../../src/css/_stage.scss */
 .stage {
   width: 1200px;
   margin: 2em auto;
 }
+/* line 8, ../../src/css/_stage.scss */
 .stage * {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -249,12 +293,14 @@ textarea {
           user-select: none;
 }
 
+/* line 3, ../../src/css/_arrangement.scss */
 .stage__score {
   list-style: none;
   margin: 3em 0;
   padding: 0;
 }
 
+/* line 10, ../../src/css/_note.scss */
 .note {
   padding: 0;
   margin: 0 -6px 0 0;
@@ -267,6 +313,7 @@ textarea {
        -o-transition: width 0.2s ease-out;
           transition: width 0.2s ease-out;
 }
+/* line 23, ../../src/css/_note.scss */
 .note:after {
   content: "";
   width: 0px;
@@ -279,99 +326,126 @@ textarea {
        -o-transition: width 0.2s ease;
           transition: width 0.2s ease;
 }
+/* line 40, ../../src/css/_note.scss */
 .note--♫32 {
   width: 44px;
 }
+/* line 50, ../../src/css/_note.scss */
 .note--♫16 {
   width: 48px;
 }
+/* line 54, ../../src/css/_note.scss */
 .note--♫16 .note__tab {
   margin-right: 2px;
 }
+/* line 55, ../../src/css/_note.scss */
 .note--♫16 .note__note {
   background-position: -15px 0;
 }
+/* line 56, ../../src/css/_note.scss */
 .note--♫16:after {
   width: 6px;
 }
+/* line 60, ../../src/css/_note.scss */
 .note--♫8 {
   width: 56px;
 }
+/* line 64, ../../src/css/_note.scss */
 .note--♫8 .note__tab {
   margin-right: 10px;
 }
+/* line 65, ../../src/css/_note.scss */
 .note--♫8 .note__note {
   background-position: -30px 0;
 }
+/* line 66, ../../src/css/_note.scss */
 .note--♫8:after {
   width: 14px;
 }
+/* line 70, ../../src/css/_note.scss */
 .note--♫4 {
   width: 72px;
 }
+/* line 74, ../../src/css/_note.scss */
 .note--♫4 .note__tab {
   margin-right: 26px;
 }
+/* line 75, ../../src/css/_note.scss */
 .note--♫4 .note__note {
   background-position: -46px 0;
 }
+/* line 76, ../../src/css/_note.scss */
 .note--♫4:after {
   width: 30px;
 }
+/* line 80, ../../src/css/_note.scss */
 .note--♫2 {
   width: 104px;
 }
+/* line 84, ../../src/css/_note.scss */
 .note--♫2 .note__tab {
   margin-right: 58px;
 }
+/* line 85, ../../src/css/_note.scss */
 .note--♫2 .note__note {
   background-position: -60px 0;
   width: 10px;
 }
+/* line 86, ../../src/css/_note.scss */
 .note--♫2:after {
   width: 62px;
 }
+/* line 90, ../../src/css/_note.scss */
 .note--♫1 {
   width: 168px;
 }
+/* line 94, ../../src/css/_note.scss */
 .note--♫1 .note__tab {
   margin-right: 122px;
 }
+/* line 95, ../../src/css/_note.scss */
 .note--♫1 .note__note {
   background-position: -73px 0;
   width: 10px;
 }
+/* line 96, ../../src/css/_note.scss */
 .note--♫1:after {
   width: 126px;
 }
+/* line 106, ../../src/css/_note.scss */
 .note--dot .note__note:after {
   content: "";
   position: absolute;
-  bottom: 1px;
-  right: 4px;
+  bottom: 6px;
+  right: 3px;
   width: 2px;
   height: 2px;
   background: black;
   -webkit-border-radius: 100%;
           border-radius: 100%;
 }
+/* line 123, ../../src/css/_note.scss */
 .note--dot.note--♫1 .note__note:after, .note--dot.note--♫2 .note__note:after {
   right: 0;
 }
+/* line 130, ../../src/css/_note.scss */
 .note--dot.note--♪4AN .note__note:after, .note--dot.note--♪4AS .note__note:after, .note--dot.note--♪4BF .note__note:after, .note--dot.note--♪4BN .note__note:after, .note--dot.note--♪5CN .note__note:after, .note--dot.note--♪5CS .note__note:after, .note--dot.note--♪5DN .note__note:after, .note--dot.note--♪5DS .note__note:after, .note--dot.note--♪5FN .note__note:after, .note--dot.note--♪5FS .note__note:after, .note--dot.note--♪5AN .note__note:after, .note--dot.note--♪5AS .note__note:after, .note--dot.note--♪6CN .note__note:after, .note--dot.note--♪6CS .note__note:after, .note--dot.note--♪6EN .note__note:after {
-  bottom: 3px;
+  bottom: 9px;
 }
 
+/* line 91, ../../src/css/_tab.scss */
 .note__tab {
   position: relative;
   width: 46px;
   height: 48px;
   background-position: 0px 7px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note__tab .note__tab {
   background-image: url( ../img/ocarina-sprite.png );
   background-repeat: repeat-y;
 }
+/* line 102, ../../src/css/_tab.scss */
 .note__name {
   font-weight: 800;
   font-size: 12px;
@@ -381,6 +455,7 @@ textarea {
   left: 11px;
   width: 100%;
 }
+/* line 113, ../../src/css/_tab.scss */
 .note__name:after {
   font-size: 10px;
   font-weight: 200;
@@ -389,292 +464,381 @@ textarea {
   position: relative;
   top: -3px;
 }
+/* line 126, ../../src/css/_tab.scss */
 .note:hover {
   background-position: 0px -41px;
 }
+/* line 130, ../../src/css/_tab.scss */
 .note:hover .note__name {
   color: #444444;
 }
+/* line 143, ../../src/css/_tab.scss */
 .note--♪4AS .note__name:after, .note--♪5CS .note__name:after, .note--♪5DS .note__name:after, .note--♪5FS .note__name:after, .note--♪5GS .note__name:after, .note--♪5AS .note__name:after, .note--♪6CS .note__name:after, .note--♪6DS .note__name:after {
   content: "\266f";
 }
+/* line 149, ../../src/css/_tab.scss */
 .note--♪4BF .note__name:after, .note--♪5DF .note__name:after, .note--♪5EF .note__name:after, .note--♪5GF .note__name:after, .note--♪5AF .note__name:after, .note--♪5BF .note__name:after, .note--♪6DF .note__name:after, .note--♪6EF .note__name:after {
   content: "\266d";
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪4AN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪4AN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 25px 15px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪4AN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 25px 15px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪4AN.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 25px 15px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪4AS .note__tab, .note--♪4BF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪4AS .note__tab, .note--♪4BF .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪4AS:hover .note__tab, .note--♪4BF:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪4AS.note--selected .note__tab, .note--♪4BF.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 14px 31px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪4BN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪4BN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 25px 15px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪4BN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 25px 15px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪4BN.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 25px 15px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5CN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5CN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5CN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5CN.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 34px 14px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5CS .note__tab, .note--♪5DF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5CS .note__tab, .note--♪5DF .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 25px 15px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5CS:hover .note__tab, .note--♪5DF:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 25px 15px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5CS.note--selected .note__tab, .note--♪5DF.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 25px 15px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5DN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5DN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5DN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5DN.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 29px 17px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5DS .note__tab, .note--♪5EF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5DS .note__tab, .note--♪5EF .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 34px 14px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5DS:hover .note__tab, .note--♪5EF:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 34px 14px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5DS.note--selected .note__tab, .note--♪5EF.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 34px 14px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5EN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5EN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5EN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5EN.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 25px 21px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5FN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5FN .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5FN:hover .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5FN.note--selected .note__tab {
   background-position: 4px 29px, 23px 26px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5FS .note__tab, .note--♪5GF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5FS .note__tab, .note--♪5GF .note__tab {
   background-position: 4px 29px, 25px 21px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5FS:hover .note__tab, .note--♪5GF:hover .note__tab {
   background-position: 4px 29px, 25px 21px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5FS.note--selected .note__tab, .note--♪5GF.note--selected .note__tab {
   background-position: 4px 29px, 25px 21px, 9px 27px, 14px 24px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5GN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5GN .note__tab {
   background-position: 4px 29px, 14px 24px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5GN:hover .note__tab {
   background-position: 4px 29px, 14px 24px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5GN.note--selected .note__tab {
   background-position: 4px 29px, 14px 24px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5GS .note__tab, .note--♪5AF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5GS .note__tab, .note--♪5AF .note__tab {
   background-position: 4px 29px, 29px 17px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5GS:hover .note__tab, .note--♪5AF:hover .note__tab {
   background-position: 4px 29px, 29px 17px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5GS.note--selected .note__tab, .note--♪5AF.note--selected .note__tab {
   background-position: 4px 29px, 29px 17px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5AN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5AN .note__tab {
   background-position: 4px 29px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5AN:hover .note__tab {
   background-position: 4px 29px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5AN.note--selected .note__tab {
   background-position: 4px 29px, 9px 27px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5AS .note__tab, .note--♪5BF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5AS .note__tab, .note--♪5BF .note__tab {
   background-position: 4px 29px, 17px 19px, 29px 17px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5AS:hover .note__tab, .note--♪5BF:hover .note__tab {
   background-position: 4px 29px, 17px 19px, 29px 17px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5AS.note--selected .note__tab, .note--♪5BF.note--selected .note__tab {
   background-position: 4px 29px, 17px 19px, 29px 17px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪5BN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪5BN .note__tab {
   background-position: 4px 29px, 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪5BN:hover .note__tab {
   background-position: 4px 29px, 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪5BN.note--selected .note__tab {
   background-position: 4px 29px, 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪6CN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪6CN .note__tab {
   background-position: 17px 19px, 14px 41px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪6CN:hover .note__tab {
   background-position: 17px 19px, 14px 41px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪6CN.note--selected .note__tab {
   background-position: 17px 19px, 14px 41px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪6CS .note__tab, .note--♪6DF .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪6CS .note__tab, .note--♪6DF .note__tab {
   background-position: 17px 19px, 29px 17px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪6CS:hover .note__tab, .note--♪6DF:hover .note__tab {
   background-position: 17px 19px, 29px 17px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪6CS.note--selected .note__tab, .note--♪6DF.note--selected .note__tab {
   background-position: 17px 19px, 29px 17px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪6DN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪6DN .note__tab {
   background-position: 17px 19px, 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪6DN:hover .note__tab {
   background-position: 17px 19px, 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪6DN.note--selected .note__tab {
   background-position: 17px 19px, 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪6DS .note__tab, .note--♪6EF .note__tab {
   background-image: url( ../img/hole.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪6DS .note__tab, .note--♪6EF .note__tab {
   background-position: 29px 36px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪6DS:hover .note__tab, .note--♪6EF:hover .note__tab {
   background-position: 29px 36px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪6DS.note--selected .note__tab, .note--♪6EF.note--selected .note__tab {
   background-position: 29px 36px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪6EN .note__tab {
   background-image: url( ../img/hole-large.png ) , url( ../img/ocarina-sprite.png );
   background-repeat: no-repeat , repeat-y;
 }
+/* line 78, ../../src/css/_tab.scss */
 .note--♪6EN .note__tab {
   background-position: 17px 19px, 0px 7px;
 }
+/* line 79, ../../src/css/_tab.scss */
 .note--♪6EN:hover .note__tab {
   background-position: 17px 19px, 0px -41px;
 }
+/* line 80, ../../src/css/_tab.scss */
 .note--♪6EN.note--selected .note__tab {
   background-position: 17px 19px, 0px -89px;
 }
+/* line 57, ../../src/css/_tab.scss */
 .note--♪6FN .note__tab {
   background-image: url( ../img/ocarina-sprite.png );
   background-repeat: repeat-y;
 }
+/* line 70, ../../src/css/_tab.scss */
 .note--♪6FN .note__tab {
   background-position: 0px 7px;
 }
+/* line 71, ../../src/css/_tab.scss */
 .note--♪6FN:hover .note__tab {
   background-position: 0px -41px;
 }
+/* line 72, ../../src/css/_tab.scss */
 .note--♪6FN.note--selected .note__tab {
   background-position: 0px -89px;
 }
 
+/* line 12, ../../src/css/_bar.scss */
 .note__bar {
   position: relative;
   width: auto;
@@ -683,60 +847,147 @@ textarea {
   background: url(../img/staff.png);
   background-repeat: repeat-x;
 }
+/* line 24, ../../src/css/_bar.scss */
 .note__note {
   position: absolute;
   width: 14px;
-  height: 22px;
+  height: 28px;
   left: 16px;
   background-image: url(../img/note-sprite-grey.png);
   background-repeat: no-repeat;
 }
+/* line 38, ../../src/css/_bar.scss */
 .note:hover .note__note {
   background-image: url(../img/note-sprite-dark.png);
 }
+/* line 49, ../../src/css/_bar.scss */
 .note--selected .note__note, .note:hover.note--selected .note__note {
   background-image: url(../img/note-sprite.png);
 }
+/* line 59, ../../src/css/_bar.scss */
 .note--♪4AN .note__note, .note--♪4AS .note__note {
   top: 14px;
 }
+/* line 64, ../../src/css/_bar.scss */
 .note--♪4BF .note__note, .note--♪4BN .note__note {
   top: 11px;
 }
+/* line 69, ../../src/css/_bar.scss */
 .note--♪5CS .note__note, .note--♪5CN .note__note {
   top: 8px;
 }
+/* line 74, ../../src/css/_bar.scss */
 .note--♪5DF .note__note, .note--♪5DS .note__note, .note--♪5DN .note__note {
   top: 5px;
 }
+/* line 80, ../../src/css/_bar.scss */
 .note--♪5EF .note__note, .note--♪5EN .note__note {
   top: 3px;
 }
+/* line 85, ../../src/css/_bar.scss */
 .note--♪5FN .note__note, .note--♪5FS .note__note {
   top: 0px;
 }
+/* line 90, ../../src/css/_bar.scss */
 .note--♪5GF .note__note, .note--♪5GS .note__note, .note--♪5GN .note__note {
   top: -3px;
 }
+/* line 96, ../../src/css/_bar.scss */
 .note--♪5AF .note__note, .note--♪5AS .note__note, .note--♪5AN .note__note {
   top: -5px;
 }
+/* line 102, ../../src/css/_bar.scss */
 .note--♪5BF .note__note, .note--♪5BN .note__note {
   top: -8px;
 }
+/* line 107, ../../src/css/_bar.scss */
 .note--♪6CS .note__note, .note--♪6CN .note__note {
   top: -10px;
 }
+/* line 112, ../../src/css/_bar.scss */
 .note--♪6DF .note__note, .note--♪6DS .note__note, .note--♪6DN .note__note {
   top: -13px;
 }
+/* line 118, ../../src/css/_bar.scss */
 .note--♪6EF .note__note, .note--♪6EN .note__note {
   top: -15px;
 }
+/* line 123, ../../src/css/_bar.scss */
 .note--♪6FN .note__note {
   top: -18px;
 }
 
+/* line 5, ../../src/css/_pause.scss */
+.note--♪PAUSE .note__note {
+  background-position: -96px 0;
+  top: 0px;
+}
+/* line 5, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫1 .note__note {
+  background-position: -84px 0;
+  top: -4px;
+}
+/* line 18, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫1.note--dot .note__note:after {
+  bottom: 15px;
+  right: -5px;
+}
+/* line 5, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫2 .note__note {
+  background-position: -84px 0;
+  top: -2px;
+}
+/* line 18, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫2.note--dot .note__note:after {
+  bottom: 17px;
+  right: -5px;
+}
+/* line 5, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫4 .note__note {
+  background-position: -96px 0;
+  top: 0px;
+}
+/* line 18, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫4.note--dot .note__note:after {
+  bottom: 9px;
+  right: -2px;
+}
+/* line 5, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫8 .note__note {
+  background-position: -108px 0;
+  top: 2px;
+}
+/* line 18, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫8.note--dot .note__note:after {
+  bottom: 11px;
+  right: 1px;
+}
+/* line 5, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫16 .note__note {
+  background-position: -123px 0;
+  top: 4px;
+}
+/* line 18, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫16.note--dot .note__note:after {
+  bottom: 13px;
+  right: 1px;
+}
+/* line 5, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫32 .note__note {
+  background-position: -138px 0;
+  top: 0px;
+}
+/* line 18, ../../src/css/_pause.scss */
+.note--♪PAUSE.note--♫32.note--dot .note__note:after {
+  bottom: 9px;
+  right: 1px;
+}
+/* line 66, ../../src/css/_pause.scss */
+.note--♪PAUSE .note__tab, .note--♪PAUSE:after {
+  visibility: hidden;
+}
+
+/* line 2, ../../src/css/_input-area.scss */
 .input-area {
   width: 440px;
   height: 180px;
@@ -751,18 +1002,22 @@ textarea {
           transition: opacity 0.4s ease;
   position: fixed;
 }
+/* line 15, ../../src/css/_input-area.scss */
 .input-area--hidden {
   opacity: 0;
 }
+/* line 21, ../../src/css/_input-area.scss */
 .input-area .note {
   position: absolute;
   left: 20px;
   top: 80px;
 }
+/* line 27, ../../src/css/_input-area.scss */
 .input-area .note__tab {
   display: block;
 }
 
+/* line 35, ../../src/css/_input-area.scss */
 .input-header {
   width: 100%;
   height: 30px;
@@ -770,6 +1025,7 @@ textarea {
   cursor: move;
 }
 
+/* line 5, ../../src/css/_piano.scss */
 .input-piano {
   width: 328px;
   height: 105px;
@@ -781,6 +1037,7 @@ textarea {
       -ms-user-select: none;
           user-select: none;
 }
+/* line 16, ../../src/css/_piano.scss */
 .input-piano * {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -788,6 +1045,7 @@ textarea {
           user-select: none;
 }
 
+/* line 22, ../../src/css/_piano.scss */
 .piano__keys {
   list-style: none;
   margin: 0;
@@ -795,6 +1053,7 @@ textarea {
   position: relative;
 }
 
+/* line 31, ../../src/css/_piano.scss */
 .key {
   cursor: pointer;
   position: absolute;
@@ -805,12 +1064,14 @@ textarea {
        -o-transition: background 0.1s ease;
           transition: background 0.1s ease;
 }
+/* line 41, ../../src/css/_piano.scss */
 .key__letter {
   position: absolute;
   width: 100%;
   bottom: 3px;
   text-align: center;
 }
+/* line 50, ../../src/css/_piano.scss */
 .key--sharp, .key--flat {
   background: #2b2b2b;
   color: white;
@@ -820,81 +1081,106 @@ textarea {
           border-radius: 0 0 6px 6px;
   z-index: 2;
 }
+/* line 61, ../../src/css/_piano.scss */
 .key--sharp.key--active, .key--flat.key--active {
   background: #168e70;
 }
+/* line 69, ../../src/css/_piano.scss */
 .key--natural {
   width: 24px;
   height: 100px;
   -webkit-border-radius: 0 0 4px 4px;
           border-radius: 0 0 4px 4px;
 }
+/* line 77, ../../src/css/_piano.scss */
 .key--active {
   background: #a6eada;
 }
+/* line 83, ../../src/css/_piano.scss */
 .key--clicked {
   background: #5ae2d9;
 }
+/* line 89, ../../src/css/_piano.scss */
 .key--4AN {
   left: 0;
 }
+/* line 90, ../../src/css/_piano.scss */
 .key--4AS {
   left: 15px;
 }
+/* line 91, ../../src/css/_piano.scss */
 .key--4BN {
   left: 25px;
 }
+/* line 92, ../../src/css/_piano.scss */
 .key--5CN {
   left: 50px;
 }
+/* line 93, ../../src/css/_piano.scss */
 .key--5CS {
   left: 66px;
 }
+/* line 94, ../../src/css/_piano.scss */
 .key--5DN {
   left: 75px;
 }
+/* line 95, ../../src/css/_piano.scss */
 .key--5DS {
   left: 90px;
 }
+/* line 96, ../../src/css/_piano.scss */
 .key--5EN {
   left: 100px;
 }
+/* line 97, ../../src/css/_piano.scss */
 .key--5FN {
   left: 125px;
 }
+/* line 98, ../../src/css/_piano.scss */
 .key--5FS {
   left: 140px;
 }
+/* line 99, ../../src/css/_piano.scss */
 .key--5GN {
   left: 150px;
 }
+/* line 100, ../../src/css/_piano.scss */
 .key--5GS {
   left: 165px;
 }
+/* line 101, ../../src/css/_piano.scss */
 .key--5AN {
   left: 175px;
 }
+/* line 102, ../../src/css/_piano.scss */
 .key--5AS {
   left: 190px;
 }
+/* line 103, ../../src/css/_piano.scss */
 .key--5BN {
   left: 200px;
 }
+/* line 104, ../../src/css/_piano.scss */
 .key--6CN {
   left: 225px;
 }
+/* line 105, ../../src/css/_piano.scss */
 .key--6CS {
   left: 240px;
 }
+/* line 106, ../../src/css/_piano.scss */
 .key--6DN {
   left: 250px;
 }
+/* line 107, ../../src/css/_piano.scss */
 .key--6DS {
   left: 265px;
 }
+/* line 108, ../../src/css/_piano.scss */
 .key--6EN {
   left: 275px;
 }
+/* line 109, ../../src/css/_piano.scss */
 .key--6FN {
   left: 300px;
 }

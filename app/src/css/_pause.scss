@@ -1,0 +1,75 @@
+@charset "UTF-8"; 
+
+@mixin pause( $bg: -96, $top: 0 ) {
+
+    .note__note {
+
+        background-position: $bg + px 0;
+        top: $top + px;
+
+    }
+
+}
+
+@mixin dot( $bottom: 0, $right: 1 ) {
+
+    &.note--dot {
+        .note__note {
+            &:after {
+
+                bottom: $bottom + px;
+                right: $right + px;
+
+            }
+        }
+    }
+
+}
+
+.note {
+    
+    &--♪PAUSE {
+
+        @include pause();
+
+        &.note--♫1 { 
+            @include pause(-84, -4);
+            @include dot(15, -5);
+        }
+
+        &.note--♫2 { 
+            @include pause(-84, -2);
+            @include dot(17, -5);
+        }
+
+        &.note--♫4 { 
+            @include pause();
+            @include dot(9, -2);
+        }
+
+        &.note--♫8 { 
+            @include pause(-108, 2);
+            @include dot(11);
+        }
+
+        &.note--♫16 { 
+            @include pause(-123, 4);
+            @include dot(13);
+        }
+
+        &.note--♫32 { 
+            @include pause(-138, 0);
+            @include dot(9);
+        }
+        
+
+        .note__tab,
+        &:after {
+
+            visibility: hidden;
+
+        }
+
+    }
+
+}

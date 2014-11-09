@@ -2,29 +2,115 @@
 
 window.fixture = {
 
-    
-    author: "Simon Goellner",
-    title: "Star Wars",
-    subtitle: "Opening Theme",
-
-    notes: [
-        { "note": "5CN", "duration": 4 },
-        { "note": "5DN", "duration": 4 },
-        { "note": "5FN", "duration": 4, "dot": true },
-        { "note": "5EN", "duration": 4 },
-        { "note": "5FN", "duration": 4 },
-        { "note": "PAUSE", "duration": 4 },
-        { "note": "6CN", "duration": 4 },
-        { "note": "5DN", "duration": 4 },
-        { "note": "5EN", "duration": 4 },
-        { "note": "5FN", "duration": 4 },
-        { "note": "5GN", "duration": 4 },
-        { "note": "6CN", "duration": 4 },
-        { "note": "5DN", "duration": 4 },
-        { "note": "5EN", "duration": 4 },
-        { "note": "5FN", "duration": 4 },
-        { "note": "5GN", "duration": 4 }
+    "author":"Simon Goellner",
+    "title":"Star Wars",
+    "subtitle":"Opening Theme",
+    "notes":[
+        {
+            "note":"4AN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"4BN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"PAUSE",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5DN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5EN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5FN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5GN",
+            "duration":8,
+            "dot":false
+        },
+        {
+            "note":"5AN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5BN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"6CN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"6DN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"6EN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"6FN",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"4AS",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5CS",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5DS",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5FS",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5GS",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"5AS",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"6CS",
+            "duration":8,
+            "dot":true
+        },
+        {
+            "note":"6DS",
+            "duration":8,
+            "dot":true
+        }
     ]
-
 
 };
