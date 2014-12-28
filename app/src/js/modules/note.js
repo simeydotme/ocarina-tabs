@@ -575,13 +575,13 @@
 
         exports.note.handleMouseup = function(e) {
 
-                var $notes = exports.$.score.find(".note"),
-                    $this = $(this);
+            var $notes = exports.$.score.find(".note"),
+                $this = $(this);
 
-                exports.track.selected = $notes.index( $this );
-                exports.note.playNote( $this );
+            exports.track.selected = $notes.index( $this );
+            exports.note.playNote( $this );
 
-                pubsub.trigger("track.selectNote");
+            pubsub.trigger("track.selectNote");
 
         };
 

@@ -1,5 +1,5 @@
 /*
- * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-11-09
+ * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-12-28
  * https://github.com/simeydotme/ocarina-tabs
  * Licenced (MIT) 2014 | ♪ | Simon Goellner;
  */
@@ -1023,6 +1023,21 @@ textarea {
   height: 30px;
   background: #25a2dd;
   cursor: move;
+}
+/* line 42, ../../src/css/_input-area.scss */
+.input-header__icon {
+  padding: 5px 7px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  -webkit-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+/* line 52, ../../src/css/_input-area.scss */
+.input-header__icon:hover {
+  color: white;
 }
 
 /* line 5, ../../src/css/_piano.scss */

@@ -22,6 +22,11 @@
             exports.$.pianoKeys.on( evdown + ".key", exports.piano.mousedown );
 
 
+            exports.$.playpause.on( evup + ".playpause", exports.inputArea.playpause );
+            exports.$.stop.on( evup + ".stop", exports.inputArea.stop );
+            exports.$.stepback.on( evup + ".stepback", exports.inputArea.stepback );
+
+
         };
 
 

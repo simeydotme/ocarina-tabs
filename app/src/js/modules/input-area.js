@@ -3,8 +3,6 @@
     var app = (function(exports) {
 
         exports.inputArea = {};
-        exports.$.inputArea = $(".input-area");
-        exports.$.inputAreaHeader = $(".input-header");
 
         exports.inputArea.movable = function() {
 
@@ -103,6 +101,41 @@
                 });
 
         };
+
+        exports.inputArea.playpause = function() {
+
+            if( exports.track.isPlaying ) {
+                exports.track.stopSong();
+                exports.$.playpause.removeClass("fa-pause");
+                exports.$.playpause.addClass("fa-play");
+            } else {
+                exports.track.playSong();
+                exports.$.playpause.removeClass("fa-play");
+                exports.$.playpause.addClass("fa-pause");
+            }
+
+        };
+
+        exports.inputArea.stop = function() {
+            
+            exports.track.stopSong();
+            exports.$.playpause.removeClass("fa-pause");
+            exports.$.playpause.addClass("fa-play");
+                
+        };
+
+        exports.inputArea.stepback = function() {
+
+            exports.inputArea.stop();
+
+            var $notes = exports.$.score.find(".note");
+
+            exports.track.selected = $notes.index( 0 );
+            pubsub.trigger("track.selectNote");
+                
+        };
+
+
 
         exports.inputArea.pubsub = function() {
 

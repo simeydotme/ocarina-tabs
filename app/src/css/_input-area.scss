@@ -39,4 +39,22 @@
         background: $inputAreaHeader;
         cursor: move;
 
+        &__icon {
+
+            padding: 5px 7px;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            position: relative;
+            top: 2px;
+
+            transition: all 0.2s ease;
+
+            &:hover {
+
+                color: rgba(255,255,255,1);
+
+            }
+
+        }
+
     }

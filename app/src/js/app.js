@@ -14,9 +14,18 @@
         exports.$.title = $(".stage__title");
         exports.$.score = $(".stage__score");
         
+
+        exports.$.inputArea = $(".input-area");
+        exports.$.inputAreaHeader = $(".input-header");
+
         exports.$.piano = $(".input-piano");
         exports.$.pianoOcarina = $(".input-area .note");
         exports.$.pianoKeys = exports.$.piano.find(".key");
+
+        exports.$.playpause = $(".input-header__icon--playpause");
+        exports.$.stop = $(".input-header__icon--stop");
+        exports.$.stepback = $(".input-header__icon--stepback");
+        
 
         exports.$.titleTemplate = $("#title-template");
         exports.$.noteTemplate = $("#note-template");

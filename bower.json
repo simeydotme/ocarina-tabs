@@ -22,6 +22,7 @@
     "jqueryui": "~1.11.1",
     "buzz": "~1.1.4",
     "handlebars": "~2.0.0",
-    "velocity": "~1.1.0"
+    "velocity": "~1.1.0",
+    "fontawesome": "~4.2.0"
   }
 }

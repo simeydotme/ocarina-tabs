@@ -6,6 +6,7 @@
         exports.track.selected = 0;
         exports.track.duration = 4;
         exports.track.dot = false;
+        exports.track.isPlaying = false;
 
 
 
@@ -56,7 +57,7 @@
         exports.track.playSong = function( bpm, onebeat ) {
 
             pubsub.trigger("track.playSong");
-            pubsub.off("track.playSong");
+            pubsub.off("track.playSong track.stopSong");
 
             var timer,
                 $el, 
@@ -66,26 +67,28 @@
                 $notes = $(".stage__score .note");
 
             // start from beginning if we're at the end
-            if( app.track.selected === $notes.length - 1 ) {
-                app.track.selected = 0;
+            if( exports.track.selected === $notes.length - 1 ) {
+                exports.track.selected = 0;
             }
 
             bpm = bpm || 72;
             onebeat = onebeat || 4;
 
-            var loop = function() {
+            exports.track.isPlaying = true;
 
-                $("body").on("click", ".note, .key", function() {
-                    clearTimeout( timer );
-                });
+            var loop = function() {
 
                 pubsub.on("track.playSong track.stopSong", function() {
                     clearTimeout( timer );
                 });
 
+                $("body").one("click", ".note, .key", function() {
+                    pubsub.trigger("track.stopSong");
+                });
+
                 timer = setTimeout( function() {
 
-                    $el = $(".stage__score .note").eq( app.track.selected );
+                    $el = $(".stage__score .note").eq( exports.track.selected );
 
                     if( $el.length ) {
 
@@ -98,15 +101,16 @@
 
                         console.log( length );
 
-                        app.note.playNote( $el );
+                        exports.note.playNote( $el );
                         pubsub.trigger("track.selectNote");
 
-                        app.track.selected += 1;
+                        exports.track.selected += 1;
                         loop();
 
                     } else {
 
-                        app.track.selected = $notes.length - 1;
+                        exports.track.selected = $notes.length - 1;
+                        exports.inputArea.stop();
 
                     }
 
@@ -122,6 +126,7 @@
         exports.track.stopSong = function() {
 
             pubsub.trigger("track.stopSong");
+            exports.track.isPlaying = false;
 
         };
 
