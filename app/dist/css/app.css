@@ -1,7 +1,7 @@
 /*
- * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-12-28
+ * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2017-10-05
  * https://github.com/simeydotme/ocarina-tabs
- * Licenced (MIT) 2014 | ♪ | Simon Goellner;
+ * Licenced (MIT) 2017 | ♪ | Simon Goellner;
  */
 
 @charset "UTF-8";
@@ -9,6 +9,11 @@
 body {
   font-family: "Lato";
   color: #333;
+}
+
+/* line 10, ../../src/css/_body.scss */
+html, body {
+  min-height: 100%;
 }
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
@@ -249,7 +254,6 @@ textarea {
   border: 1px dotted transparent;
   display: inline-block;
   -webkit-transition: all 0.2s ease;
-       -o-transition: all 0.2s ease;
           transition: all 0.2s ease;
 }
 /* line 31, ../../src/css/_header.scss */
@@ -310,7 +314,6 @@ textarea {
   display: inline-block;
   position: relative;
   -webkit-transition: width 0.2s ease-out;
-       -o-transition: width 0.2s ease-out;
           transition: width 0.2s ease-out;
 }
 /* line 23, ../../src/css/_note.scss */
@@ -323,7 +326,6 @@ textarea {
   right: 4px;
   bottom: 20px;
   -webkit-transition: width 0.2s ease;
-       -o-transition: width 0.2s ease;
           transition: width 0.2s ease;
 }
 /* line 40, ../../src/css/_note.scss */
@@ -987,6 +989,42 @@ textarea {
   visibility: hidden;
 }
 
+/* line 6, ../../src/css/_new-line.scss */
+.note--♪BAR .note__note {
+  border-right: 1px black solid;
+  height: 90px;
+}
+/* line 13, ../../src/css/_new-line.scss */
+.note--♪BAR .note__tab {
+  width: 30px;
+  visibility: hidden;
+}
+/* line 24, ../../src/css/_new-line.scss */
+.note--♪BAR .note__note, .note--♪RETURN .note__note {
+  background: none !important;
+}
+/* line 30, ../../src/css/_new-line.scss */
+.note--♪BAR .note__tab, .note--♪RETURN .note__tab {
+  width: 30px;
+  visibility: hidden;
+}
+/* line 36, ../../src/css/_new-line.scss */
+.note--♪BAR:after, .note--♪RETURN:after {
+  display: none;
+}
+/* line 44, ../../src/css/_new-line.scss */
+.note--♪RETURN {
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+/* line 55, ../../src/css/_new-line.scss */
+.note--♪BAR .note__note {
+  border-right: 1px black solid;
+  height: 90px;
+}
+
 /* line 2, ../../src/css/_input-area.scss */
 .input-area {
   width: 440px;
@@ -998,7 +1036,6 @@ textarea {
   -webkit-border-radius: 3px;
           border-radius: 3px;
   -webkit-transition: opacity 0.4s ease;
-       -o-transition: opacity 0.4s ease;
           transition: opacity 0.4s ease;
   position: fixed;
 }
@@ -1032,12 +1069,15 @@ textarea {
   position: relative;
   top: 2px;
   -webkit-transition: all 0.2s ease;
-       -o-transition: all 0.2s ease;
           transition: all 0.2s ease;
 }
 /* line 52, ../../src/css/_input-area.scss */
 .input-header__icon:hover {
   color: white;
+}
+/* line 58, ../../src/css/_input-area.scss */
+.input-header__icon--save {
+  float: right;
 }
 
 /* line 5, ../../src/css/_piano.scss */
@@ -1076,7 +1116,6 @@ textarea {
   border-top: none;
   background: white;
   -webkit-transition: background 0.1s ease;
-       -o-transition: background 0.1s ease;
           transition: background 0.1s ease;
 }
 /* line 41, ../../src/css/_piano.scss */

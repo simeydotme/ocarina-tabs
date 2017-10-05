@@ -165,14 +165,16 @@
         exports.track.createTitleModel = function() {
 
             var title = exports.$.title.children(".title__main").text(),
-                subtitle = exports.$.title.children(".title__sub").text();
+                subtitle = exports.$.title.children(".title__sub").text(),
+                author = exports.$.title.find(".title__author span").text();
 
             console.info("Building titles model...");
 
             app.model.title = title;
             app.model.subtitle = subtitle;
+            app.model.author = author;
 
-            return { title: title, subtitle: subtitle };
+            return { title: title, subtitle: subtitle, author: author };
 
         };
 
@@ -207,6 +209,18 @@
             pubsub.trigger("track.showTitle");
             pubsub.trigger("track.showNotes");
             pubsub.trigger("track.selectNote");
+
+        };
+
+        exports._clearSong = function() {
+
+            if ( window.confirm( "Clear current composition?" ) ) {
+                
+                exports.model.notes = [];
+                exports._renderSong( exports.model );
+                console.log( "clearing current composure" );
+
+            }
 
         };
 

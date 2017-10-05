@@ -1,7 +1,7 @@
 /*
- * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2014-12-28
+ * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2017-10-05
  * https://github.com/simeydotme/ocarina-tabs
- * Licenced (MIT) 2014 | ♪ | Simon Goellner;
+ * Licenced (MIT) 2017 | ♪ | Simon Goellner;
  */
     
     // pubsub with jquery! woot.
@@ -19,9 +19,18 @@
         exports.$.title = $(".stage__title");
         exports.$.score = $(".stage__score");
         
+
+        exports.$.inputArea = $(".input-area");
+        exports.$.inputAreaHeader = $(".input-header");
+
         exports.$.piano = $(".input-piano");
         exports.$.pianoOcarina = $(".input-area .note");
         exports.$.pianoKeys = exports.$.piano.find(".key");
+
+        exports.$.playpause = $(".input-header__icon--playpause");
+        exports.$.stop = $(".input-header__icon--stop");
+        exports.$.stepback = $(".input-header__icon--stepback");
+        
 
         exports.$.titleTemplate = $("#title-template");
         exports.$.noteTemplate = $("#note-template");
@@ -39,14 +48,14 @@
             setTimeout( function() {
 
                 var speed = 130;
-                app.playNote("5AN");
-                setTimeout(function(){ app.playNote("5GS"); },speed);
-                setTimeout(function(){ app.playNote("5DS"); },speed*2);
-                setTimeout(function(){ app.playNote("4BN"); },speed*3);
-                setTimeout(function(){ app.playNote("4AS"); },speed*4);
-                setTimeout(function(){ app.playNote("5DN"); },speed*5);
-                setTimeout(function(){ app.playNote("5FS"); },speed*6);
-                setTimeout(function(){ app.playNote("6CN"); },speed*7);
+                app.note.playNote("5AN");
+                setTimeout(function(){ app.note.playNote("5GS"); },speed);
+                setTimeout(function(){ app.note.playNote("5DS"); },speed*2);
+                setTimeout(function(){ app.note.playNote("4BN"); },speed*3);
+                setTimeout(function(){ app.note.playNote("4AS"); },speed*4);
+                setTimeout(function(){ app.note.playNote("5DN"); },speed*5);
+                setTimeout(function(){ app.note.playNote("5FS"); },speed*6);
+                setTimeout(function(){ app.note.playNote("6CN"); },speed*7);
 
             }, 1000 );
 
@@ -60,7 +69,7 @@
                 exports._renderSong( exports.model );
             });
             
-            introTune();
+            //introTune();
 
         }());
 
@@ -72,8 +81,6 @@
     var app = (function(exports) {
 
         exports.inputArea = {};
-        exports.$.inputArea = $(".input-area");
-        exports.$.inputAreaHeader = $(".input-header");
 
         exports.inputArea.movable = function() {
 
@@ -173,6 +180,41 @@
 
         };
 
+        exports.inputArea.playpause = function() {
+
+            if( exports.track.isPlaying ) {
+                exports.track.stopSong();
+                exports.$.playpause.removeClass("fa-pause");
+                exports.$.playpause.addClass("fa-play");
+            } else {
+                exports.track.playSong();
+                exports.$.playpause.removeClass("fa-play");
+                exports.$.playpause.addClass("fa-pause");
+            }
+
+        };
+
+        exports.inputArea.stop = function() {
+            
+            exports.track.stopSong();
+            exports.$.playpause.removeClass("fa-pause");
+            exports.$.playpause.addClass("fa-play");
+                
+        };
+
+        exports.inputArea.stepback = function() {
+
+            exports.inputArea.stop();
+
+            var $notes = exports.$.score.find(".note");
+
+            exports.track.selected = $notes.index( 0 );
+            pubsub.trigger("track.selectNote");
+                
+        };
+
+
+
         exports.inputArea.pubsub = function() {
 
             pubsub.on("inputArea.created", exports.inputArea.show );
@@ -212,6 +254,11 @@
             exports.$.pianoKeys.on("mouseout.key", exports.piano.mouseout );
             exports.$.pianoKeys.on( evup + ".key", exports.piano.mouseup );
             exports.$.pianoKeys.on( evdown + ".key", exports.piano.mousedown );
+
+
+            exports.$.playpause.on( evup + ".playpause", exports.inputArea.playpause );
+            exports.$.stop.on( evup + ".stop", exports.inputArea.stop );
+            exports.$.stepback.on( evup + ".stepback", exports.inputArea.stepback );
 
 
         };
@@ -803,13 +850,13 @@
 
         exports.note.handleMouseup = function(e) {
 
-                var $notes = exports.$.score.find(".note"),
-                    $this = $(this);
+            var $notes = exports.$.score.find(".note"),
+                $this = $(this);
 
-                exports.track.selected = $notes.index( $this );
-                exports.note.playNote( $this );
+            exports.track.selected = $notes.index( $this );
+            exports.note.playNote( $this );
 
-                pubsub.trigger("track.selectNote");
+            pubsub.trigger("track.selectNote");
 
         };
 
@@ -1036,6 +1083,7 @@
         exports.track.selected = 0;
         exports.track.duration = 4;
         exports.track.dot = false;
+        exports.track.isPlaying = false;
 
 
 
@@ -1086,7 +1134,7 @@
         exports.track.playSong = function( bpm, onebeat ) {
 
             pubsub.trigger("track.playSong");
-            pubsub.off("track.playSong");
+            pubsub.off("track.playSong track.stopSong");
 
             var timer,
                 $el, 
@@ -1096,26 +1144,28 @@
                 $notes = $(".stage__score .note");
 
             // start from beginning if we're at the end
-            if( app.track.selected === $notes.length - 1 ) {
-                app.track.selected = 0;
+            if( exports.track.selected === $notes.length - 1 ) {
+                exports.track.selected = 0;
             }
 
             bpm = bpm || 72;
             onebeat = onebeat || 4;
 
-            var loop = function() {
+            exports.track.isPlaying = true;
 
-                $("body").on("click", ".note, .key", function() {
-                    clearTimeout( timer );
-                });
+            var loop = function() {
 
                 pubsub.on("track.playSong track.stopSong", function() {
                     clearTimeout( timer );
                 });
 
+                $("body").one("click", ".note, .key", function() {
+                    pubsub.trigger("track.stopSong");
+                });
+
                 timer = setTimeout( function() {
 
-                    $el = $(".stage__score .note").eq( app.track.selected );
+                    $el = $(".stage__score .note").eq( exports.track.selected );
 
                     if( $el.length ) {
 
@@ -1128,15 +1178,16 @@
 
                         console.log( length );
 
-                        app.note.playNote( $el );
+                        exports.note.playNote( $el );
                         pubsub.trigger("track.selectNote");
 
-                        app.track.selected += 1;
+                        exports.track.selected += 1;
                         loop();
 
                     } else {
 
-                        app.track.selected = $notes.length - 1;
+                        exports.track.selected = $notes.length - 1;
+                        exports.inputArea.stop();
 
                     }
 
@@ -1152,6 +1203,7 @@
         exports.track.stopSong = function() {
 
             pubsub.trigger("track.stopSong");
+            exports.track.isPlaying = false;
 
         };
 

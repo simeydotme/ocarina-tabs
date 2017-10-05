@@ -9,7 +9,7 @@
             exports.$.inputArea.draggable({
 
                 handle: exports.$.inputAreaHeader,
-                containment: exports.$.body,
+                containment: $("html"),
                 appendTo: exports.$.body,
                 opacity: 0.6,
                 create: function() { pubsub.trigger("inputArea.created"); },
@@ -132,6 +132,13 @@
 
             exports.track.selected = $notes.index( 0 );
             pubsub.trigger("track.selectNote");
+                
+        };
+
+        exports.inputArea.save = function() {
+
+            var song = exports.io.getSong();
+            exports.io.storeSong( song );
                 
         };
 

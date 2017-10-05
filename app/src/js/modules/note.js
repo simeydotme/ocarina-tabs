@@ -39,7 +39,7 @@
 
             }
 
-            if( extractedNote ) {
+            if( extractedNote && extractedNote !== "BAR" && extractedNote !== "RETURN" ) {
 
                 startTime = app.notes.startTimes[ extractedNote ] || 0;
                 app.notes[ extractedNote ].stop().setTime( startTime ).play();
@@ -62,7 +62,7 @@
 
             var note = arguments[0],
                 $notes = exports.$.score.find(".note"),
-                where = $notes.length - 1,
+                where = exports.track.selected || $notes.length - 1,
                 duration = exports.track.duration,
                 dot = exports.track.dot,
                 newNote,
@@ -154,6 +154,7 @@
         /**
          * Remove a note from the song by index
          * @param  {number} index - the note in the song to remove (zero-index)
+         * @param  {string} direction - which direction the input should go after removing
          * @return {array}
          */
         exports.note.removeNote = function( index, direction ) {

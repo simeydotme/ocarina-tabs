@@ -94,6 +94,8 @@
                 "6EN": new buzz.sound( path + "/6EN", { formats: [ "ogg", "mp3" ], preload: preload, autoplay: autoplay }),
                 "6FN": new buzz.sound( path + "/6FN", { formats: [ "ogg", "mp3" ], preload: preload, autoplay: autoplay }),
 
+                // pause needs to play, to keep time.
+                // but it should not be heard.
                 "PAUSE": new buzz.sound( path + "/5CN", { formats: [ "ogg", "mp3" ], preload: preload, autoplay: autoplay, volume: 0 }),
 
                 "startTimes": startTimes
@@ -104,7 +106,7 @@
 
         };
 
-        exports.notes = exports.registerSounds("");
+        exports.notes = exports.registerSounds("piano");
         return exports;
 
     } (app || {}));

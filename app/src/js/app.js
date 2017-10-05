@@ -14,7 +14,6 @@
         exports.$.title = $(".stage__title");
         exports.$.score = $(".stage__score");
         
-
         exports.$.inputArea = $(".input-area");
         exports.$.inputAreaHeader = $(".input-header");
 
@@ -25,6 +24,10 @@
         exports.$.playpause = $(".input-header__icon--playpause");
         exports.$.stop = $(".input-header__icon--stop");
         exports.$.stepback = $(".input-header__icon--stepback");
+        exports.$.save = $(".input-header__icon--save");
+
+        exports.$.dialog = $(".song-dialog");
+        exports.$.textbox = $("#song-text");
         
 
         exports.$.titleTemplate = $("#title-template");

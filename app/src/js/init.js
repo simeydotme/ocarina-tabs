@@ -22,10 +22,13 @@
 
         exports.init = (function() {
 
-            exports.model = window.fixture || { notes: [] };
-
             exports.loadFonts(function() {
-                exports._renderSong( exports.model );
+
+                exports.io.loadSong( 
+                    localStorage.getItem("storedSong") || window.fixture || { notes: [] }
+                );
+                
+
             });
             
             //introTune();

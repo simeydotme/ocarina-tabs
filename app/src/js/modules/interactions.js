@@ -25,6 +25,7 @@
             exports.$.playpause.on( evup + ".playpause", exports.inputArea.playpause );
             exports.$.stop.on( evup + ".stop", exports.inputArea.stop );
             exports.$.stepback.on( evup + ".stepback", exports.inputArea.stepback );
+            exports.$.save.on( evup + ".save", exports.inputArea.save );
 
 
         };
