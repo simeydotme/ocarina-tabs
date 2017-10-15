@@ -18,36 +18,61 @@
 
             };
 
+            return song;
+
+        };
+
+        exports.io.getSongJSON = function() {
+
+            var song = exports.io.getSong();
             return JSON.stringify( song );
 
         };
 
         exports.io.saveSong = function() {
 
-            var song = exports.io.getSong();
+            var title = exports.io.getSong().title,
+                songJSON = encodeURIComponent( exports.io.getSongJSON() ),
+                $link = $("#download"),
+                exists = $link.length > 0;
 
-            exports.$.textbox.val( song );
-            exports.$.dialog.dialog();
-            return song;
+            if ( !exists ) {
+                $link = $("<a id='download' />");
+            }
+
+            $link
+                .text( "download" )
+                .attr( "download", title + ".ocrna" )
+                .attr( "href", "data:application/octet-stream," + songJSON );
+
+            if ( !exists ) {
+
+                $("body").append( $link );
+
+            }
+
+            $link[0].click();
+
+            return songJSON;
 
         };
 
         /**
          * store the song to local storage
-         * @param {object} songData - the object containing the title/author/notes
+         * @param {string} songJSON - a json string containing the title/author/notes
          * @return {string} song - json string of the song 
          */
-        exports.io.storeSong = function( songData ) {
+        exports.io.storeSong = function( songJSON ) {
             
             var song;
             
-            if ( songData && typeof songData === "object" ) {
+            if ( songJSON && typeof songJSON === "string" ) {
 
-                song = songData;
+                song = songJSON;
 
             } else {
 
-                song = exports.io.getSong();
+                song = exports.io.getSongJSON();
 
             }
 
@@ -58,21 +83,48 @@
 
         };
 
-        exports.io.loadSong = function( jsonString ) {
+        /**
+         * load the song from a json string
+         * @param {string} songJSON - json string of the song to load
+         * @return {string} songJSON
+         */
+        exports.io.loadSong = function( songJSON ) {
             
-            if ( !jsonString ) {
+            if ( !songJSON ) {
 
                 console.warn( "Cannot load song as there is no supplied json string" );
                 return;
 
             }
 
-            if ( typeof jsonString === "string" ) {
-                jsonString = JSON.parse( jsonString );
+            if ( typeof songJSON === "string" ) {
+                songJSON = JSON.parse( songJSON );
             }
 
-            exports.model = jsonString;
-            exports._renderSong( jsonString );
+            exports.model = songJSON;
+            exports._renderSong( songJSON );
+
+            return songJSON;
+
+        }
+
+        exports.io.uploadFile = function() {
+
+            try {
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    exports.io.loadSong( decodeURIComponent( e.target.result ) );
+                };
+
+                reader.readAsText( exports.$.upload[0].files[0] );
+
+            } catch(error) {
+
+                console.error( error );
+
+            }
 
         }
 

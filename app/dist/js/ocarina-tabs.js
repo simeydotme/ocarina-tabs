@@ -1,5 +1,5 @@
 /*
- * ocarina-tabs | ♪♫ | 0.0.3 | ♫♪ | 2017-10-05
+ * ocarina-tabs | ♪♫ | 0.1.0 | ♫♪ | 2017-10-15
  * https://github.com/simeydotme/ocarina-tabs
  * Licenced (MIT) 2017 | ♪ | Simon Goellner;
  */
@@ -19,7 +19,6 @@
         exports.$.title = $(".stage__title");
         exports.$.score = $(".stage__score");
         
-
         exports.$.inputArea = $(".input-area");
         exports.$.inputAreaHeader = $(".input-header");
 
@@ -30,10 +29,20 @@
         exports.$.playpause = $(".input-header__icon--playpause");
         exports.$.stop = $(".input-header__icon--stop");
         exports.$.stepback = $(".input-header__icon--stepback");
-        
+        exports.$.save = $(".input-header__icon--save");
+
+        exports.$.dialog = $(".song-dialog");
+        exports.$.textbox = $("#song-text");
 
         exports.$.titleTemplate = $("#title-template");
         exports.$.noteTemplate = $("#note-template");
+
+        exports.$.upload = $("#upload-file");
+
+        // constantly keep storing the song to avoid losing it.
+        exports.storeInterval = window.setInterval( function() {
+            exports.io.storeSong();
+        }, 5000 );
 
         return exports;
 
@@ -63,10 +72,13 @@
 
         exports.init = (function() {
 
-            exports.model = window.fixture || { notes: [] };
-
             exports.loadFonts(function() {
-                exports._renderSong( exports.model );
+
+                exports.io.loadSong( 
+                    localStorage.getItem("storedSong") || window.fixture || { notes: [] }
+                );
+                
+
             });
             
             //introTune();
@@ -87,7 +99,7 @@
             exports.$.inputArea.draggable({
 
                 handle: exports.$.inputAreaHeader,
-                containment: exports.$.body,
+                containment: $("html"),
                 appendTo: exports.$.body,
                 opacity: 0.6,
                 create: function() { pubsub.trigger("inputArea.created"); },
@@ -213,6 +225,13 @@
                 
         };
 
+        exports.inputArea.save = function() {
+
+            var song = exports.io.getSong();
+            exports.io.saveSong( song );
+                
+        };
+
 
 
         exports.inputArea.pubsub = function() {
@@ -259,7 +278,9 @@
             exports.$.playpause.on( evup + ".playpause", exports.inputArea.playpause );
             exports.$.stop.on( evup + ".stop", exports.inputArea.stop );
             exports.$.stepback.on( evup + ".stepback", exports.inputArea.stepback );
+            exports.$.save.on( evup + ".save", exports.inputArea.save );
 
+            exports.$.upload.on( "change.upload", exports.io.uploadFile );
 
         };
 
@@ -269,6 +290,139 @@
             exports.interactions.events();
 
         }());
+
+        return exports;
+
+    } (app || {}));
+
+
+    var app = (function(exports) {
+
+        exports.io = {};
+
+        exports.io.getSong = function() {
+
+            var notes = exports.track.createNotesModel();
+            var title = exports.track.createTitleModel();
+
+            var song = {
+
+                title: title.title,
+                subtitle: title.subtitle,
+                author: title.author,
+                notes: notes
+
+            };
+
+            return song;
+
+        };
+
+        exports.io.getSongJSON = function() {
+
+            var song = exports.io.getSong();
+            return JSON.stringify( song );
+
+        };
+
+        exports.io.saveSong = function() {
+
+            var title = exports.io.getSong().title,
+                songJSON = encodeURIComponent( exports.io.getSongJSON() ),
+                $link = $("#download"),
+                exists = $link.length > 0;
+
+            if ( !exists ) {
+                $link = $("<a id='download' />");
+            }
+
+            $link
+                .text( "download" )
+                .attr( "download", title + ".ocrna" )
+                .attr( "href", "data:application/octet-stream," + songJSON );
+
+            if ( !exists ) {
+
+                $("body").append( $link );
+
+            }
+
+            $link[0].click();
+
+            return songJSON;
+
+        };
+
+        /**
+         * store the song to local storage
+         * @param {string} songJSON - a json string containing the title/author/notes
+         * @return {string} song - json string of the song 
+         */
+        exports.io.storeSong = function( songJSON ) {
+            
+            var song;
+            
+            if ( songJSON && typeof songJSON === "string" ) {
+
+                song = songJSON;
+
+            } else {
+
+                song = exports.io.getSongJSON();
+
+            }
+
+            localStorage.setItem( "storedSong", song );
+            console.log( "storing current composition to local storage" );
+
+            return song;
+
+        };
+
+        /**
+         * load the song from a json string
+         * @param {string} songJSON - json string of the song to load
+         * @return {string} songJSON
+         */
+        exports.io.loadSong = function( songJSON ) {
+            
+            if ( !songJSON ) {
+
+                console.warn( "Cannot load song as there is no supplied json string" );
+                return;
+
+            }
+
+            if ( typeof songJSON === "string" ) {
+                songJSON = JSON.parse( songJSON );
+            }
+
+            exports.model = songJSON;
+            exports._renderSong( songJSON );
+
+            return songJSON;
+
+        }
+
+        exports.io.uploadFile = function() {
+
+            try {
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    exports.io.loadSong( decodeURIComponent( e.target.result ) );
+                };
+
+                reader.readAsText( exports.$.upload[0].files[0] );
+
+            } catch(error) {
+
+                console.error( error );
+
+            }
+
+        }
 
         return exports;
 
@@ -314,7 +468,7 @@
 
             }
 
-            if( extractedNote ) {
+            if( extractedNote && extractedNote !== "BAR" && extractedNote !== "RETURN" ) {
 
                 startTime = app.notes.startTimes[ extractedNote ] || 0;
                 app.notes[ extractedNote ].stop().setTime( startTime ).play();
@@ -337,7 +491,7 @@
 
             var note = arguments[0],
                 $notes = exports.$.score.find(".note"),
-                where = $notes.length - 1,
+                where = exports.track.selected || $notes.length - 1,
                 duration = exports.track.duration,
                 dot = exports.track.dot,
                 newNote,
@@ -429,6 +583,7 @@
         /**
          * Remove a note from the song by index
          * @param  {number} index - the note in the song to remove (zero-index)
+         * @param  {string} direction - which direction the input should go after removing
          * @return {array}
          */
         exports.note.removeNote = function( index, direction ) {
@@ -978,6 +1133,8 @@
                 "6EN": new buzz.sound( path + "/6EN", { formats: [ "ogg", "mp3" ], preload: preload, autoplay: autoplay }),
                 "6FN": new buzz.sound( path + "/6FN", { formats: [ "ogg", "mp3" ], preload: preload, autoplay: autoplay }),
 
+                // pause needs to play, to keep time.
+                // but it should not be heard.
                 "PAUSE": new buzz.sound( path + "/5CN", { formats: [ "ogg", "mp3" ], preload: preload, autoplay: autoplay, volume: 0 }),
 
                 "startTimes": startTimes
@@ -988,7 +1145,7 @@
 
         };
 
-        exports.notes = exports.registerSounds("");
+        exports.notes = exports.registerSounds("piano");
         return exports;
 
     } (app || {}));
@@ -1242,14 +1399,16 @@
         exports.track.createTitleModel = function() {
 
             var title = exports.$.title.children(".title__main").text(),
-                subtitle = exports.$.title.children(".title__sub").text();
+                subtitle = exports.$.title.children(".title__sub").text(),
+                author = exports.$.title.find(".title__author span").text();
 
             console.info("Building titles model...");
 
             app.model.title = title;
             app.model.subtitle = subtitle;
+            app.model.author = author;
 
-            return { title: title, subtitle: subtitle };
+            return { title: title, subtitle: subtitle, author: author };
 
         };
 
@@ -1284,6 +1443,18 @@
             pubsub.trigger("track.showTitle");
             pubsub.trigger("track.showNotes");
             pubsub.trigger("track.selectNote");
+
+        };
+
+        exports._clearSong = function() {
+
+            if ( window.confirm( "Clear current composition?" ) ) {
+                
+                exports.model.notes = [];
+                exports._renderSong( exports.model );
+                console.log( "clearing current composure" );
+
+            }
 
         };
 

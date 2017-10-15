@@ -138,7 +138,7 @@
         exports.inputArea.save = function() {
 
             var song = exports.io.getSong();
-            exports.io.storeSong( song );
+            exports.io.saveSong( song );
                 
         };
 

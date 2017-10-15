@@ -1,6 +1,6 @@
 {
   "name": "ocarina-tabs",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "An app for creating tab-sheets for 12-hole Ocarinas",
   "main": "index.html",
   "scripts": {

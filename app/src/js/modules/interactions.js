@@ -27,6 +27,7 @@
             exports.$.stepback.on( evup + ".stepback", exports.inputArea.stepback );
             exports.$.save.on( evup + ".save", exports.inputArea.save );
 
+            exports.$.upload.on( "change.upload", exports.io.uploadFile );
 
         };
 

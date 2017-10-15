@@ -28,10 +28,16 @@
 
         exports.$.dialog = $(".song-dialog");
         exports.$.textbox = $("#song-text");
-        
 
         exports.$.titleTemplate = $("#title-template");
         exports.$.noteTemplate = $("#note-template");
+
+        exports.$.upload = $("#upload-file");
+
+        // constantly keep storing the song to avoid losing it.
+        exports.storeInterval = window.setInterval( function() {
+            exports.io.storeSong();
+        }, 5000 );
 
         return exports;
 
