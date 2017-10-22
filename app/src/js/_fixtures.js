@@ -1,12 +1,12 @@
 
 
 window.fixture = {
-
-    "author":"Simon Goellner",
     "title":"Star Wars",
     "subtitle":"Opening Theme",
+    "author":"Simon Goellner",
     "bpm":"72",
-    "notes":[
+    
+    "notes": [
         {
             "note":"4AN",
             "duration":8,
@@ -14,11 +14,6 @@ window.fixture = {
         },
         {
             "note":"4BN",
-            "duration":8,
-            "dot":true
-        },
-        {
-            "note":"PAUSE",
             "duration":8,
             "dot":true
         },
@@ -73,6 +68,16 @@ window.fixture = {
             "dot":true
         },
         {
+            "note":"PAUSE",
+            "duration":4,
+            "dot":false
+        },
+        {
+            "note":"BAR",
+            "duration":4,
+            "dot":false
+        },
+        {
             "note":"4AS",
             "duration":8,
             "dot":true
@@ -113,5 +118,4 @@ window.fixture = {
             "dot":true
         }
     ]
-
-};
+}
