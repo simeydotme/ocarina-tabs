@@ -1,5 +1,5 @@
 /*
- * ocarina-tabs | ♪♫ | 0.1.0 | ♫♪ | 2017-10-15
+ * ocarina-tabs | ♪♫ | 0.1.0 | ♫♪ | 2017-10-22
  * https://github.com/simeydotme/ocarina-tabs
  * Licenced (MIT) 2017 | ♪ | Simon Goellner;
  */
@@ -247,8 +247,8 @@ textarea {
 }
 
 /* line 19, ../../src/css/_header.scss */
-.title__main, .title__sub {
-  margin: -0.2em 0;
+.title__main, .title__sub, .title__author span, .title__bpm input {
+  margin: -0.1em 0;
   padding: 0.3em 0.5em 0.2em;
   outline: none;
   border: 1px dotted transparent;
@@ -256,40 +256,52 @@ textarea {
   -webkit-transition: all 0.2s ease;
           transition: all 0.2s ease;
 }
-/* line 31, ../../src/css/_header.scss */
-.title__main:hover, .title__sub:hover {
+/* line 33, ../../src/css/_header.scss */
+.title__main:hover, .title__sub:hover, .title__author span:hover, .title__bpm input:hover {
   border: 1px dotted rgba(0, 0, 0, 0.3);
 }
-/* line 37, ../../src/css/_header.scss */
-.title__main:focus, .title__sub:focus {
+/* line 39, ../../src/css/_header.scss */
+.title__main:focus, .title__sub:focus, .title__author span:focus, .title__bpm input:focus {
   border: 1px solid rgba(0, 0, 0, 0.5);
   background: rgba(200, 200, 200, 0.1);
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
           box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
-/* line 47, ../../src/css/_header.scss */
+/* line 49, ../../src/css/_header.scss */
 .title__main {
   font-weight: 700;
 }
-/* line 53, ../../src/css/_header.scss */
+/* line 55, ../../src/css/_header.scss */
 .title__sub {
   font-weight: 300;
 }
-/* line 59, ../../src/css/_header.scss */
-.title__author {
+/* line 61, ../../src/css/_header.scss */
+.title__author, .title__bpm {
   position: absolute;
   top: -0.5em;
   right: 0.5em;
   font-size: 0.8em;
   margin: 0;
 }
+/* line 73, ../../src/css/_header.scss */
+.title__bpm {
+  right: auto;
+  left: 0.5em;
+  font-size: 1em;
+}
+/* line 79, ../../src/css/_header.scss */
+.title__bpm input {
+  font-size: 0.8em;
+  width: 5em;
+}
 
 /* line 3, ../../src/css/_stage.scss */
 .stage {
-  width: 1200px;
+  max-width: 1200px;
+  min-width: 800px;
   margin: 2em auto;
 }
-/* line 8, ../../src/css/_stage.scss */
+/* line 9, ../../src/css/_stage.scss */
 .stage * {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -414,7 +426,23 @@ textarea {
 .note--♫1:after {
   width: 126px;
 }
-/* line 106, ../../src/css/_note.scss */
+/* line 102, ../../src/css/_note.scss */
+.note .note__note:before {
+  position: absolute;
+  bottom: 4px;
+  left: -7px;
+  font-size: 0.8em;
+  color: #9e07e0;
+}
+/* line 118, ../../src/css/_note.scss */
+.note--♪4AS .note__note:before, .note--♪5CS .note__note:before, .note--♪5DS .note__note:before, .note--♪5FS .note__note:before, .note--♪5GS .note__note:before, .note--♪5AS .note__note:before, .note--♪6CS .note__note:before, .note--♪6DS .note__note:before {
+  content: "\266f";
+}
+/* line 124, ../../src/css/_note.scss */
+.note--♪4BF .note__note:before, .note--♪5DF .note__note:before, .note--♪5EF .note__note:before, .note--♪5GF .note__note:before, .note--♪5AF .note__note:before, .note--♪5BF .note__note:before, .note--♪6DF .note__note:before, .note--♪6EF .note__note:before {
+  content: "\266d";
+}
+/* line 135, ../../src/css/_note.scss */
 .note--dot .note__note:after {
   content: "";
   position: absolute;
@@ -426,11 +454,11 @@ textarea {
   -webkit-border-radius: 100%;
           border-radius: 100%;
 }
-/* line 123, ../../src/css/_note.scss */
+/* line 152, ../../src/css/_note.scss */
 .note--dot.note--♫1 .note__note:after, .note--dot.note--♫2 .note__note:after {
   right: 0;
 }
-/* line 130, ../../src/css/_note.scss */
+/* line 159, ../../src/css/_note.scss */
 .note--dot.note--♪4AN .note__note:after, .note--dot.note--♪4AS .note__note:after, .note--dot.note--♪4BF .note__note:after, .note--dot.note--♪4BN .note__note:after, .note--dot.note--♪5CN .note__note:after, .note--dot.note--♪5CS .note__note:after, .note--dot.note--♪5DN .note__note:after, .note--dot.note--♪5DS .note__note:after, .note--dot.note--♪5FN .note__note:after, .note--dot.note--♪5FS .note__note:after, .note--dot.note--♪5AN .note__note:after, .note--dot.note--♪5AS .note__note:after, .note--dot.note--♪6CN .note__note:after, .note--dot.note--♪6CS .note__note:after, .note--dot.note--♪6EN .note__note:after {
   bottom: 9px;
 }
@@ -1027,7 +1055,7 @@ textarea {
 
 /* line 2, ../../src/css/_input-area.scss */
 .input-area {
-  width: 440px;
+  width: 470px;
   height: 180px;
   background: rgba(240, 240, 240, 0.85);
   border: 2px solid #25a2dd;
@@ -1053,15 +1081,67 @@ textarea {
 .input-area .note__tab {
   display: block;
 }
+/* line 33, ../../src/css/_input-area.scss */
+.input-area .special {
+  border: 1px solid;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  background-color: #fafafa;
+  position: absolute;
+  right: -9px;
+  text-indent: -9999em;
+  text-align: center;
+  padding: 0;
+  width: 32px;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+/* line 49, ../../src/css/_input-area.scss */
+.input-area .special span {
+  display: block;
+  margin: 6px auto;
+  width: 14px;
+  height: 26px;
+  background-image: url(../img/note-sprite-dark.png);
+}
+/* line 59, ../../src/css/_input-area.scss */
+.input-area .special--pause {
+  top: -12px;
+}
+/* line 63, ../../src/css/_input-area.scss */
+.input-area .special--pause span {
+  background-position: -97px 0;
+}
+/* line 71, ../../src/css/_input-area.scss */
+.input-area .special--bar {
+  font-size: 1.2em;
+  top: 32px;
+  text-indent: 0;
+}
+/* line 79, ../../src/css/_input-area.scss */
+.input-area .special--break {
+  font-size: 2em;
+  top: 76px;
+  text-indent: 0;
+}
+/* line 87, ../../src/css/_input-area.scss */
+.input-area .special:hover {
+  background-color: #a6eada;
+}
 
-/* line 35, ../../src/css/_input-area.scss */
+/* line 97, ../../src/css/_input-area.scss */
 .input-header {
   width: 100%;
   height: 30px;
   background: #25a2dd;
   cursor: move;
 }
-/* line 42, ../../src/css/_input-area.scss */
+/* line 104, ../../src/css/_input-area.scss */
 .input-header__icon {
   padding: 5px 7px;
   color: rgba(255, 255, 255, 0.7);
@@ -1071,18 +1151,18 @@ textarea {
   -webkit-transition: all 0.2s ease;
           transition: all 0.2s ease;
 }
-/* line 52, ../../src/css/_input-area.scss */
+/* line 114, ../../src/css/_input-area.scss */
 .input-header__icon:hover {
   color: white;
 }
-/* line 58, ../../src/css/_input-area.scss */
+/* line 120, ../../src/css/_input-area.scss */
 .input-header__icon--save {
   float: right;
 }
 
 /* line 5, ../../src/css/_piano.scss */
 .input-piano {
-  width: 328px;
+  width: 360px;
   height: 105px;
   position: absolute;
   top: 55px;
@@ -1115,8 +1195,8 @@ textarea {
   border: 1px solid;
   border-top: none;
   background: white;
-  -webkit-transition: background 0.1s ease;
-          transition: background 0.1s ease;
+  -webkit-transition: background 0.18s ease;
+          transition: background 0.18s ease;
 }
 /* line 41, ../../src/css/_piano.scss */
 .key__letter {

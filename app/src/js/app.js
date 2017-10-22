@@ -20,7 +20,10 @@
         exports.$.piano = $(".input-piano");
         exports.$.pianoOcarina = $(".input-area .note");
         exports.$.pianoKeys = exports.$.piano.find(".key");
-
+        exports.$.pianoPause = exports.$.piano.find(".special--pause");
+        exports.$.pianoBar = exports.$.piano.find(".special--bar");
+        exports.$.pianoBreak = exports.$.piano.find(".special--break");
+        
         exports.$.playpause = $(".input-header__icon--playpause");
         exports.$.stop = $(".input-header__icon--stop");
         exports.$.stepback = $(".input-header__icon--stepback");

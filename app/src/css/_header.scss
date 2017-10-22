@@ -17,9 +17,11 @@
     .title {
 
         &__main,
-        &__sub {
+        &__sub,
+        &__author span,
+        &__bpm input {
 
-            margin: -0.2em 0;
+            margin: -0.1em 0;
             padding: 0.3em 0.5em 0.2em;
             outline: none;
             border: 1px dotted transparent;
@@ -56,7 +58,8 @@
 
         }
 
-        &__author {
+        &__author,
+        &__bpm {
             
             position: absolute;
             top: -0.5em;
@@ -64,6 +67,20 @@
 
             font-size: 0.8em;
             margin: 0;
+
+        }
+
+        &__bpm {
+
+            right: auto;
+            left: 0.5em;
+            font-size: 1em;
+            
+            input {
+                
+                font-size: 0.8em;
+                width: 5em;
+            }
 
         }
 

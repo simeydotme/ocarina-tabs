@@ -16,10 +16,17 @@
             exports.$.doc.on("keyup.note", exports.note.handleKeyup );
             exports.$.doc.on("keydown.note", exports.note.handleKeydown );
 
+            exports.$.pianoKeys.on("contextmenu", function() {
+                return false;
+            });
+
             exports.$.pianoKeys.on("mouseover.key", exports.piano.mouseover );
             exports.$.pianoKeys.on("mouseout.key", exports.piano.mouseout );
             exports.$.pianoKeys.on( evup + ".key", exports.piano.mouseup );
             exports.$.pianoKeys.on( evdown + ".key", exports.piano.mousedown );
+            exports.$.pianoPause.on( evdown + ".key", exports.piano.special );
+            exports.$.pianoBar.on( evdown + ".key", exports.piano.special );
+            exports.$.pianoBreak.on( evdown + ".key", exports.piano.special );
 
 
             exports.$.playpause.on( evup + ".playpause", exports.inputArea.playpause );

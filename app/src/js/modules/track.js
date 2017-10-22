@@ -50,9 +50,18 @@
 
         };
 
+        exports.track.getBpm = function() {
 
+            var bpm = 72,
+                $bpm = exports.$.title.find(".title__bpm input");
 
+            if ( $bpm.length ) {
+                bpm = $bpm.val() || bpm;
+            }
 
+            return bpm;
+
+        };
 
         exports.track.playSong = function( bpm, onebeat ) {
 
@@ -71,7 +80,7 @@
                 exports.track.selected = 0;
             }
 
-            bpm = bpm || 72;
+            bpm = bpm || exports.track.getBpm();
             onebeat = onebeat || 4;
 
             exports.track.isPlaying = true;
@@ -166,15 +175,22 @@
 
             var title = exports.$.title.children(".title__main").text(),
                 subtitle = exports.$.title.children(".title__sub").text(),
-                author = exports.$.title.find(".title__author span").text();
+                author = exports.$.title.find(".title__author span").text(),
+                bpm = exports.$.title.find(".title__bpm input").val();
 
             console.info("Building titles model...");
 
             app.model.title = title;
             app.model.subtitle = subtitle;
             app.model.author = author;
+            app.model.bpm = bpm;
 
-            return { title: title, subtitle: subtitle, author: author };
+            return { 
+                title: title, 
+                subtitle: subtitle, 
+                author: author, 
+                bpm: bpm 
+            };
 
         };
 
@@ -199,9 +215,9 @@
 
             }
 
-            var title = exports._createTitle( data );
+            var meta = exports._createTitle( data );
             var notes = exports._createNotes( data );
-            exports.$.title.html( title );
+            exports.$.title.html( meta );
             exports.$.score.html( notes );
 
             exports.track.selected = exports.$.score.find(".note").length - 1;

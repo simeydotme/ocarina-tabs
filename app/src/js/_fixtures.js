@@ -5,6 +5,7 @@ window.fixture = {
     "author":"Simon Goellner",
     "title":"Star Wars",
     "subtitle":"Opening Theme",
+    "bpm":"72",
     "notes":[
         {
             "note":"4AN",

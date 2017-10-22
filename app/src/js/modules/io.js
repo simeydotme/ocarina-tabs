@@ -3,17 +3,24 @@
     var app = (function(exports) {
 
         exports.io = {};
+        
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            exports.io.loadSong( decodeURIComponent( e.target.result ) );
+        };
 
         exports.io.getSong = function() {
 
             var notes = exports.track.createNotesModel();
-            var title = exports.track.createTitleModel();
+            var meta = exports.track.createTitleModel();
 
             var song = {
 
-                title: title.title,
-                subtitle: title.subtitle,
-                author: title.author,
+                title: meta.title,
+                subtitle: meta.subtitle,
+                author: meta.author,
+                bpm: meta.bpm,
                 notes: notes
 
             };
@@ -111,12 +118,6 @@
         exports.io.uploadFile = function() {
 
             try {
-
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    exports.io.loadSong( decodeURIComponent( e.target.result ) );
-                };
 
                 reader.readAsText( exports.$.upload[0].files[0] );
 

@@ -98,6 +98,35 @@
             }
 
         }
+        
+        .note__note:before {
+            
+            position: absolute;
+            bottom: 4px;
+            left: -7px;
+
+            font-size: 0.8em;
+            color: rgb(158, 7, 224);
+
+        }
+
+        &--♪ {
+            
+            // Sharps and Flats
+
+            &4AS, &5CS, &5DS, &5FS, &5GS, &5AS, &6CS, &6DS {
+                .note__note:before {
+                    content: "\266f";
+                }
+            }
+
+            &4BF, &5DF, &5EF, &5GF, &5AF, &5BF, &6DF, &6EF {
+                .note__note:before {
+                    content: "\266d";
+                }
+            }
+
+        }
 
         &--dot {
 

@@ -38,6 +38,7 @@
 
         exports.piano.mousedown = function( e ) {
 
+            e.preventDefault();
             exports.note.playNote( $(this).data("key") );
             exports.$.pianoKeys.on("mouseover.mousedown", exports.piano.mousedownover );
 
@@ -51,7 +52,27 @@
 
         exports.piano.mouseup = function( e ) {
 
+            e.preventDefault();
             exports.$.pianoKeys.off("mouseover.mousedown");
+            
+            if ( e.which === 1 ) {
+
+                exports.note.addNote( $(this).data("key") , exports.track.selected );
+
+            } else {
+
+                if ( $(this).hasClass( "key--sharp" ) ) {
+
+                    exports.note.addNote( $(this).data("flat"), exports.track.selected );
+
+                }
+
+            }
+
+        };
+
+        exports.piano.special = function( e ) {
+            
             exports.note.addNote( $(this).data("key") , exports.track.selected );
 
         };

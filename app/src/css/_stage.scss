@@ -2,7 +2,8 @@
 
     .stage {
 
-        width: $appWidth;
+        max-width: $appWidth;
+        min-width: 800px;
         margin: 2em auto;
 
         * {
